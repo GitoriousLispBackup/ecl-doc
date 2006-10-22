@@ -1,0 +1,36 @@
+html {	background: #000; }
+body {
+	margin: 1em 10% 0 10%;
+        line-height: 1.4;
+        padding: 0 2em 1em 2em;
+        font: 10pt serif;
+	background: #FFF;
+}
+table {
+	font: inherit;
+}
+th, td {
+	vertical-align: top;
+}
+h1, h2, h3, h4, h5 { background: #DDD; }
+body p { text-align: justify; max-width: 100%; }
+code, pre { font: 10pt monospace; }
+pre.screen {
+	font: bold 9pt monospace;
+	max-width: 100%;
+	background: #EEE;
+	overflow: auto;
+	border: 1px solid #000;
+	padding: 0.5em;
+}
+pre.programlisting {
+	max-width: 100%;
+	overflow: auto;
+}
+a { color: #000; font-weight: bold; }
+div p { padding: 0 2em }
+hr { display: none; }
+div.funcsynopsis p  {
+	text-align: left;
+	text-indent: -2em;
+}

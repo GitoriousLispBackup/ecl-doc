@@ -1,0 +1,1061 @@
+<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd">
+<book lang="en"><part><title></title>
+<chapter id="ansi.overview">
+ <title>Overview</title>
+
+ <para>&ECL; supports all Common-Lisp data types exactly as defined in the
+ &ANSI;. All functions and macros are expected to behave as described in that
+ document and in the HyperSpec &HyperSpec; which is the online version of
+ &ANSI;. This part of the book is simply a complement to those official documents and its role is to describes implementation dependent features, such as
+ <itemizedlist>
+  <listitem><para>Platform dependent limits.</para></listitem>
+  <listitem><para>Behavior which is marked as <quote>implementation
+  specific</quote> in the standard.</para></listitem>
+  <listitem><para>Some corner cases which are not described in
+  &ANSI;.</para></listitem>
+  <listitem><para>The philosophy behind certain implementation
+  choices.</para></listitem>
+ </itemizedlist>
+ </para>
+
+ <para>The following sections are organized following the structure in the
+ online version of the standard &HyperSpec;: each chapter complements the one
+ with the same name in the standard.</para>
+</chapter>
+
+<chapter id="ansi.data-and-control">
+ <title>Data and control flow</title>
+
+ <section id="ansi.minimal-compilation">
+  <title>Minimal compilation</title>
+
+  <para>Former versions of &ECL;, as well as many other lisps, used linked
+  lists to represent code. Executing code thus meant traversing these lists
+  and performing code transformations, such as macro expansion, every time
+  that a statement was to be executed. The result was a slow and memory
+  hungry interpreter.</para>
+
+  <para>Beginning with version 0.3, &ECL; was shipped with a bytecodes
+  compiler and interpreter which circumvent the limitations of linked
+  lists. When you enter code at the lisp prompt, or when you load a source
+  file, &ECL; begins a process known as minimal compilation. Barely this
+  process consists on parsing each form, macroexpanding it and translating it
+  into an intermediate language made of
+  <emphasis>bytecodes</emphasis>.</para>
+
+  <para>The bytecodes compiler is implemented in
+  <filename>src/c/compiler.d</filename>. The main entry point is the lisp
+  function <function>si::make-lambda</function>, which takes a name for the
+  function and the body of the lambda lists, and produces a lisp object that
+  can be invoked. For instance,
+  <screen>&gt; (defvar fun (si::make-lambda 'f '((x) (1+ x))))
+*FUN*
+&gt; (funcall fun 2)
+3</screen></para>
+
+  <para>&ECL; can only execute bytecodes. When a list is passed to
+  <literal>EVAL</literal> it must be first compiled to bytecodes and, if the
+  process succeeds, the resulting bytecodes are passed to the
+  interpreter. Similarly, every time a function object is created, such as in
+  <function>DEFUN</function> or <function>DEFMACRO</function>, the compiler
+  processes the lambda form to produce a suitable bytecodes object.</para>
+
+  <para>The fact that &ECL; performs this eager compilation means that
+  changes on a macro are not immediately seen in code which was already
+  compiled. This has subtle implications. Take the following code:</para>
+  <screen>&gt; (defmacro f (a b) `(+ ,a ,b))
+F
+&gt; (defun g (x y) (f x y))
+G
+&gt; (g 1 2)
+3
+&gt; (defmacro f (a b) `(- ,a ,b))
+F
+&gt; (g 1 2)
+3</screen>
+
+  <para>The last statement always outputs <literal>3</literal> while in former
+  implementations based on simple list traversal it would produce
+  <literal>-1</literal>.</para>
+ </section>
+
+ <section id="ansi.functions">
+  <title>Functions</title>
+
+  <para>Functions in &ECL; can be of two types: they are either compiled to
+  bytecodes or they have been compiled to machine code using a lisp to C
+  translator and a C compiler. To the first category belong function loaded
+  from lisp source files or entered at the toplevel. To the second category
+  belong all functions in the &ECL; core environment and functions in files
+  processed by <function>compile</function> or
+  <function>compile-file</function>.</para>
+
+  <para>The output of <code>(symbol-function
+  <replaceable>fun</replaceable>)</code> is a list, is either a function
+  object if <literal>'fun</literal> is has a function definition,
+  <literal>(macro . function-object)</literal> if <literal>'fun</literal> is
+  a macro, and <literal>'special</literal> if <literal>'fun</literal> is a
+  special form.</para>
+
+  <para>&ECL; usually drops the source code of a function unless the global
+  variable <varname>si:*keep-definitions*</varname> was true when the
+  function was translated into bytecodes. Therefore, if you wish to use
+  <function>compile</function> and <function>disassemble</function> on
+  defined functions, you should issue <code>(setq si:*keep-definitions*
+  t)</code> at the beginning of your session.</para>
+
+  <para>In <xref linkend="table.function.constants"/> we list all
+  &CommonLisp; values related to the limits of functions.</para>
+
+  <table id="table.function.constants">
+   <title>Function related constants</title>
+   <tgroup cols="2">
+    <tbody>
+     <row>
+      <entry><constant>call-arguments-limit</constant></entry>
+      <entry>65536</entry>
+     </row>
+     <row>
+      <entry><constant>lambda-parameters-limit</constant></entry>
+      <entry>call-arguments-limit</entry>
+     </row>
+     <row>
+      <entry><constant>multiple-values-limit</constant></entry>
+      <entry>64</entry>
+     </row>
+     <row>
+      <entry><constant>lambda-list-keywords</constant></entry>
+      <entry><literal>(&optional; &rest; &keys; &allow-other-keys; &aux;
+      &whole; &environment; &body;)</literal></entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+ </section>
+</chapter>
+
+<chapter id="Symbols">
+ <title>Symbols</title>
+ <para>There are no implementation-specific limits on the size or content of
+ symbol names. It is however not allowed to write on the strings which have
+ been passed to #'make-symbol or returned from #'symbol-name.</para>
+</chapter>
+
+<chapter id="sec.ansi.packages">
+ <title>Packages</title>
+
+ <table id="table.all-packages">
+  <title>ECL packages</title>
+  <tgroup cols="3">
+   <thead>
+    <row>
+     <entry>Name</entry>
+     <entry>Nickname</entry>
+     <entry>In module</entry>
+     <entry>Description</entry>
+    </row>
+   </thead>
+   <tbody>
+    <row>
+     <entry><package>COMMON-LISP</package></entry>
+     <entry><package>CL</package>, <package>LISP</package></entry>
+     <entry>&ECL; core</entry>
+     <entry>Main &CommonLisp; package.</entry>
+    </row>
+    <row>
+     <entry><package>CLOS</package></entry>
+     <entry><package>MOP</package></entry>
+     <entry>&ECL; core</entry>
+     <entry>Symbols from the &AMOP;.</entry>
+    </row>
+    <row>
+     <entry><package>SYSTEM</package></entry>
+     <entry><package>SI</package>, <package>SYS</package></entry>
+     <entry>&ECL; core</entry>
+     <entry>Functions and variables internal to the implementation</entry>
+    </row>
+    <row>
+     <entry><package>CMP</package></entry>
+     <entry><package>C</package></entry>
+     <entry><package>CMP</package></entry>
+     <entry>The compiler</entry>
+    </row>
+    <row>
+     <entry><package>XLIB</package></entry>
+     <entry><package>CLX</package></entry>
+     <entry><package>XLIB</package></entry>
+     <entry>CLX library for X-Windows</entry>
+    </row>
+    <row>
+     <entry><package>SB-BSD-SOCKETS</package></entry>
+     <entry></entry>
+     <entry><package>SOCKETS</package></entry>
+     <entry>Sockets library compatible with <acronym>SBCL</acronym>'s</entry>
+    </row>
+    <row>
+     <entry><package>SB-RT</package></entry>
+     <entry><package>RT</package>, <package>REGRESSION-TEST</package></entry>
+     <entry><package>RT</package></entry>
+     <entry>Test units (customized for &ECL;)</entry>
+    </row>
+    <row>
+     <entry><package>ASDF</package></entry>
+     <entry></entry>
+     <entry><package>ASDF</package></entry>
+     <entry>System definition file with &ECL; customizations.</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </table>
+
+ <para>In <xref linkend="table.all-packages"/> we list all packages
+ available in &ECL;. The nicknames are aliases for a package. Thus,
+ <symbol>system:symbol</symbol> may be written as
+ <symbol>sys:symbol</symbol> or <symbol>si:symbol</symbol>. The module field
+ explains which library provides that package. For instance, the
+ <package>ASDF</package> is obtained when loading the
+ <package>ASDF</package> library with <code>(require 'asdf)</code>; and the
+ <package>XLIB</package> package when configuring and loading the
+ <package>CLX</package> library.</para>
+
+</chapter>
+
+<chapter id="sec.ansi.numbers">
+ <title>Numbers</title>
+
+ <section id="sec.ansi.number-types">
+  <title>Numeric types</title>
+
+  <para>&ECL; supports all of the &CommonLisp; numeric tower, which is shown
+  in <xref linkend="table.ansi.numbers"/>. The details, however, depend both
+  on the platform on which &ECL; runs and on the configuration which was
+  chosen when building &ECL;.</para>
+  <table id="table.ansi.numbers">
+   <title>Numeric types in &ECL;</title>
+   <tgroup cols="2">
+    <thead>
+     <row><entry>Type</entry><entry>Description</entry></row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><type>FIXNUM</type></entry>
+      <entry>Signed integer with a number of bits given by
+      <varname>SI::FIXNUM-BITS</varname>, fit in a machine word.</entry>
+     </row>
+     <row>
+      <entry><type>BIGNUM</type></entry>
+      <entry>Arbitrary size integers, only limited by amount of memory.</entry>
+     </row>
+     <row>
+      <entry><type>RATIO</type></entry>
+      <entry>Arbitrary size rational number, made up of two integers.</entry>
+     </row>
+     <row>
+      <entry><type>SINGLE-FLOAT</type></entry>
+      <entry>32-bits IEEE floating point number.</entry>
+     </row>
+     <row>
+      <entry><type>DOUBLE-FLOAT</type></entry>
+      <entry>64-bits IEEE floating point number.</entry>
+     </row>
+     <row>
+      <entry><type>SHORT-FLOAT</type></entry>
+      <entry>Either equivalent to SINGLE-FLOAT, or a 29-bit immediate floating
+      point number.</entry>
+     </row>
+     <row>
+      <entry><type>LONG-FLOAT</type></entry>
+      <entry>Either equivalent to DOUBLE-FLOAT, or a 96/128 bits IEEE floating
+      point number.</entry>
+     </row>
+     <row>
+      <entry><type>RATIONAL</type></entry>
+      <entry>An alias for <type>(OR INTEGER RATIO)</type></entry>
+     </row>
+     <row>
+      <entry><type>FLOAT</type></entry>
+      <entry>An alias for <type>(OR SINGLE-FLOAT DOUBLE-FLOAT SHORT-FLOAT
+      LONG-FLOAT)</type></entry>
+     </row>
+     <row>
+      <entry><type>REAL</type></entry>
+      <entry>An alias for <type>(OR REAL INTEGER FLOAT)</type></entry>
+     </row>
+     <row>
+      <entry><type>COMPLEX</type></entry>
+      <entry>Complex number made of two real numbers of the above mentioned
+      types.</entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+
+  <para>In general, the size of a <type>FIXNUM</type> is determined by the
+  word size of a machine, which ranges from 32 to 64 bits. Integers larger
+  than this are implemented using the <ulink
+  url="http://www.swox.com/gmp/">GNU Multiprecision library</ulink>. Rationals
+  are implemented using two integers, without caring whether they are fixnum
+  or not. Floating point numbers include at least the two IEEE types of 32 and
+  64 bits respectively. In machines where it is supported, it is possible to
+  associate the lisp <type>LONG-FLOAT</type> with the machine type <type>long
+  double</type> whose size ranges from 96 to 128 bits, and which are a bit
+  slower. Finally, in 32-bit architectures it is also possible to associate
+  the type <type>SHORT-FLOAT</type> with a 29-bits floating point number that
+  takes up no memory.</para>
+ </section>
+
+ <section id="sec.ansi.random-states">
+  <title>Random-States</title>
+
+  <para>&ECL; provides a reader macro <literal>#$</literal> that reads a
+  random state. <literal>#$<replaceable>integer</replaceable></literal> is
+  equivalent to <code>(make-random-state
+  <replaceable>integer</replaceable>)</code>.  The same format is used when a
+  random state is printed.</para>
+
+  <important>
+   <para>Random states are implemented using a very crude 32-bits algorithm
+   which probably has a short period. Help is welcome in improving it.</para>
+  </important>
+ </section>
+
+</chapter>
+
+<chapter id="sec.ansi.characters">
+ <title>Characters</title>
+ <para>&ECL; is fully ANSI Common-Lisp compliant in all aspects of the character
+ data type, with the following peculiarities.</para>
+
+ <section id="ansi.character-types">
+  <title>Character types</title>
+
+  <para>If compiled without Unicode support, &ECL; all characters are
+  implemented using 8-bit codes and the type <type>extended-char</type>
+  is empty. If compiled with Unicode support, characters are implemented
+  using 24 bits and the <type>extended-char</type> type covers characters above
+  code 255.</para>
+  <informaltable>
+   <tgroup cols="3">
+    <thead>
+     <row>
+      <entry>Type</entry>
+      <entry>With Unicode</entry>
+      <entry>Without Unicode</entry>
+     </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><type>standard-char</type></entry>
+      <entry>#\Newline,32-126</entry>
+      <entry>#\Newline,32-126</entry>
+     </row>
+     <row>
+      <entry><type>base-char</type></entry>
+      <entry>0-255</entry>
+      <entry>0-255</entry>
+     </row>
+     <row>
+      <entry><type>extended-char</type></entry>
+      <entry>-</entry>
+      <entry>255-16777215</entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </informaltable>
+ </section>
+
+ <section id="sec.ansi.character-names">
+  <title>Character names</title>
+
+  <para>All characters have a name. For non-printing characters between 0 and 32, and for 127 we use the ordinary
+  <acronym>ASCII</acronym> names. Characters above 127 are printed and read
+  using Unicode notation as in <literal>#U0126</literal>, where the
+  <literal>U</literal> is followed by the hexadecimal code.</para>
+  <table id="table.character-names">
+   <title>Examples of character names</title>
+   <tgroup cols="2">
+    <thead>
+     <row>
+      <entry>Character</entry>
+      <entry>Code</entry>
+     </row>
+    </thead>
+    <tbody>
+     <row><entry><literal>#\Null</literal></entry><entry>0</entry></row>
+     <row><entry><literal>#\Ack</literal></entry><entry>1</entry></row>
+     <row><entry><literal>#\Bell</literal></entry><entry>7</entry></row>
+     <row><entry><literal>#\Backspace</literal></entry><entry>8</entry></row>
+     <row><entry><literal>#\Tab</literal></entry><entry>9</entry></row>
+     <row><entry><literal>#\Newline</literal></entry><entry>10</entry></row>
+     <row><entry><literal>#\Linefeed</literal></entry><entry>10</entry></row>
+     <row><entry><literal>#\Page</literal></entry><entry>12</entry></row>
+     <row><entry><literal>#\Esc</literal></entry><entry>27</entry></row>
+     <row><entry><literal>#\Escape</literal></entry><entry>27</entry></row>
+     <row><entry><literal>#\Space</literal></entry><entry>32</entry></row>
+     <row><entry><literal>#\Rubout</literal></entry><entry>127</entry></row>
+     <row><entry><literal>#\U0080</literal></entry><entry>128</entry></row>
+    </tbody>
+   </tgroup>
+  </table>
+  <para>Note that <literal>#\Linefeed</literal> is synonymous with
+  <literal>#\Newline</literal> and thus is a member of
+  <type>standard-char</type>.</para>
+ </section>
+
+ <section>
+  <title>Line Divisions</title>
+
+  <para>&ECL; represents the <literal>#\Newline</literal> character by a
+  single code. In platforms with other new line conventions, additional
+  characters such as carriage returns are ignored when reading and they are
+  not automatically appended when writing.</para>
+ </section>
+</chapter>
+
+<chapter id="sec.ansi.arrays">
+ <title>Arrays</title>
+ <section id="sec.ansi.array-limits">
+  <title>Array limits</title>
+
+  <para>&ECL; arrays can have up to 64 dimensions.  Common-Lisp constants
+  related to arrays have the following values in &ECL;.</para>
+  <informaltable>
+   <tgroup cols="2">
+    <thead>
+     <row>
+      <entry>Constant</entry>
+      <entry>Value</entry>
+     </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry>array-rank-limit</entry>
+      <entry>64</entry>
+     </row>
+     <row>
+      <entry>array-dimension-limit</entry>
+      <entry>most-positive-fixnum</entry>
+     </row>
+     <row>
+      <entry>array-total-size-limit</entry>
+      <entry>array-dimension-limit</entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </informaltable>
+ </section>
+
+ <section id="sec.ansi.array-spec">
+  <title>Specializations</title>
+
+  <para>&ECL; provides specialized array types for several element kinds. In
+  the following table we list those types, together with the machine type
+  which is used to implement them, and the expected size.</para>
+  <informaltable>
+   <tgroup cols="3">
+    <thead>
+     <row>
+      <entry>Specialized type</entry>
+      <entry>Element C type</entry>
+      <entry>Size</entry>
+     </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><type>bit</type></entry>
+      <entry>-</entry>
+      <entry>1 bit</entry>
+     </row>
+     <row>
+      <entry><type>character</type></entry>
+      <entry><type>unsigned char</type> or <type>uint32_t</type></entry>
+      <entry>Depends on character range</entry>
+     </row>
+     <row>
+      <entry><type>base-char</type></entry>
+      <entry><type>unsigned char</type></entry>
+      <entry></entry>
+     </row>
+     <row>
+      <entry><type>fixnum</type></entry>
+      <entry><type>cl_fixnum</type></entry>
+      <entry>Machine word (32 or 64 bits)</entry>
+     </row>
+     <row>
+      <entry><type>(signed-byte 8)</type></entry>
+      <entry><type>int8_t</type></entry>
+      <entry>8 bits</entry>
+     </row>
+     <row>
+      <entry><type>(unsigned-byte 8)</type></entry>
+      <entry><type>uint8_t</type></entry>
+      <entry>8 bits</entry>
+     </row>
+     <row>
+      <entry><type>single-float</type> or <type>short-float</type></entry>
+      <entry><type>float</type></entry>
+      <entry>32-bits IEEE float</entry>
+     </row>
+     <row>
+      <entry><type>double-float</type></entry>
+      <entry><type>double</type></entry>
+      <entry>64-bits IEEE float</entry>
+     </row>
+     <row>
+      <entry><type>long-float</type></entry>
+      <entry><type>long double</type></entry>
+      <entry>Between 96 and 128 bits. Only when compiled with support for
+      long-float.</entry>
+     </row>
+     <row>
+      <entry><type>t</type></entry>
+      <entry><type>cl_object</type></entry>
+      <entry>Size of a pointer.</entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </informaltable>
+ </section>
+
+</chapter>
+
+<chapter id="sec.ansi.strings">
+ <title>Strings</title>
+
+ <para>The &ECL; implementation of strings is ANSI Common-Lisp
+ compliant. There are basically four string types as shown in <xref
+ linkend="table.ansi.strings"/>. If Unicode support is
+ disabled, <type>character</type> and <type>base-character</type> are the
+ same type and the last two string types are equivalent to the first
+ two.</para>
+ <table id="table.ansi.strings">
+  <title>&CommonLisp; string types</title>
+  <tgroup cols="2">
+   <thead>
+    <row>
+     <entry>Abbreviation</entry>
+     <entry>Expanded type</entry>
+     <entry>Remarks</entry>
+    </row>
+   </thead>
+   <tbody>
+    <row>
+     <entry><type>string</type></entry>
+     <entry><type>(array character (*))</type></entry>
+     <entry>8 or 32 bits per character, adjustable.</entry>
+    </row>
+    <row>
+     <entry><type>simple-string</type></entry>
+     <entry><type>(simple-array character (*))</type></entry>
+     <entry>8 or 32 bits per character, not adjustable nor displaced.</entry>
+    </row>
+    <row>
+     <entry><type>base-string</type></entry>
+     <entry><type>(array base-char (*))</type></entry>
+     <entry>8 bits per character, adjustable.</entry>
+    </row>
+    <row>
+     <entry><type>simple-base-string</type></entry>
+     <entry><type>(simple-array base-char (*))</type></entry>
+     <entry>8 bits per character, not adjustable nor displaced.</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </table>
+
+ <important>
+  <para>Currently, strings with unicode characters cannot be printed
+  readably.</para>
+ </important>
+</chapter>
+
+<chapter id="sec.ansi.hash-tables">
+ <title>Hash tables</title>
+
+ <para>...</para>
+</chapter>
+
+<chapter id="sec.ansi.pathnames">
+ <title>Pathnames</title>
+
+ <section id="sec.ansi.pathnames.syntax">
+  <title>Syntax</title>
+  <para>A pathname in the file system of Common-Lisp consists of six
+  elements: host, device, directory, name, type and version. Pathnames are
+  read and printed using the <literal>#P</literal> reader macro followed by
+  the namestring. A namestring is a string which represents a pathname. The
+  syntax of namestrings for logical pathnames is well explained in the &ANSI;
+  and it can be roughly summarized as follows:
+
+  <synopsis><literal><optional><replaceable>hostname</replaceable>:</optional><optional>;</optional><optional><replaceable>directory-item</replaceable>;</optional><superscript>0 or more</superscript><optional><replaceable>name</replaceable></optional><optional>.<replaceable>type</replaceable><optional>.<replaceable>version</replaceable></optional></optional></literal>
+  <replaceable>hostname</replaceable> = <replaceable>word</replaceable>
+  <replaceable>directory-item</replaceable> = <replaceable>wildcard-word</replaceable>
+  <replaceable>type</replaceable>, <replaceable>name</replaceable> = <replaceable>wildcard-word</replaceable> without dots</synopsis>
+
+  Here, <replaceable>wildcard-word</replaceable> is a sequence of any
+  character excluding <literal>#\Null</literal> and
+  dots. <replaceable>word</replaceable> is like a
+  <replaceable>wildcard-word</replaceable> but asterisks are excluded.</para>
+
+  <para>The way &ECL; parses a namestring is by first looking for the
+  <replaceable>hostname</replaceable> component in the previous template. If
+  it is found and it corresponds to a previously defined logical hostname, it
+  assumes that the namestring corresponds to a logical pathname. If
+  <replaceable>hostname</replaceable> is not found or it is not a logical
+  hostname, then &ECL; tries the physical pathname syntax
+
+  <synopsis><literal><optional><replaceable>device</replaceable>:</optional><optional><optional>//<replaceable>hostname</replaceable></optional>/</optional><optional><replaceable>directory-item</replaceable>/</optional><superscript>0 or more</superscript><optional><replaceable>name</replaceable></optional><optional>.<replaceable>type</replaceable></optional></literal>
+  <replaceable>device</replaceable>, <replaceable>hostname</replaceable> = <replaceable>word</replaceable>
+  <replaceable>directory-item</replaceable> = <replaceable>wildcard-word</replaceable>
+  <replaceable>type</replaceable> = <replaceable>wildcard-word</replaceable> without dots
+  <replaceable>name</replaceable> = <optional>.</optional><replaceable>wildcard-word</replaceable></synopsis>
+
+  If this syntax also fails, then the namestring is not a valid pathname
+  string and a <type>parse-error</type> will be signalled.</para>
+
+  <para>It is important to remark that in &ECL;, all physical namestrings
+  result into pathnames with a version equal to
+  <literal>:NEWEST</literal>. Pathnames which are not logical and have any
+  other version (i. e. <literal>NIL</literal> or a number), cannot be printed
+  readably, but can produce a valid namestring which results of ignoring the
+  version.</para>
+
+  <para>Finally, an important rule applies to physical namestrings: if a
+  namestring contains one or more periods `.', the last period separates the
+  namestring into the file name and the filetype. However, a namestring with a
+  single leading period results in a name with a period in it. This is for
+  compatibility with Unix filenames such as <filename>.bashrc</filename>, where
+  the leading period indicates that the file is hidden.</para>
+
+  <para>The previous rule has in important consequence, because it means that
+  if you want to create a pathname without a name, you have to do it
+  explicitely. In other words, <literal>".*"</literal> is equivalent to
+  <code>(MAKE-PATHNAME :NAME ".*" :TYPE NIL)</code>, while <code>(MAKE-PATHNAME
+  :NAME NIL :TYPE :WILD)</code> creates a pathname whose type is a
+  wildcard.</para>
+
+  <para>The following table illustrates how the physical pathnames work with
+  practical examples.</para>
+  <table>
+   <title>Examples of physical namestrings</title>
+   <tgroup cols="3">
+    <thead>
+     <row><entry>Namestring</entry>
+     <entry>Name</entry>
+     <entry>Type</entry>
+     <entry>Directory</entry>
+     <entry>Device</entry>
+     </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry>"foo.lsp"</entry>
+      <entry>"foo"</entry>
+      <entry>"lsp"</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>".bashrc"</entry>
+      <entry>".bashrc"</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>".ecl.lsp"</entry>
+      <entry>".ecl"</entry>
+      <entry>"lsp"</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>"foo.*"</entry>
+      <entry>"foo"</entry>
+      <entry>:WILD</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>"*.*"</entry>
+      <entry>:WILD</entry>
+      <entry>:WILD</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>"ecl/build/bare.lsp"</entry>
+      <entry>"bare"</entry>
+      <entry>"lsp"</entry>
+      <entry>(:relative "ecl" "build")</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>"ecl/build/"</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+      <entry>(:relative "ecl" "build")</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>"../../ecl/build/"</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+      <entry>(:relative :up :up "ecl" "build")</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>"/etc/"</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+      <entry>(:absolute "etc")</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>"C:/etc/"</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+      <entry>(:absolute "etc")</entry>
+      <entry>"C"</entry>
+     </row>
+     <row>
+      <entry>".*"</entry>
+      <entry>".*"</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+     </row>
+     <row>
+      <entry>#.(MAKE-PATHNAME :TYPE "*")</entry>
+      <entry>NIL</entry>
+      <entry>:WILD</entry>
+      <entry>NIL</entry>
+      <entry>NIL</entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+ </section>
+
+ <section id="sec.ansi.pathnames.wild">
+  <title>Wild pathnames and matching</title>
+
+  <para>&ECL; accepts four kind of wildcards in pathnames.</para>
+  <itemizedlist>
+   <listitem>
+    <para>A single wildcard in a directory component, file name, type or
+    version is parsed as the <symbol>:WILD</symbol> value. See for instance
+    <literal>"*.*"</literal>, <literal>"/home/*/.bashrc"</literal>, etc</para>
+   </listitem>
+   <listitem>
+    <para>A double wildcard in a directory component, such as in
+    <literal>"/home/**/"</literal> is parsed as the
+    <symbol>:WILD-INFERIORS</symbol>, and matches any number of directories,
+    even nested ones, such as: <filename>/home/</filename>,
+    <filename>/home/jlr</filename>, <filename>/home/jlr/lib</filename>,
+    etc.</para>
+   </listitem>
+   <listitem>
+    <para>An isolated wildcard <literal>"log*.txt"</literal> matches any number
+    of characters: <filename>log.txt</filename>,
+    <filename>log_back.txt</filename>, etc.</para>
+   </listitem>
+   <listitem>
+    <para>A question mark <literal>"log?.txt"</literal> matches a single
+    character: <filename>log1.txt</filename>,
+    <filename>log2.txt</filename>...</para>
+   </listitem>
+  </itemizedlist>
+
+  <para>The matching rules in &CommonLisp; and &ECL; are simple but have some
+  unintuitive consequences when compared to Unix/DOS rules. The most important
+  one is that directories must always end with a trailing slash
+  <literal>/</literal>. Second to that, <symbol>NIL</symbol> values can only be
+  matched by <symbol>NIL</symbol> and <symbol>:WILD</symbol>. Hence,
+  <literal>"*"</literal> can only match files without file type. For some
+  examples see <xref linkend="sec.ansi.files.directory"/>.</para>
+  </section>
+</chapter>
+
+<chapter id="sec.ansi.files">
+ <title>Files</title>
+
+ <section id="sec.ansi.resolving">
+  <title>Mapping pathnames to files</title>
+
+  <para>Pathnames are used to represent files in a storage
+  device<footnote><para>Actually, the &ECL; syntax allows physical pathnames to
+  represent any <acronym>URL</acronym>.</para></footnote>. However, before
+  using a pathname to perform a filesystem operation, &ECL; will have to apply
+  a number of transformations to it. First of all, if the pathname is a logical
+  one it has to be converted to a physical pathname. Second, this physical
+  pathname must not be a relative one, it has to be converted into an absolute
+  pathname.</para>
+
+  <para>The convertion of a relative pathname into an absolute one is performed
+  automatically by many &CommonLisp; functions. The overall procedure consists
+  on merging the pathname with the value of
+  <varname>*default-pathname-defaults*</varname>.</para>
+
+  <para>A problem with this approach is that many Lisp programs are not
+  prepared to have <varname>*default-pathname-defaults*</varname> pointing to
+  an actual directory. Also, additional to the maintaining value of this
+  variable, programs have to take care of the notion of the "current working
+  directory" as understood by the operating system. Finally the variable
+  <varname>*default-pathname-defaults*</varname> influences not only the
+  resolution of relative pathnames, but also many other functions
+  (<function>MAKE-PATHNAME</function>, <function>MERGE-PATHNAMES</function>,
+  etc), what makes its use complicated.</para>
+
+  <para>The approach followed by &ECL; is to set
+  <varname>*default-pathname-defaults*</varname> to a pathname with all
+  elements set to NIL, <code>(MAKE-PATHNAME :NAME NIL :TYPE NIL
+  ...)</code>. Then, every physical pathname which is to be converted to an
+  absolute one is first merged with the value of
+  <varname>*default-pathname-defaults*</varname> and afterwards with the
+  pathname with the output of <function>SI:GETCWD</function>, which returns the
+  current working directory as understood by the operating system.</para>
+ </section>
+
+ <section id="sec.ansi.files.dict">
+  <title>Dictionary</title>
+
+  <section id="sec.ansi.files.directory">
+   <title><function>DIRECTORY</function></title>
+
+   <para>This function does not have any additional arguments other than the
+   ones described in &ANSI;. To list files and directories, it follows the
+   rules for matching pathnames described in <xref
+   linkend="sec.ansi.pathnames.wild"/>. In short, you have the following
+   practical examples:</para>
+   <table>
+    <title>Examples of using <function>DIRECTORY</function></title>
+    <tgroup cols="2">
+     <thead>
+      <row><entry>Argument</entry><entry>Meaning</entry></row>
+     </thead>
+     <tbody>
+      <row>
+       <entry><literal>"/home/jlr/*.*"</literal></entry>
+       <entry>List all files in directory <filename>/home/jlr/</filename> Note
+       that it lists only files, not directories!</entry>
+      </row>
+      <row>
+       <entry><literal>"/home/jlr/*"</literal></entry>
+       <entry>Same as before, but only files without type.</entry>
+      </row>
+      <row>
+       <entry><literal>"/home/jlr/*/"</literal></entry>
+       <entry>List all directories contained in
+       <filename>/home/jlr/</filename>. Nested directories are not
+       navigated.</entry>
+      </row>
+      <row>
+       <entry><literal>"/home/jlr/**/*.*"</literal></entry>
+       <entry>List all files in all directories contained in
+       <filename>/home/jlr/</filename>, recursively. Nested directories are
+       navigated.</entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </section>
+ </section>
+
+</chapter>
+
+<chapter id="sec.ansi.streams">
+ <title>Streams</title>
+
+ <section id="sec.ansi.streams.types">
+  <title>Stream types</title>
+
+  <para>&ECL; implements all stream types described in &ANSI;. Additionally,
+  when configured with option <option>--enable-clos-streams</option>, &ECL;
+  includes a version of Gray streams where any object that implements the
+  appropiate methods (<function>stream-input-p</function>,
+  <function>stream-read-char</function>, etc) is a valid argument for the
+  functions that expect streams, such as <function>read</function>,
+  <function>print</function>, etc.</para>
+
+ </section>
+
+ <section id="sec.ansi.streams.io">
+  <title>Input/Output model</title>
+
+  <para>&ECL; distinguishes between two kinds of streams: character streams
+  and byte streams. In the first kind one is only allowed to write
+  characters, either individually, with <function>write-char</function>, or
+  in chunks, with <function>write-sequence</function> or any of the Lisp
+  printer functions. The implementation of character streams in &ECL; has the
+  following shortcomings:
+  <itemizedlist>
+   <listitem><para>No support for external formats. Reading and writing is
+   performed using the 8-bit code of the character.</para></listitem>
+   <listitem><para>No support for Unicode characters. The code of large
+   characters is simply truncated.</para></listitem>
+  </itemizedlist></para>
+
+  <para>The other kind are binary streams. Here input and output is performed
+  in chunks of bits. Binary streams are created with the function
+  <function>open</function> passing as argument a subtype of
+  <type>integer</type>. We distinguish two cases
+  <itemizedlist>
+   <listitem><para>The word size is a multiple of 8 bits: element types
+   <type>(byte 8)</type>, <type>(signed-byte 32)</type>,
+   etc.</para></listitem>
+   <listitem><para>The word size is not a multiple of 8 bits: element types
+   <type>(unsigned-byte 3)</type>, <type>(signed-byte 15)</type>,
+   etc.</para></listitem>
+  </itemizedlist>
+  In the first case the length of the file can be deduced from the number of
+  octets which are used in the filesystem. In the second case, however, one
+  needs some extra information which tells how many bits in the last byte are
+  significant for the content. This information is stored as a single-byte
+  header at the beginning of the file.</para>
+ </section>
+</chapter>
+
+<chapter id="sec.ansi.printer">
+ <title>Printer</title>
+
+ <para>In all situations where the rules are well specified, &ECL; prints
+ objects according to &ANSI;. The specification leaves however a number of
+ cases as implementation dependent behavior. The output of &ECL; in those
+ cases is summarized in <xref linkend="table.printer"/>. Except for the types
+ <type>character</type> and <type>random-state</type>, most of those examples
+ regard non-standard written forms <literal>#&lt;...&gt;</literal> cannot be
+ read back using <function>read</function>. These printed representations are
+ just informative and should not be used to reconstruct or compare
+ objects.</para>
+
+ <table id="table.printer">
+  <title>Implementation specific printed representation</title>
+  <tgroup cols="3">
+   <thead>
+    <row>
+     <entry>Lisp type</entry>
+     <entry>Format</entry>
+     <entry>Remarks</entry>
+    </row>
+   </thead>
+   <tbody>
+    <row>
+     <entry><type>character</type></entry>
+     <entry><literal>#U<replaceable>xxxx</replaceable></literal></entry>
+     <entry>Only used for non standard characters without names.</entry>
+    </row>
+    <row>
+     <entry><type>package</type></entry>
+     <entry><literal>#&lt;PACKAGE <replaceable>name</replaceable>&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>random-state</type></entry>
+     <entry><literal>#$<replaceable>base-10-integer</replaceable></literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>bitvector</type></entry>
+     <entry><literal>#&lt;bit-vector <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry>Only when <varname>*print-array*</varname> is false.</entry>
+    </row>
+    <row>
+     <entry><type>vector</type></entry>
+     <entry><literal>#&lt;vector <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry>Only when <varname>*print-array*</varname> is false.</entry>
+    </row>
+    <row>
+     <entry><type>array</type></entry>
+     <entry><literal>#&lt;array <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry>Only when <varname>*print-array*</varname> is false.</entry>
+    </row>
+    <row>
+     <entry><type>hash-table</type></entry>
+     <entry><literal>#&lt;hash-table <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>readtable</type></entry>
+     <entry><literal>#&lt;readtable <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry>interpreted <type>function</type></entry>
+     <entry><literal>#&lt;bytecompiled-function <replaceable>name-or-id</replaceable>&gt;</literal></entry>
+     <entry>Name is a <type>symbol</type>.</entry>
+    </row>
+    <row>
+     <entry>machine compiled <type>function</type></entry>
+     <entry><literal>#&lt;compiled-function <replaceable>name</replaceable>&gt;</literal></entry>
+     <entry>Name is a <type>symbol</type>.</entry>
+    </row>
+    <row>
+     <entry><type>input-stream</type></entry>
+     <entry><literal>#&lt;input stream "<replaceable>filename</replaceable>"&gt;</literal></entry>
+     <entry>An stream that reads from <replaceable>filename</replaceable>.</entry>
+    </row>
+    <row>
+     <entry><type>output-stream</type></entry>
+     <entry><literal>#&lt;output stream "<replaceable>filename</replaceable>"&gt;</literal></entry>
+     <entry>An stream that writes to <replaceable>filename</replaceable>.</entry>
+    </row>
+    <row>
+     <entry><type>probe-stream</type></entry>
+     <entry><literal>#&lt;probe stream "<replaceable>filename</replaceable>"&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>string-input-stream</type></entry>
+     <entry><literal>#&lt;string-input stream from "<replaceable>string-piece</replaceable>"&gt;</literal></entry>
+     <entry>The string is the text left to be read.</entry>
+    </row>
+    <row>
+     <entry><type>string-output-stream</type></entry>
+     <entry><literal>#&lt;string-output stream <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>two-way-stream</type></entry>
+     <entry><literal>#&lt;two-way stream <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>echo-stream</type></entry>
+     <entry><literal>#&lt;echo stream <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>synonym-stream</type></entry>
+     <entry><literal>#&lt;synonym stream to <replaceable>symbol</replaceable>&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>broadcast-stream</type></entry>
+     <entry><literal>#&lt;broadcast stream <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>concatenated-stream</type></entry>
+     <entry><literal>#&lt;concatenated stream <replaceable>unique-id</replaceable>&gt;</literal></entry>
+     <entry></entry>
+    </row>
+    <row>
+     <entry><type>closed-stream</type></entry>
+     <entry><literal>#&lt;closed <replaceable>...</replaceable>&gt;</literal></entry>
+     <entry>The dots denote any of the above stream forms.</entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </table>
+</chapter>
+</part></book>
+<!-- Keep this comment at the end of the file
+ Local variables:
+ mode: nxml
+ sgml-indent-step: 1
+ nxml-child-indent: 1
+ nxml-outline-child-indent: 1
+ fill-column: 79
+ End:
+ -->

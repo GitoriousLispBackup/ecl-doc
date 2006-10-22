@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+     "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+<!ENTITY html.stylesheet "base.css">
+<!ENTITY tex "TeX">
+<!ENTITY latex "LaTeX">
+<!ENTITY CommonLisp "Common Lisp">
+<!ENTITY ECL "<acronym>ECL</acronym>">
+<!ENTITY CMUCL "<acronym>CMUCL</acronym>">
+<!ENTITY SBCL "<acronym>SBCL</acronym>">
+<!ENTITY FFI "<acronym>FFI</acronym>">
+<!ENTITY UFFI "<acronym>UFFI</acronym>">
+<!ENTITY CFFI "<acronym>CFFI</acronym>">
+<!ENTITY FASL "<acronym>FASL</acronym>">
+<!ENTITY ANSI "<xref linkend='bib.ANSI'/>">
+<!ENTITY AMOP "<acronym>AMOP</acronym>">
+<!ENTITY Steele84 "<xref linkend='bib.CLTL2'/>">
+<!ENTITY HyperSpec "<xref linkend='bib.HyperSpec'/>">
+<!ENTITY ChapCopyright SYSTEM "tmp/copyright.xml">
+<!ENTITY ChapPreface SYSTEM "tmp/preface.xml">
+<!ENTITY ChapStandards SYSTEM "tmp/standards.xml">
+<!ENTITY ChapIO SYSTEM "tmp/io.xml">
+<!ENTITY ChapGC SYSTEM "tmp/gc.xml">
+<!ENTITY ChapPDE SYSTEM "tmp/pde.xml">
+<!ENTITY ChapInterpreter SYSTEM "tmp/interpreter.xml">
+<!ENTITY ChapCompiler SYSTEM "tmp/compiler.xml">
+<!ENTITY ChapDeclarations SYSTEM "tmp/declarations.xml">
+<!ENTITY ChapOS SYSTEM "tmp/os.xml">
+<!ENTITY RefOS SYSTEM "tmp/ref_os.xml">
+<!ENTITY ChapFFI SYSTEM "tmp/ffi.xml">
+<!ENTITY ChapMacros SYSTEM "tmp/macros.xml">
+<!ENTITY ChapMP SYSTEM "tmp/mp.xml">
+<!ENTITY ChapCLOS SYSTEM "tmp/clos.xml">
+<!ENTITY ChapInternals SYSTEM "tmp/internals.xml">
+<!ENTITY Bibliography SYSTEM "tmp/bibliography.xml">
+<!ENTITY optional "&amp;optional">
+<!ENTITY rest "&amp;rest">
+<!ENTITY keys "&amp;keys">
+<!ENTITY allow-other-keys "&amp;allow-other-keys">
+<!ENTITY aux "&amp;aux">
+<!ENTITY body "&amp;body">
+<!ENTITY whole "&amp;whole">
+<!ENTITY environment "&amp;environment">
+]>
+<book lang="en">
+ <title>The &ECL; manual</title>
+
+ <bookinfo>
+  <author><firstname>Juan Jose</firstname><surname>Garcia-Ripoll</surname></author>
+  <date>$date$</date>
+  <title>The &ECL; manual</title>
+ </bookinfo>
+
+ &ChapPreface;
+
+ <part id="part.standards">
+ <title>Standards</title>
+ &ChapStandards;
+ </part>
+
+ <part id="part.extensions">
+ <title>Extensions</title>
+ &ChapOS;
+ &ChapFFI;
+<!--
+ &ChapIO;
+ &ChapPDE;
+ &ChapInterpreter;
+ &ChapCompiler;
+ &ChapDeclarations;
+ &ChapMacros;
+ &ChapMP;
+-->
+ </part>
+
+ <part id="part.internals">
+ <title>Internals</title>
+ &ChapInternals;
+ &ChapGC;
+ </part>
+
+ &Bibliography;
+
+</book>
+<!-- Keep this comment at the end of the file
+     Local variables:
+     sgml-indent-step: 1
+     nxml-child-indent: 0
+     nxml-outline-child-indent: 0
+     fill-column: 79
+     End:
+-->
