@@ -168,7 +168,7 @@
    <funcsynopsis>
     <funcprototype>
      <funcdef>ext:process-command-args</funcdef>
-     <paramdef><parameter>&keys;</parameter></paramdef>
+     <paramdef><parameter>&key;</parameter></paramdef>
      <paramdef><parameter>args</parameter></paramdef>
      <paramdef><parameter>rules</parameter></paramdef>
     </funcprototype>
@@ -336,7 +336,7 @@ ls [--help | -?] filename*
      <funcdef>ext:run-program</funcdef>
      <paramdef><parameter>command</parameter></paramdef>
      <paramdef><parameter>argv</parameter></paramdef>
-     <paramdef>&keys;</paramdef>
+     <paramdef>&key;</paramdef>
      <paramdef>input</paramdef>
      <paramdef>output</paramdef>
      <paramdef>error</paramdef>

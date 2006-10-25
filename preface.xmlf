@@ -144,14 +144,14 @@
   discussions may be carried out.</para>
  </section>
 
- <section id="Copyright">
-  <title>Copyright</title>
+ <section id="Copyright.ECL">
+  <title>Copyright of ECL</title>
 
   <para>&ECL; is distributed under the GNU LGPL, which allows for commercial
   uses of the software. A more precise description is given in the Copyright
   notice which is shipped with &ECL;.</para>
 
-<screen>
+<programlisting>
 ---- BEGINNING OF COPYRIGHT FOR THE ECL CORE ENVIRONMENT ------------
 
   Copyright (c) 2000, Juan Jose Garcia Ripoll
@@ -188,8 +188,34 @@
   Report bugs, comments, suggestions to the ecl mailing list:
   ecls-list@lists.sourceforge.net.
 
----- END OF COPYRIGHT FOR THE ECL CORE ENVIRONMENT ------------------
-</screen>
+---- END OF COPYRIGHT FOR THE ECL CORE ENVIRONMENT ------------------</programlisting>
+ </section>
+
+ <section id="Copyright.Manual">
+  <title>Copyright of this manual</title>
+
+  <para>Copyright: Juan Jos&eacute; Garc&iacute;a-Ripoll, 2006.</para>
+
+  <para>Copyright: Kevin M. Rosenberg 2002-2003, (UFFI Reference)</para>
+
+  <itemizedlist>
+   <listitem><para>&ACL; is a registered trademark of Franz Inc.</para></listitem>
+   <listitem><para>&LW; is a registered trademark of Xanalys Inc.</para></listitem>
+   <listitem><para><productname>Microsoft Windows</productname> is a registered
+   trademark of Microsoft Inc.</para></listitem>
+   <listitem><para>Other brand or product names are the registered trademarks
+   or trademarks of their respective holders.</para></listitem>
+  </itemizedlist>
+
+  <para>Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.1 or any
+  later version published by the Free Software Foundation; with no Invariant
+  Sections, with the no Front-Cover Texts, and with no Back-Cover Texts.  A
+  copy of the license is shown below.</para>
+
+  <programlisting>
+   &GFDL;</programlisting>
+
  </section>
 
 </preface>

@@ -19,7 +19,7 @@
    <varlistentry>
     <term>Foreign objects management</term>
     <listitem><para>This is the data that the foreign code will use. A &FFI;
-    needs to provide means to buid and manipulate foreign data, with atomatic
+    needs to provide means to buid and manipulate foreign data, with automatic
     conversions to and from lisp data types whenever possible, and it also has
     to deal with issues like garbage collection and
     finalization.</para></listitem>
@@ -222,16 +222,108 @@
   <section id="ext.ffi.uffi-example">
    <title>UFFI example</title>
 
+   <para>The example below shows how to use &UFFI; in an application. There are
+   several important ingredients:
+   <itemizedlist>
+    <listitem><para>You need to specify the libraries you use and do it at the
+    toplevel, so that the compiler may include them at link
+    time.</para></listitem>
+    <listitem><para>Every function you will use has to be declared using
+    <function>uffi:def-function</function>.</para></listitem>
+   </itemizedlist>
+   </para>
 <programlisting>
- 
+#|
+Build and load this module with (compile-file "uffi.lsp" :load t)
+|#
+;;
+;; This toplevel statement notifies the compiler that we will
+;; need this shared library at runtime. We do not need this
+;; statement in windows.
+;;
+#-(or ming32 windows)
+(uffi:load-foreign-library #+darwin "/usr/lib/libm.dylib"
+			   #-darwin "/usr/lib/libm.so")
+;;
+;; With this other statement, we import the C function sin(),
+;; which operates on IEEE doubles.
+;;
+(uffi:def-function ("sin" c-sin) ((arg :double))
+                   :returning :double)
+;;
+;; We now use this function and compare with the lisp version.
+;;
+(format t "~%Lisp sin:~t~d~%C sin:~t~d~%Difference:~t~d"
+	(sin 1.0d0) (c-sin 1.0d0) (- (sin 1.0d0) (c-sin 1.0d0)))
 </programlisting>
   </section>
 
   <section id="ext.ffi.cffi-example">
    <title>CFFI example</title>
 
+   <para>The &CFFI; library is an independent project and it is not shipped
+   with &ECL;. If you wish to use it you can go to their <ulink
+   url="http://www.common-lisp.net/cffi/">homepage</ulink>, download the code
+   and build it using &ASDF;.</para>
+
+   <para>&CFFI; differs slightly from &UFFI; in that functions may be used even
+   without being declared beforehand. This poses a few problems to the &ECL;
+   backend, but hopefully these should have been solved in the latest
+   releases.</para>
 <programlisting>
- 
+#|
+Build and load this module with (compile-file "cffi.lsp" :load t)
+|#
+;;
+;; This toplevel statement notifies the compiler that we will
+;; need this shared library at runtime. We do not need this
+;; statement in windows.
+;;
+#-(or ming32 windows)
+(cffi:load-foreign-library #+darwin "/usr/lib/libm.dylib"
+			   #-darwin "/usr/lib/libm.so")
+;;
+;; With this other statement, we import the C function sin(),
+;; which operates on IEEE doubles.
+;;
+(cffi:defcfun ("sin" c-sin) :double :double)
+;;
+;; We now use this function and compare with the lisp version.
+;;
+(format t "~%Lisp sin:~t~d~%C sin:~t~d~%Difference:~t~d"
+	(sin 1.0d0) (c-sin 1.0d0) (- (sin 1.0d0) (c-sin 1.0d0)))
+;;
+;; The following also works: no declaration!
+;;
+(let ((c-cos (cffi:foreign-funcall "cos" :double 1.0d0 :double)))
+   (format t "~%Lisp cos:~t~d~%C cos:~t~d~%Difference:~t~d"
+	(sin 1.0d0) c-sin (- (sin 1.0d0) c-sin)))
+</programlisting>
+  </section>
+
+  <section id="ext.ffi.ecl-example">
+   <title>Low level example</title>
+
+   <para>To compare with the previous pieces of code, we show how the previous
+   programs would be written using <xref linkend="ref.clines"/> and <xref
+   linkend="ref.c-inline"/></para>
+<programlisting>
+#|
+Build and load this module with (compile-file "ecl.lsp" :load t)
+|#
+;;
+;; With this other statement, we import the C function sin(), which
+;; operates on IEEE doubles. Notice that we include the C header to
+;; get the full declaration.
+;;
+(defun c-sin (x)
+  (ffi:clines "#include &lt;math.h&gt;")
+  (ffi:c-inline (x) (:double) :double "sin(#0)" :one-liner t))
+;;
+;; We now use this function and compare with the lisp version.
+;;
+(format t "~%Lisp sin:~t~d~%C sin:~t~d~%Difference:~t~d"
+	(sin 1.0d0) (c-sin 1.0d0) (- (sin 1.0d0) (c-sin 1.0d0)))
 </programlisting>
   </section>
  </section>
@@ -271,9 +363,9 @@
     <title>Description</title>
 
     <para>This special form inserts C code directly in the file that results
-    from compiling lisp sources. It can only appear as a toplevel form and,
-    contrary to <xref linkend="ref.c-inline"/>, it does not accept any input
-    values nor returns any value.</para>
+    from compiling lisp sources. Contrary to <xref linkend="ref.c-inline"/>,
+    this function may have no executable statements, accepts no input value and
+    returnsn no value.</para>
 
     <para>The main use of <function>FFI:CLINES</function> is to declare or
     define C variables and functions that are going to be used later in other
@@ -316,7 +408,7 @@
       <paramdef>(<parameter>c-type</parameter>*)</paramdef>
       <paramdef><parameter>return-type</parameter></paramdef>
       <paramdef><parameter>C-code</parameter></paramdef>
-      <paramdef>&keys;</paramdef>
+      <paramdef>&key;</paramdef>
       <paramdef><parameter>one-liner</parameter></paramdef>
       <paramdef><parameter>side-effects</parameter></paramdef>
      </funcprototype>

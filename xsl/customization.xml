@@ -22,7 +22,7 @@ book      toc,figure,table,example,equation
 chapter   toc
 part      toc
 preface   toc
-reference nop
+reference toc
 sect1     nop
 sect2     nop
 sect3     nop

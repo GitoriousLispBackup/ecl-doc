@@ -5,12 +5,13 @@
 <!ENTITY tex "TeX">
 <!ENTITY latex "LaTeX">
 <!ENTITY CommonLisp "Common Lisp">
-<!ENTITY ECL "<acronym>ECL</acronym>">
-<!ENTITY CMUCL "<acronym>CMUCL</acronym>">
-<!ENTITY SBCL "<acronym>SBCL</acronym>">
-<!ENTITY FFI "<acronym>FFI</acronym>">
-<!ENTITY UFFI "<acronym>UFFI</acronym>">
-<!ENTITY CFFI "<acronym>CFFI</acronym>">
+<!ENTITY ECL "<application>ECL</application>">
+<!ENTITY CMUCL "<application>CMUCL</application>">
+<!ENTITY SBCL "<application>SBCL</application>">
+<!ENTITY FFI "<application>FFI</application>">
+<!ENTITY UFFI "<link linkend='part.uffi'><application>UFFI</application></link>">
+<!ENTITY CFFI "<application>CFFI</application>">
+<!ENTITY ASDF "<application>ASDF</application>">
 <!ENTITY FASL "<acronym>FASL</acronym>">
 <!ENTITY ANSI "<xref linkend='bib.ANSI'/>">
 <!ENTITY AMOP "<acronym>AMOP</acronym>">
@@ -25,22 +26,40 @@
 <!ENTITY ChapInterpreter SYSTEM "tmp/interpreter.xml">
 <!ENTITY ChapCompiler SYSTEM "tmp/compiler.xml">
 <!ENTITY ChapDeclarations SYSTEM "tmp/declarations.xml">
+<!ENTITY ChapASDF SYSTEM "tmp/asdf.xml">
 <!ENTITY ChapOS SYSTEM "tmp/os.xml">
+<!ENTITY GFDL SYSTEM "tmp/COPYING.GFDL.xml">
 <!ENTITY RefOS SYSTEM "tmp/ref_os.xml">
 <!ENTITY ChapFFI SYSTEM "tmp/ffi.xml">
 <!ENTITY ChapMacros SYSTEM "tmp/macros.xml">
 <!ENTITY ChapMP SYSTEM "tmp/mp.xml">
 <!ENTITY ChapCLOS SYSTEM "tmp/clos.xml">
 <!ENTITY ChapInternals SYSTEM "tmp/internals.xml">
+<!ENTITY RefUFFIPrimitive SYSTEM "tmp/ref_primitive.xml">
+<!ENTITY RefUFFIAggregate SYSTEM "tmp/ref_aggregate.xml">
+<!ENTITY RefUFFIObject SYSTEM "tmp/ref_object.xml">
+<!ENTITY RefUFFIString SYSTEM "tmp/ref_string.xml">
+<!ENTITY RefUFFIFuncLibr SYSTEM "tmp/ref_func_libr.xml">
 <!ENTITY Bibliography SYSTEM "tmp/bibliography.xml">
 <!ENTITY optional "&amp;optional">
 <!ENTITY rest "&amp;rest">
-<!ENTITY keys "&amp;keys">
+<!ENTITY key "&amp;key">
 <!ENTITY allow-other-keys "&amp;allow-other-keys">
 <!ENTITY aux "&amp;aux">
 <!ENTITY body "&amp;body">
 <!ENTITY whole "&amp;whole">
 <!ENTITY environment "&amp;environment">
+<!ENTITY uffi "<application><emphasis>UFFI</emphasis></application>">
+<!ENTITY ffi "<acronym>FFI</acronym>">
+<!ENTITY LW "<application>Lispworks</application>">
+<!ENTITY OpenMCL "<application>OpenMCL</application>">
+<!ENTITY MCL "<application>MCL</application>">
+<!ENTITY ACL "<application>AllegroCL</application>">
+<!ENTITY t "<constant>T</constant>">
+<!ENTITY nil "<constant>NIL</constant>">
+<!ENTITY NULL "<constant>NULL</constant>">
+<!ENTITY C "<acronym>C</acronym>">
+<!ENTITY defsystem "<application>defsystem</application>">
 ]>
 <book lang="en">
  <title>The &ECL; manual</title>
@@ -59,7 +78,8 @@
  </part>
 
  <part id="part.extensions">
- <title>Extensions</title>
+ <title>Extensions and libraries</title>
+ &ChapASDF;
  &ChapOS;
  &ChapFFI;
 <!--
@@ -77,6 +97,15 @@
  <title>Internals</title>
  &ChapInternals;
  &ChapGC;
+ </part>
+
+ <part id="part.uffi">
+ <title>UFFI Reference</title>
+ &RefUFFIPrimitive;
+ &RefUFFIAggregate;
+ &RefUFFIObject;
+ &RefUFFIString;
+ &RefUFFIFuncLibr;
  </part>
 
  &Bibliography;

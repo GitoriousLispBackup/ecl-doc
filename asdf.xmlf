@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<book lang="en">
+<chapter id="ext.asdf">
+ <title>ASDF</title>
+
+ <section id="ext.asdf.overview">
+  <title>Overview</title>
+
+  <para></para>
+ </section>
+
+ <section id="ext.asdf.make-build">
+  <title>Block building</title>
+
+  <para></para>
+ </section>
+
+ <section id="ext.asdf.dict">
+  <title>ASDF Reference</title>
+
+<!-- ====================================================================== -->
+<!-- ASDF:MAKE-BUILD                                                        -->
+<!-- ====================================================================== -->
+
+  <refentry id="ref.make-build">
+   <refnamediv>
+    <refname><function>asdf:make-build</function></refname>
+    <refpurpose>Block-build an &ASDF; system definition</refpurpose>
+   </refnamediv>
+
+   <refsynopsisdiv>
+    <title>Function</title>
+    <funcsynopsis>
+     <funcprototype>
+      <funcdef>asdf:make-build</funcdef>
+      <paramdef>&key;</paramdef>
+      <paramdef><parameter>type</parameter></paramdef>
+      <paramdef><parameter>args</parameter></paramdef>
+     </funcprototype>
+    </funcsynopsis>
+    <variablelist>
+     <varlistentry>
+      <term><replaceable>type</replaceable></term>
+      <listitem><para>One of <symbol>:FASL</symbol>, <symbol>:DLL</symbol>,
+      <symbol>:SHARED-LIBRARY</symbol> or
+      <symbol>:PROGRAM</symbol></para></listitem>
+     </varlistentry>
+     <varlistentry>
+      <term><replaceable>args</replaceable></term>
+      <listitem><para>A list of additional keyword arguments that are passed to
+      <function>c:builder</function>.</para></listitem>
+     </varlistentry>
+    </variablelist>
+   </refsynopsisdiv>
+
+   <refsect1>
+    <title>Description</title>
+
+    <para>The function works similar to <function>asdf:oos</function> with the
+    <function>asdf:load-op</function> operator. However, instead of producing
+    multiple compiled files, it generates a single file, which is either a
+    &FASL;, a shared library or a standalone program, depending on
+    <replaceable>type</replaceable>.</para>
+
+    <para>The protocol of this operator is as follows</para>
+    <procedure>
+     <step><para>Examine the list of sources and their dependencies.</para></step>
+     <step><para>For each source</para>
+     <substeps>
+      <step><para>Load all prerequisite sources (uncompiled).</para></step>
+      <step><para>Compile the file with
+      <replaceable>SYSTEM-P</replaceable> &t;</para></step>
+     </substeps></step>
+     <step><para>Combine all files using <function>c:build-fasl</function>,
+     <function>c:build-shared-library</function>,
+     <function>c:build-static-library</function> or
+     <function>c:build-program</function>.</para></step>
+    </procedure>
+   </refsect1>
+
+   <refsect1>
+    <title>Examples</title>
+
+    <para>In <filename>/ecl/examples/asdf</filename> you will find a very
+    simple example that can be built in different forms. The example is built
+    around a system definition file that depends on two sources,
+    <filename>file1.lisp</filename> and <filename>file2.lisp</filename>:</para>
+    <programlisting>
+(defsystem #:example
+    :serial t
+    :components ((:file "file1")
+		 (:file "file2")))</programlisting>
+
+    <para>We can built these files into a single &FASL; file, as shown
+    below. Notice how there is a single file with the name
+    <filename>*.fas</filename>, but there are two object files generated from
+    their respective sources, <filename>file1.o</filename>,
+    <filename>file2.o</filename>.</para>
+<screen>
+&gt; (require 'asdf)
+;;; Loading #P"/home/jlr/lib/ecl/asdf.fas"
+("ASDF")
+&gt; (asdf:make-build :example :type :fasl)
+...
+NIL
+&gt; (directory "*.o")
+(#P"/home/jlr/src/ecls-new/examples/asdf/file2.o"
+ #P"/home/jlr/src/ecls-new/examples/asdf/file1.o")
+&gt; (directory "*.fas")
+(#P"/home/jlr/src/ecls-new/examples/asdf/example.fas")
+&gt; (load "example.fas")
+;;; Loading "/home/jlr/src/ecls-new/examples/asdf/example.fas"
+======================================================================
+We are now executing FILE1.LSP
+TEST-FUNCTION has been created
+We are now executing FILE2.LSP
+Calling TEST-FUNCTION in FILE2.LSP
+1 + 1 is equal to 2
+Finished
+======================================================================
+"/home/jlr/src/ecls-new/examples/asdf/example.fas"
+</screen>
+
+    <para>The previous sources may be combined into a single program, as shown
+    below. Notice that we choose to execute <function>ext:quit</function> right
+    after all compiled files have run. If you do not supply this parameter,
+    <filename>example</filename> will jump to the lisp toplevel right after
+    that.</para>
+<screen>
+&gt; (asdf:make-build :example :type :program
+                   :args (list :epilogue-code '(ext:quit 0)))
+NIL
+&gt; (ext:system "./example")
+======================================================================
+We are now executing FILE1.LSP
+TEST-FUNCTION has been created
+We are now executing FILE2.LSP
+Calling TEST-FUNCTION in FILE2.LSP
+1 + 1 is equal to 2
+Finished
+======================================================================</screen>
+   </refsect1>
+  </refentry>
+
+ </section>
+ </chapter>
+</book>
+<!-- Keep this comment at the end of the file
+      Local variables:
+      mode: nxml
+      sgml-parent-document: "ecl.xml"
+      sgml-indent-step: 1
+      nxml-child-indent: 1
+      nxml-outline-child-indent: 1
+      fill-column: 79
+      End:
+ -->
