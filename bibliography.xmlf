@@ -70,6 +70,18 @@
    </bibliomset>
   </bibliomixed>
 
+  <bibliomixed id="bib.mk-defsystem" xreflabel="mk-defsystem">
+   <bibliomset>
+    <firstname>Mark</firstname> <surname>Kantrowitz</surname>, <title>Portable
+    Utilities for Common Lisp. User Guide &amp; Implementation.</title>
+    <corpname>Cargnegie Mellon University</corpname>, <pubdate>1991</pubdate>.
+    <bibliomisc>Available in the <ulink
+    url="http://www-2.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/lang/lisp/code/tools/mkantdoc.tgz">CMU
+    repository</ulink></bibliomisc>
+   </bibliomset>
+  </bibliomixed>
+
+
  </bibliography>
 <!-- Keep this comment at the end of the file
   Local variables:

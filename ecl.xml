@@ -60,6 +60,8 @@
 <!ENTITY NULL "<constant>NULL</constant>">
 <!ENTITY C "<acronym>C</acronym>">
 <!ENTITY defsystem "<application>defsystem</application>">
+<!ENTITY cygwin "<ulink url='http://www.cygwin.com/'><application>Cygwin</application></ulink>">
+<!ENTITY mingw "<ulink url='http://mingw.sourceforge.net/'><application>Mingw</application></ulink>">
 ]>
 <book lang="en">
  <title>The &ECL; manual</title>
@@ -113,6 +115,7 @@
 </book>
 <!-- Keep this comment at the end of the file
      Local variables:
+     mode: nxml
      sgml-indent-step: 1
      nxml-child-indent: 0
      nxml-outline-child-indent: 0

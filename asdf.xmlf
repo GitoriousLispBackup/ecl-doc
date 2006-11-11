@@ -3,10 +3,62 @@
 <chapter id="ext.asdf">
  <title>ASDF</title>
 
- <section id="ext.asdf.overview">
-  <title>Overview</title>
+ <section id="ext.asdf.sdf">
+  <title>System definition files</title>
 
-  <para></para>
+  <para>A System Definition File or <emphasis>system</emphasis>, is the lisp
+  equivalent of a makefile in the Unix world: it contains a list of source
+  files which are to be loaded or compiled, and dependencies among them ("load
+  source <filename>file1.lsp</filename> before compiling
+  <filename>file2.lsp</filename>", etc).</para>
+
+  <para>I cannot tell about the Lisp Machines history, but until recently, the
+  most popular system definition format was called
+  <application>mk-defsystem</application> or simply
+  <application>defsystem</application>. A simple definition might look as
+  follows:</para>
+<programlisting>
+(defsystem test
+  :source-pathname "~/src/test/"
+  :source-extension "lisp"
+  :components ((:module file1
+                        :source-pathname "")
+               (:module file2
+                        :source-pathname ""
+                        :depends-on (file1))))</programlisting>
+  <para>This example consists of two files, <filename>file1.lisp</filename> and
+  <filename>file2.lisp</filename>, located in
+  <filename>~/src/test/</filename>. When compiling these files,
+  <filename>file1.lisp</filename> will be processed before
+  <filename>file2.lisp</filename>, because the second depends on the former
+  one.</para>
+
+  <para>Written by Mark Kantrowitz [<xref linkend="bib.mk-defsystem"/>], this
+  library now lives in the <ulink
+  url="https://sourceforge.net/projects/clocc/">CLOCC</ulink> repository and is
+  actively maintained. &ECL; ships with a copy of the version 3.x which
+  fortunately has no customizations. You can load this copy by issuing
+  <code>(require 'defsystem)</code> from the lisp toplevel.</para>
+
+  <para>In the last years, Another System Definition Facility known as &ASDF;
+  has become more popular in the &CommonLisp; world. This new format simplifies
+  writing extensions to handle new kind of source files and integrates very
+  well with the package management utility known as
+  <application>ASDF-install</application>. &ASDF; has a slightly different
+  syntax from <application>mk-defsystem 3.0</application>. To learn how to use
+  it we recommend reading the <ulink
+  url="http://constantly.at/lisp/asdf/">online manual</ulink>.</para>
+
+  <para>&ASDF; is shipped with various implementations of &CommonLisp; such as
+  &SBCL; &OpenMCL; and &ECL; itself. In all these cases, using <code>(require
+  'asdf)</code> will suffice to load the library and extend the system function
+  <function>require</function> with tools to handle &ASDF; modules.</para>
+
+  <para>In the case of &ECL;, &ASDF; has been further customized to allow
+  building standalone &FASL; files and executable programs up from one or more
+  definition files. The procedure to do this is documented in <xref
+  linkend="ext.asdf.make-build"/> and in the manual page for <xref
+  linkend="ref.make-build"/>.</para>
  </section>
 
  <section id="ext.asdf.make-build">

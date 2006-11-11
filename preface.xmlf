@@ -218,6 +218,270 @@
 
  </section>
 
+ <section id="preface.installation">
+  <title>Installation</title>
+
+  <para>The following sections describe which machines are supported by &ECL;,
+  how to build and install it on them. You should read at least <xref
+  linkend="preface.platforms"/> and in particular <xref linkend="table.ports"/>
+  which details the other sections containing installation instructions for
+  your platform.</para>
+
+  <section id="preface.platforms">
+   <title>Supported platforms</title>
+
+   <table id="table.ports">
+    <title>Supported platforms</title>
+    <tgroup cols="3">
+     <thead>
+      <row>
+       <entry>Architecture</entry>
+       <entry>Operating system</entry>
+       <entry>Notes</entry>
+       <entry>Tested<footnote><para>YES means that a dedicated machine regularly builds and tests &ECL; on this platform.</para></footnote></entry>
+       <entry>Read</entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>ix86 <footnote id="note.x86"><para>Intel 32 bit processors
+       (Pentium, Pentium II, Pentium 3, Pentium 4) and AMD
+       clones</para></footnote>
+       </entry>
+       <entry>Linux</entry>
+       <entry></entry>
+       <entry>YES</entry>
+       <entry><xref linkend="preface.autoconf"/></entry>
+      </row>
+      <row>
+       <entry>x86</entry>
+       <entry>FreeBSD, OpenBSD</entry>
+       <entry></entry>
+       <entry>YES</entry>
+       <entry><xref linkend="preface.autoconf"/>,
+       <xref linkend="preface.bsd"/></entry>
+      </row>
+      <row>
+       <entry>x86</entry>
+       <entry>NetBSD</entry>
+       <entry></entry>
+       <entry>YES</entry>
+       <entry><xref linkend="preface.autoconf"/>,
+       <xref linkend="preface.netbsd"/></entry>
+      </row>
+      <row>
+       <entry>x86</entry>
+       <entry>Windows 2000, XP</entry>
+       <entry>Microsoft Visual C++ compiler</entry>
+       <entry>YES</entry>
+       <entry><xref linkend="preface.msvc"/></entry>
+      </row>
+      <row>
+       <entry>x86</entry>
+       <entry>Windows 2000, XP</entry>
+       <entry>&cygwin; tools</entry>
+       <entry>YES</entry>
+       <entry><xref linkend="preface.autoconf"/></entry>
+      </row>
+      <row>
+       <entry>x86</entry>
+       <entry>Windows 2000, XP</entry>
+       <entry>&mingw; and Msys tools</entry>
+       <entry>YES</entry>
+       <entry><xref linkend="preface.autoconf"/></entry>
+      </row>
+      <row>
+       <entry>x86</entry>
+       <entry>OS X Tiger</entry>
+       <entry></entry>
+       <entry>YES</entry>
+       <entry><xref linkend="preface.autoconf"/></entry>
+      </row>
+      <row>
+       <entry>PowerPC</entry>
+       <entry>OS X Tiger</entry>
+       <entry></entry>
+       <entry>YES</entry>
+       <entry><xref linkend="preface.autoconf"/></entry>
+      </row>
+      <row>
+       <entry>x86_64
+       <footnote id="note.x86_64">
+	<para>AMD 64 bits and Intel EM64 extensions.</para>
+       </footnote>
+       </entry>
+       <entry>Linux</entry>
+       <entry></entry>
+       <entry>NO</entry>
+       <entry><xref linkend="preface.autoconf"/></entry>
+      </row>
+      <row>
+       <entry>Alpha</entry>
+       <entry>Linux</entry>
+       <entry></entry>
+       <entry>NO</entry>
+       <entry><xref linkend="preface.autoconf"/></entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+   
+   <para>In <xref linkend="table.ports"/> we show the operating systems in
+   which ECL is known to run and where it is regularly tested. Note that ECL
+   might successfully build on other platforms, and that porting is relatively
+   easy. We regularly get reports on ECL being built on other platforms (ARM,
+   Motorola 68x, Sparc, etc), so the best thing is to try yourself.</para>
+
+  </section>
+
+  <section id="preface.autoconf">
+   <title>Autoconf based configuration</title>
+
+   <para>&ECL;, like many other free programs, can be built and installed a GNU
+   tool called Autoconf. This is a set of automatically generated scripts that
+   detect the features of your machine, such as the compiler type, existing
+   libraries, desired installation path, and configures &ECL; accordingly. The
+   following procedure describes how to build &ECL; using this procedure and it
+   applies to all platforms except for the Windows ports.</para>
+
+   <procedure>
+    <step>
+     <para>Unpack the tar file</para>
+     <screen>$ gunzip -c ecl-0.9i.tgz | tar xf -</screen>
+    </step>
+    <step><para>Choose a directory in which you will install &ECL;. Following
+    the Unix covention we will use
+    <filename>/usr/local</filename></para></step>
+    <step>
+     <para>Run the configuration file
+     <screen>$ cd ecl-0.9i
+     $ ./configure --prefix=/usr/local</screen>
+     If you are building under Solaris 9 you should replace the last line with
+     <screen>$ ./configure --enable-slow-config --with-system-gmp=no \
+     --prefix=/usr/local</screen>
+     By now you should have a directory with the name
+     <filename>build</filename> and a bunch of makefiles inside it.</para>
+    </step>
+    <step>
+     <para>Use GNU make to begin building ECL. Normally this amounts to
+     invoking
+     <screen>$ make</screen>
+     from the command line.</para>
+    </step>
+    <step>
+     <para>Install the program using
+     <screen>$ make install</screen>
+     </para>
+    </step>
+    <step>
+     <para>Make sure the program is installed and ready to run
+     <screen>$ /usr/local/ecl
+     ECL (Embeddable Common-Lisp) 0.9i
+     Copyright (C) 1984 Taiichi Yuasa and Masami Hagiya
+     Copyright (C) 1993 Giuseppe Attardi
+     Copyright (C) 2000 Juan J. Garcia-Ripoll
+     ECL is free software, and you are welcome to redistribute it
+     under certain conditions; see file 'Copyright' for details.
+     Type :h for Help.  Broken at EVAL.
+     &gt; </screen>
+     </para>
+    </step>
+   </procedure>
+
+  </section>
+
+  <section id="preface.osdep">
+   <title>Platform specific instructions</title>
+
+   <section id="preface.msvc">
+    <title>Windows with Visual C++ compiler</title>
+
+    <para>If you have a commercial version of Microsoft Visual Studio, the
+    steps are simple:</para>
+    <procedure>
+     <step><para>Change to the <code>msvc</code> directory.</para></step>
+
+     <step><para>Run <code>nmake</code> to build ECL.</para></step>
+
+     <step><para>Run <code>nmake flatinstall prefix=d:\Software\ECL</code>
+     where the <code>prefix</code> is the directory where you want to install
+     ECL.</para></step>
+
+     <step><para>Optionally, if you want to build a self-installing
+     executable, you can install <ulink
+     url="http://nsis.sourceforge.net">NSIS</ulink> and run <code>nmake
+     windows-nsi</code>.</para></step>
+    </procedure>
+
+    <para>If you want to build ECL using the free Microsoft Visual C++ Toolkit
+    2003, you should follow these before building ECL:</para>
+    <procedure>
+     <step><para>Download and install <ulink
+     url="http://msdn.microsoft.com/visualc/vctoolkit2003/">Microsoft Visual
+     C++ Toolkit</ulink>.</para></step>
+
+     <step><para>Download and install the <ulink
+     url="http://www.microsoft.com/msdownload/platformsdk/sdkupdate/">Microsoft
+     Platform SDK</ulink></para></step>
+
+     <step><para>Download NMAKE and install. There is an old version in
+     <ulink url="http://download.microsoft.com/download/vc15/Patch/1.52/W95/EN-US/Nmake15.exe">
+     Microsoft's download page</ulink>.</para></step>
+
+     <step><para>Download and install the .NET Framework SDK. Copy the
+     files msvcrt.lib an msvcrtd.lib from this toolkit to the directory where
+     the Visual C++ Toolkit keeps it libraries. Afterwards you can uninstall
+     the .NET SDK.</para></step>
+
+     <step><para>Make sure that:</para>
+     <procedure>
+      <step><para><code>%PATH%</code> includes the directories <code>bin</code> of
+      both the C++ Toolkit, NMAKE and the SDK.</para></step>
+
+      <step><para><code>%INCLUDE%</code> includes the directories
+      <code>include</code> of both the C++ Toolkit and the SDK.</para></step>
+
+      <step><para><code>%LIB%</code>includes the directories <code>lib</code> of
+      both the C++ Toolkit and the SDK.</para></step>
+     </procedure>
+     </step>
+    </procedure>
+   </section>
+
+
+   <section id="preface.mingw">
+    <title>Windows with Mingw/Cygwin</title>
+
+    <para></para>
+   </section>
+
+
+   <section id="preface.netbsd">
+    <title>NetBSD</title>
+
+    <para>Before following the instructions in <xref
+    linkend="preface.autoconf"/> you should install the following packages:
+    <application>bash</application>, <application>boehm-gc</application> and
+    <application>gmp-4.1</application> or better. Additionally when
+    configuring, you should first export the environment variable
+    <variable>CONFIG_SHELL</variable> using <code>setenv CONFIG_SHELL
+    /usr/pkg/bin/bash</code> or <code>export
+    CONFIG_SHELL=/usr/pkg/bin</code>.</para>
+
+   </section>
+
+
+   <section id="preface.bsd">
+    <title>OpenBSD and FreeBSD</title>
+
+    <para>Before following the instructions in <xref
+    linkend="preface.autoconf"/> you should install the following packages:
+    <application>boehm-gc</application> and <application>gmp-4.1</application>
+    or better.</para>
+   </section>
+
+  </section>
+ </section>
 </preface>
 </book>
 <!-- Keep this comment at the end of the file
