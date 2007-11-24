@@ -6,7 +6,8 @@ XMLFILES= ecl.xml tmp/bibliography.xml tmp/clos.xml tmp/compiler.xml	\
 	tmp/io.xml tmp/mp.xml tmp/asdf.xml tmp/os.xml tmp/pde.xml	\
 	tmp/standards.xml tmp/copyright.xml tmp/ffi.xml tmp/ref_os.xml	\
 	tmp/ref_primitive.xml tmp/ref_aggregate.xml tmp/ref_object.xml	\
-	tmp/ref_string.xml tmp/ref_func_libr.xml tmp/COPYING.GFDL.xml
+	tmp/ref_string.xml tmp/ref_func_libr.xml tmp/COPYING.GFDL.xml   \
+	tmp/mp.xml tmp/ref_mp.xml
 
 XSLFILES= xsl/lispfunc.xml xsl/customization.xml xsl/refentryintoc.xml
 

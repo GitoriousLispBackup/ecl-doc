@@ -30,6 +30,8 @@
 <!ENTITY ChapOS SYSTEM "tmp/os.xml">
 <!ENTITY GFDL SYSTEM "tmp/COPYING.GFDL.xml">
 <!ENTITY RefOS SYSTEM "tmp/ref_os.xml">
+<!ENTITY ChapMP SYSTEM "tmp/mp.xml">
+<!ENTITY RefMP SYSTEM "tmp/ref_mp.xml">
 <!ENTITY ChapFFI SYSTEM "tmp/ffi.xml">
 <!ENTITY ChapMacros SYSTEM "tmp/macros.xml">
 <!ENTITY ChapMP SYSTEM "tmp/mp.xml">
@@ -84,6 +86,7 @@
  &ChapASDF;
  &ChapOS;
  &ChapFFI;
+ &ChapMP;
 <!--
  &ChapIO;
  &ChapPDE;
