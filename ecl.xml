@@ -90,11 +90,10 @@
 <!--
  &ChapIO;
  &ChapPDE;
- &ChapInterpreter;
  &ChapCompiler;
+ &ChapInterpreter;
  &ChapDeclarations;
  &ChapMacros;
- &ChapMP;
 -->
  </part>
 
