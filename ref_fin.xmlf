@@ -1,0 +1,114 @@
+<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<book lang="en"><reference id="finalization.dict"><title>Finalization Reference</title>
+
+<!-- ====================================================================== -->
+<!-- MP:INTERRUPT-PROCESS                                                   -->
+<!-- ====================================================================== -->
+
+<refentry id="ref.finalization.interrupt-process">
+ <refnamediv>
+  <refname><function>ext:set-finalizer</function></refname>
+  <refpurpose>Associate a finalizer to an object.</refpurpose>
+ </refnamediv>
+
+ <refsynopsisdiv>
+  <title>Function</title>
+  <funcsynopsis>
+   <funcprototype>
+    <funcdef>ext:set-finalizer</funcdef>
+    <paramdef><parameter>object</parameter></paramdef>
+    <paramdef><parameter>function</parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+  <variablelist>
+   <varlistentry>
+    <term><replaceable>object</replaceable></term>
+    <listitem><para>Any lisp object.</para></listitem>
+   </varlistentry>
+   <varlistentry>
+    <term><replaceable>function</replaceable></term>
+    <listitem><para>A function or closure that takes one argument or &nil;.</para></listitem>
+   </varlistentry>
+  </variablelist>
+ </refsynopsisdiv>
+
+ <refsect1>
+  <title>Description</title>
+
+  <para>If <replaceable>function</replaceable> is &nil; no finalizer is associated to the
+  object. Otherwise <replaceable>function</replaceable> must be a function or a closure of
+  one argument, which will be invoked before the object is destroyed.</para>
+ </refsect1>
+
+ <refsect1>
+  <title>Example</title>
+  <para>Close a file associated to an object.</para>
+<programlisting>
+(defclass my-class () ((file :initarg :file :initform nil)))
+
+(defun finalize-my-class (x)
+ (let ((s (slot-value x 'file)))
+   (when s (format t "~%;;; Closing" s) (close s))))
+
+(defmethod initialize-instance :around ((my-instance my-class) &amp;rest args)
+  (ext:set-finalizer my-instance #'finalize-my-class)
+  (call-next-method))
+
+(progn
+  (make-instance 'my-class :file (open "~/.ecl.old" :direction :input))
+  nil)
+
+(si::gc t)
+(si::gc t)
+
+;; Closing
+
+</programlisting>
+ </refsect1>
+
+</refentry>
+
+<!-- ====================================================================== -->
+<!-- EXT:GET-FINALIZER                                                      -->
+<!-- ====================================================================== -->
+
+<refentry id="ref.finalization.get-finalizer">
+ <refnamediv>
+  <refname><function>ext:get-finalizer</function></refname>
+  <refpurpose>Return finalizer associated to an object.</refpurpose>
+ </refnamediv>
+
+ <refsynopsisdiv>
+  <title>Function</title>
+  <funcsynopsis>
+   <funcprototype>
+    <funcdef>ext:get-finalizer</funcdef>
+    <paramdef><parameter>object</parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+  <variablelist>
+   <varlistentry>
+    <term><replaceable>object</replaceable></term>
+    <listitem><para>Any lisp object.</para></listitem>
+   </varlistentry>
+  </variablelist>
+ </refsynopsisdiv>
+
+ <refsect1>
+  <title>Description</title>
+  <para>This function returns the finalizer associated to an object, or &nil;.</para>
+ </refsect1>
+
+</refentry>
+
+</reference></book>
+<!-- Keep this comment at the end of the file
+      Local variables:
+      mode: nxml
+      sgml-parent-document: "ecl.xml"
+      sgml-indent-step: 1
+      nxml-child-indent: 1
+      nxml-outline-child-indent: 1
+      fill-column: 79
+      End:
+ -->

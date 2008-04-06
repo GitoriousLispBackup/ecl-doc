@@ -32,9 +32,10 @@
 <!ENTITY RefOS SYSTEM "tmp/ref_os.xml">
 <!ENTITY ChapMP SYSTEM "tmp/mp.xml">
 <!ENTITY RefMP SYSTEM "tmp/ref_mp.xml">
+<!ENTITY ChapFin SYSTEM "tmp/finalization.xml">
+<!ENTITY RefFin SYSTEM "tmp/ref_fin.xml">
 <!ENTITY ChapFFI SYSTEM "tmp/ffi.xml">
 <!ENTITY ChapMacros SYSTEM "tmp/macros.xml">
-<!ENTITY ChapMP SYSTEM "tmp/mp.xml">
 <!ENTITY ChapCLOS SYSTEM "tmp/clos.xml">
 <!ENTITY ChapInternals SYSTEM "tmp/internals.xml">
 <!ENTITY RefUFFIPrimitive SYSTEM "tmp/ref_primitive.xml">
@@ -87,6 +88,7 @@
  &ChapOS;
  &ChapFFI;
  &ChapMP;
+ &ChapFin;
 <!--
  &ChapIO;
  &ChapPDE;
