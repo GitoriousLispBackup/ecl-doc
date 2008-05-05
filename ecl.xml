@@ -14,7 +14,9 @@
 <!ENTITY ASDF "<application>ASDF</application>">
 <!ENTITY FASL "<acronym>FASL</acronym>">
 <!ENTITY ANSI "<xref linkend='bib.ANSI'/>">
-<!ENTITY AMOP "<acronym>AMOP</acronym>">
+<!ENTITY AMOP "<xref linkend='bib.AMOP'/>">
+<!ENTITY CLOS "<acronym>CLOS</acronym>">
+<!ENTITY PCL "<acronym>PCL</acronym>">
 <!ENTITY Steele84 "<xref linkend='bib.CLTL2'/>">
 <!ENTITY HyperSpec "<xref linkend='bib.HyperSpec'/>">
 <!ENTITY ChapCopyright SYSTEM "tmp/copyright.xml">
@@ -34,6 +36,7 @@
 <!ENTITY RefMP SYSTEM "tmp/ref_mp.xml">
 <!ENTITY ChapFin SYSTEM "tmp/finalization.xml">
 <!ENTITY RefFin SYSTEM "tmp/ref_fin.xml">
+<!ENTITY ChapMOP SYSTEM "tmp/mop.xml">
 <!ENTITY ChapFFI SYSTEM "tmp/ffi.xml">
 <!ENTITY ChapMacros SYSTEM "tmp/macros.xml">
 <!ENTITY ChapCLOS SYSTEM "tmp/clos.xml">
@@ -89,6 +92,7 @@
  &ChapFFI;
  &ChapMP;
  &ChapFin;
+ &ChapMOP;
 <!--
  &ChapIO;
  &ChapPDE;

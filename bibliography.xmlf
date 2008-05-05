@@ -81,6 +81,15 @@
    </bibliomset>
   </bibliomixed>
 
+  <bibliomixed id="bib.AMOP" xreflabel="[AMOP]">
+   <bibliomset>
+    <firstname>Gregor</firstname> <surname>Kickzales</surname> et al. <title>The
+    Art of the Metaobject Protocol</title> <publishername>The
+    M.I.T. Press</publishername>, <corpname>Massachussets Institute of
+    Technology</corpname>, <pubdate>1999</pubdate>.
+   </bibliomset>
+  </bibliomixed>
+
 
  </bibliography>
 <!-- Keep this comment at the end of the file
