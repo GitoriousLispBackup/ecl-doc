@@ -210,7 +210,7 @@ Finished
     that.</para>
 <screen>
 &gt; (asdf:make-build :example :type :program
-                   :args (list :epilogue-code '(ext:quit 0)))
+                   :epilogue-code '(ext:quit 0))
 NIL
 &gt; (ext:system "./example")
 ======================================================================
