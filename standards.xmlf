@@ -108,6 +108,14 @@
      </thead>
      <tbody>
       <row>
+       <entry>The compiler generates type checks for the arguments of a lambda
+       form, thus enforcing any type declaration written by the user.</entry>
+       <entry>N</entry>
+       <entry>Y</entry>
+       <entry>Y</entry>
+       <entry>Y</entry>
+      </row>
+      <row>
        <entry>The value of an expression or a variable declared by the user is
        assumed to be right.</entry>
        <entry>Y</entry>
@@ -116,25 +124,37 @@
        <entry>N</entry>
       </row>
       <row>
-       <entry>Arguments to a function are assumed to have the proper
-       types.</entry>
+       <entry>We believe type declarations and type inference and, if the type
+       of a form is inferred to be right for a function, slot accessor, etc,
+       this may be inlined. Affects functions like CAR, CDR, etc</entry>
        <entry>Y</entry>
        <entry>Y</entry>
        <entry>N</entry>
        <entry>N</entry>
       </row>
       <row>
-       <entry>The slots of a structure are accessed directly, without checking
-       the types.</entry>
+       <entry>We believe types defined before compiling a file not change
+       before the compiled code is loaded.</entry>
        <entry>Y</entry>
        <entry>Y</entry>
        <entry>N</entry>
        <entry>N</entry>
       </row>
       <row>
-       <entry>Functions and variables are assumed to be bound.</entry>
+       <entry>Arguments in a lisp form are assumed to have the appropriate types
+       so that the form will not fail.</entry>
        <entry>Y</entry>
+       <entry>N</entry>
+       <entry>N</entry>
+       <entry>N</entry>
+      </row>
+      <row>
+       <entry>The slots or fields in a lisp object are accessed directly
+       without type checks even if the type of the object could not be inferred
+       (see line above). Affects functions like PATHNAME-TYPE, CAR, REST,
+       etc.</entry>
        <entry>Y</entry>
+       <entry>N</entry>
        <entry>N</entry>
        <entry>N</entry>
       </row>
