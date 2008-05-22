@@ -1,9 +1,8 @@
-html {	background: #000; }
+html {	background: #FFF; }
 body {
 	margin: 1em 125px 0 10%;
         line-height: 1.4;
         padding: 0 2em 1em 2em;
-        font: 10pt serif;
 	background: #FFF;
 }
 table {
@@ -12,7 +11,7 @@ table {
 th, td {
 	vertical-align: top;
 }
-h1, h2, h3, h4, h5 { background: #DDD; }
+h1, h2, h3, h4, h5 { background: #EEE; }
 code, pre { font: 9pt monospace; }
 pre {
 	overflow: auto;
