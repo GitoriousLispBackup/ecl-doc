@@ -286,7 +286,7 @@ Build and load this module with (compile-file "cffi.lsp" :load t)
 ;; With this other statement, we import the C function sin(),
 ;; which operates on IEEE doubles.
 ;;
-(cffi:defcfun ("sin" c-sin) :double :double)
+(cffi:defcfun ("sin" c-sin) :double '(:double))
 ;;
 ;; We now use this function and compare with the lisp version.
 ;;
