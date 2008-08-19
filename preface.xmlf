@@ -403,7 +403,7 @@
 
      <step><para>Run <code>nmake</code> to build ECL.</para></step>
 
-     <step><para>Run <code>nmake flatinstall prefix=d:\Software\ECL</code>
+     <step><para>Run <code>nmake install prefix=d:\Software\ECL</code>
      where the <code>prefix</code> is the directory where you want to install
      ECL.</para></step>
 
