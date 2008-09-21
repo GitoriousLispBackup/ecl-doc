@@ -42,9 +42,9 @@
  <!-- EXT:+LISP-INIT-FILES+                                                  -->
  <!-- ====================================================================== -->
 
- <refentry id="ref._lisp-init-files_">
+ <refentry id="ref._lisp-init-file-list_">
   <refnamediv>
-   <refname><varname>ext:*lisp-init-files*</varname></refname>
+   <refname><varname>ext:*lisp-init-file-list*</varname></refname>
    <refpurpose>&ECL; initialization files.</refpurpose>
   </refnamediv>
 
