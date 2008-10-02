@@ -1,0 +1,68 @@
+<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<book lang="en"><reference id="embed.dict"><title>Embedding Reference</title>
+
+<!-- ====================================================================== -->
+<!-- ecl_set_option()                                                       -->
+<!-- ====================================================================== -->
+
+<refentry id="ref.embed.ecl_set_option">
+ <refnamediv>
+  <refname><function>ecl_set_option</function></refname>
+  <refpurpose>Set a boot option.</refpurpose>
+ </refnamediv>
+
+ <refsynopsisdiv>
+  <title>Function</title>
+  <funcsynopsis>
+   <?dbhtml funcsynopsis-style='ansi'?>
+   <funcprototype>
+    <funcdef>void <function>ecl_set_option</function></funcdef>
+    <paramdef>int <parameter>option</parameter></paramdef>
+    <paramdef>cl_fixnum <parameter>value</parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+  <variablelist>
+   <varlistentry>
+    <term><replaceable>option</replaceable></term>
+    <listitem><para>An integer from the table below.</para></listitem>
+   </varlistentry>
+   <varlistentry>
+    <term><replaceable>function</replaceable></term>
+    <listitem><para>A <type>cl_index</type> value for this option.</para></listitem>
+   </varlistentry>
+  </variablelist>
+ </refsynopsisdiv>
+
+ <refsect1>
+  <title>Description</title>
+  <para>This function sends a signal to a running task. When the task is
+  free to process that signal, it will stop whatever it is doing and
+  execute the given <replaceable>function</replaceable>.</para>
+ </refsect1>
+
+ <refsect1>
+  <title>Example</title>
+  <para>Kill a task that is doing nothing (See <xref linkend="ref.mp.process-kill"/>).</para>
+<programlisting>
+(flet ((task-to-be-killed ()
+         (loop (sleep 1)) ; Infinite loop
+	 ))
+  (let ((task (mp:process-run-function 'background #'task-to-be-killed)))
+    (sleep 10)
+    (mp:interrupt-process task 'mp:exit-process)))
+</programlisting>
+ </refsect1>
+
+</refentry>
+
+</reference></book>
+<!-- Keep this comment at the end of the file
+      Local variables:
+      mode: nxml
+      sgml-parent-document: "ecl.xml"
+      sgml-indent-step: 1
+      nxml-child-indent: 1
+      nxml-outline-child-indent: 1
+      fill-column: 79
+      End:
+ -->

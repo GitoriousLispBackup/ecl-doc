@@ -34,6 +34,8 @@
 <!ENTITY RefOS SYSTEM "tmp/ref_os.xml">
 <!ENTITY ChapMP SYSTEM "tmp/mp.xml">
 <!ENTITY RefMP SYSTEM "tmp/ref_mp.xml">
+<!ENTITY ChapEmbed SYSTEM "tmp/embed.xml">
+<!ENTITY RefEmbed SYSTEM "tmp/ref_embed.xml">
 <!ENTITY ChapFin SYSTEM "tmp/finalization.xml">
 <!ENTITY RefFin SYSTEM "tmp/ref_fin.xml">
 <!ENTITY ChapMOP SYSTEM "tmp/mop.xml">
@@ -93,6 +95,7 @@
  &ChapMP;
  &ChapFin;
  &ChapMOP;
+ &ChapEmbed;
 <!--
  &ChapIO;
  &ChapPDE;
