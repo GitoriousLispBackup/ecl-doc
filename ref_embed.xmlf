@@ -100,7 +100,7 @@
     <listitem><para>An integer from <xref linkend="table.boot_options"/>.</para></listitem>
    </varlistentry>
    <varlistentry>
-    <term><replaceable>function</replaceable></term>
+    <term><replaceable>value</replaceable></term>
     <listitem><para>A <type>cl_index</type> value for this option.</para></listitem>
    </varlistentry>
   </variablelist>
