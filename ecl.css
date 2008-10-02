@@ -13,11 +13,15 @@ th, td {
 	vertical-align: top;
 }
 h1, h2, h3, h4, h5 { background: #EEE; }
+code, pre {
+	font-size: 1em;
+	font-family: fixed;
+}
 code {
-	font: 12px/1.5em monospace,courier,fixed;
+	line-height: 1.5em;
 }
 pre {
-	font: 12px/1em monospace,courier,fixed;
+	line-height: 1em;
 	overflow: auto;
 }
 pre.screen {
