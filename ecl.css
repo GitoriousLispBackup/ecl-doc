@@ -6,6 +6,10 @@ body {
 	background: #FFF;
 	font: 12px Verdana,Arial, sans-serif
 }
+ul, dd, dl, dt { margin-top: 0; margin-bottom: 0; }
+p, code, td, dl, dt {
+	line-height: 1.5em;
+}
 table {
 	font: inherit;
 }
@@ -16,9 +20,6 @@ h1, h2, h3, h4, h5 { background: #EEE; }
 code, pre {
 	font-size: 1em;
 	font-family: fixed;
-}
-code {
-	line-height: 1.5em;
 }
 pre {
 	line-height: 1em;
@@ -38,7 +39,7 @@ pre.programlisting {
 }
 a { color: #000; font-weight: bold; }
 div p { padding: 0 2em }
-li p { padding: 0 }
+li p { padding: 0; margin: 0 }
 hr { display: none; }
 div.funcsynopsis p  {
 	text-indent: -2em;
