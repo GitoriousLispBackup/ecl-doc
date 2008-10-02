@@ -1,9 +1,10 @@
 html {	background: #FFF; }
 body {
 	margin: 1em 125px 0 10%;
-        line-height: 1.4;
+        line-height: 1.5em;
         padding: 0 2em 1em 2em;
 	background: #FFF;
+	font: 12px Verdana,Arial, sans-serif
 }
 table {
 	font: inherit;
@@ -12,8 +13,11 @@ th, td {
 	vertical-align: top;
 }
 h1, h2, h3, h4, h5 { background: #EEE; }
-code, pre { font: 9pt monospace; }
+code {
+	font: 12px/1.5em monospace,courier,fixed;
+}
 pre {
+	font: 12px/1em monospace,courier,fixed;
 	overflow: auto;
 }
 pre.screen {
