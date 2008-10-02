@@ -1642,15 +1642,19 @@
   <listitem>
    <para>Ensure that the Boehm-Weiser garbage collector is supported by that
    architecture. Alternatively, port ECL's own garbage collector
-   <filename>src/c/alloc.d</filename> and <filename>src/c/gbc.d</filename> to that platform.</para>
+   <filename>src/c/alloc.d</filename> and <filename>src/c/gbc.d</filename> to
+   that platform.</para>
   </listitem>
   <listitem>
-   <para>Fix <filename>src/aclocal.in</filename>, <filename>src/h/ecl.h</filename> and <filename>src/h/ecl-cmp.h</filename>
-   so that they supply flags for the new host machine.</para>
+   <para>Fix <filename>src/aclocal.in</filename>,
+   <filename>src/h/config.h.in</filename> and
+   <filename>src/h/ecl.h</filename> so that they supply flags for the new
+   host machine.</para>
   </listitem>
   <listitem>
-   <para>Fix the machine dependent code in <filename>src/c/</filename>. The most critical
-   parts are in the <filename>unix*</filename> and <filename>thread*</filename> files.</para>
+   <para>Fix the machine dependent code in <filename>src/c/</filename>. The
+   most critical parts are in the <filename>unix*.d</filename> and
+   <filename>thread*.d</filename> files.</para>
   </listitem>
   <listitem>
    <para>Compile as in any other platform.</para>
