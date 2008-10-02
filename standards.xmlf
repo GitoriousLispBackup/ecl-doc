@@ -1199,6 +1199,45 @@ F
  <section id="ansi.environment.dict">
   <title>Dictionary</title>
 
+  <refentry id="ansi.environment.disassemble">
+   <refnamediv>
+    <refname><function>disassemble</function></refname>
+    <refpurpose>Display the assembly code of a function</refpurpose>
+   </refnamediv>
+
+   <refsynopsisdiv>
+    <funcsynopsis>
+     <funcprototype>
+      <funcdef>disassemble</funcdef>
+      <paramdef><parameter>function-designator</parameter>*</paramdef>
+     </funcprototype>
+    </funcsynopsis>
+    <variablelist>
+     <varlistentry>
+      <term><replaceable>function-designator</replaceable></term>
+      <listitem><para>A symbol which is bound to a function in the global environment, or a lambda form
+      </para></listitem>
+     </varlistentry>
+    </variablelist>
+   </refsynopsisdiv>
+
+   <refsect1>
+    <title>Function</title>
+
+    <para>As specified in &ANSI; this function outputs the internal represention
+    of a compiled function, or of a lambda form, were it to be compiled.</para>
+
+    <para>&ECL; only has a particular difference. If a function has been
+    bytecompiled, as it happens with forms which are passed to
+    <code>EVAL</code>, functions written at the toplevel interpreter and lambda
+    forms coerced to functions, the output will be &ECL;'s bytecodes.</para>
+
+    <para>If the function on the other hand has been compiled to C, then most likely
+    <code>DISASSEMBLE</code> will be unable to find the source code and will output
+    nothing.</para>
+   </refsect1>
+  </refentry>
+
   <refentry id="ansi.environment.trace">
    <refnamediv>
     <refname><function>trace</function></refname>
