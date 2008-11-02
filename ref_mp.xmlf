@@ -136,7 +136,7 @@
    <funcprototype>
     <funcdef>mp:get-lock</funcdef>
     <paramdef><parameter>lock</parameter></paramdef>
-    <paramdef><parameter>&key;</parameter></paramdef>
+    <paramdef><parameter>&optional;</parameter></paramdef>
     <paramdef><parameter>wait</parameter></paramdef>
    </funcprototype>
   </funcsynopsis>
@@ -158,7 +158,9 @@
   <title>Description</title>
   <para>This function tries to obtain exclusive use of a lock. If
   <replaceable>wait</replaceable> is &t;, and another task owns the lock, it
-  may wait until the lock has been released.</para>
+  may wait until the lock has been released. If <replaceable>wait</replaceable>
+  is &nil; it will return true if and only if it succeeded on acquiring
+  the lock.</para>
  </refsect1>
 
  <refsect1>
