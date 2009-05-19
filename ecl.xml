@@ -36,8 +36,8 @@
 <!ENTITY RefMP SYSTEM "tmp/ref_mp.xml">
 <!ENTITY ChapEmbed SYSTEM "tmp/embed.xml">
 <!ENTITY RefEmbed SYSTEM "tmp/ref_embed.xml">
-<!ENTITY ChapFin SYSTEM "tmp/finalization.xml">
-<!ENTITY RefFin SYSTEM "tmp/ref_fin.xml">
+<!ENTITY ChapMemory SYSTEM "tmp/memory.xml">
+<!ENTITY RefMemory SYSTEM "tmp/ref_memory.xml">
 <!ENTITY ChapMOP SYSTEM "tmp/mop.xml">
 <!ENTITY ChapFFI SYSTEM "tmp/ffi.xml">
 <!ENTITY ChapMacros SYSTEM "tmp/macros.xml">
@@ -93,7 +93,7 @@
  &ChapOS;
  &ChapFFI;
  &ChapMP;
- &ChapFin;
+ &ChapMemory;
  &ChapMOP;
  &ChapEmbed;
 <!--
@@ -103,7 +103,6 @@
  &ChapInterpreter;
  &ChapDeclarations;
  &ChapMacros;
--->
  </part>
 
  <part id="part.internals">
@@ -119,6 +118,7 @@
  &RefUFFIObject;
  &RefUFFIString;
  &RefUFFIFuncLibr;
+-->
  </part>
 
  &Bibliography;
