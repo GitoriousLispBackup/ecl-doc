@@ -103,6 +103,7 @@
  &ChapInterpreter;
  &ChapDeclarations;
  &ChapMacros;
+-->
  </part>
 
  <part id="part.internals">
@@ -118,7 +119,6 @@
  &RefUFFIObject;
  &RefUFFIString;
  &RefUFFIFuncLibr;
--->
  </part>
 
  &Bibliography;
