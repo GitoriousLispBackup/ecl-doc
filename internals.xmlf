@@ -1362,14 +1362,6 @@
  </section>
 </chapter>
 
-<chapter id="The-Garbage-Collector">
- <title>The Garbage Collector</title>
- <para>Using &ECL; in existing application sometimes involves keeping Lisp
- objects where the garbage collector normally cannot see them.</para>
- <!-- FIXME: Complete this... -->
- <!--  -->
-</chapter>
-
 <chapter id="Porting-ECL">
  <title>Porting &ECL;</title>
  <para>To port &ECL; to a new architecture, the following steps are required:</para>
