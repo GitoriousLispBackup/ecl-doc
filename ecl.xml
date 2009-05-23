@@ -109,7 +109,6 @@
  <part id="part.internals">
  <title>Internals</title>
  &ChapInternals;
- &ChapGC;
  </part>
 
  <part id="part.uffi">

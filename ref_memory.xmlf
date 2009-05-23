@@ -86,8 +86,25 @@
   <title>Description</title>
   <para>This condition is signaled when &ECL; exhausts the
   <varname>ext:heap-size</varname> limit from <xref
-  linkend="table.memory.limits"/>. Currently this condition can not be
-  corrected.</para>
+  linkend="table.memory.limits"/>. In handling this condition &ECL; follows
+  this logic</para>
+  <itemizedlist>
+   <listitem><para>If the heap size limit was set to 0 (that is no limit), but
+   there is some free space in the safety region &ECL; frees this space and
+   issues a non-restartable error. The user may jump to an outer point or
+   quit.</para></listitem>
+
+   <listitem><para>If the heap size had a finite limit, &ECL; offers the user
+   the chance to resize it, issuing a restartable condition. The user may at
+   this point use <code>(ext:set-limit 'ext:heap-size 0)</code> to remove the
+   heap limit and avoid further messages, or use the <code>(continue)</code>
+   restart to let &ECL; enlarge the heap by some amount.</para></listitem>
+
+   <listitem><para>Independently of the heap size limit, if &ECL; finds that
+   ther is no space to free or to grow, &ECL; simply quits. There will be no
+   chance to do some cleanup because there is no way to cons any additional
+   data.</para></listitem>
+  </itemizedlist>
  </refsect1>
 
 </refentry>

@@ -59,10 +59,10 @@
    </itemizedlist>
 
    <para>Except for finalization, which is a questionable feature, the previous
-   characteristics are not very relevant for &CommonLisp; programmers, but are
-   crucial for people interested in embedding in or cooperating with other C,
-   C++ or Fortran libraries. Information for this is more precisely laid out
-   in the corresponding sections.</para>
+   settings are not very relevant for &CommonLisp; programmers, but are crucial
+   for people interested in embedding in or cooperating with other C, C++ or
+   Fortran libraries. Care should be taken when manipulating directly the GC
+   library to avoid interfering with &ECL;'s expectations.</para>
   </section>
 
   <section id="ext.memory.limits">
