@@ -1,7 +1,7 @@
 XMLTO = xmlto
 
 XMLFILES= ecl.xml tmp/bibliography.xml tmp/clos.xml tmp/compiler.xml	\
-	tmp/declarations.xml tmp/ecldev.xml tmp/gc.xml			\
+	tmp/declarations.xml tmp/ecldev.xml 				\
 	tmp/internals.xml tmp/interpreter.xml tmp/preface.xml		\
 	tmp/io.xml tmp/mp.xml tmp/asdf.xml tmp/os.xml tmp/pde.xml	\
 	tmp/standards.xml tmp/copyright.xml tmp/ffi.xml tmp/ref_os.xml	\
