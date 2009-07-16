@@ -16,7 +16,7 @@ all: html/ecl.css
 
 html/index.html: $(XMLFILES)
 	@test -d html || mkdir html
-	$(XMLTO) $(subst xsl, -m xsl,$(XSLFILES)) -o html html ecl.xml
+	$(XMLTO) --skip-validation $(subst xsl, -m xsl,$(XSLFILES)) -o html html ecl.xml
 	cp ecl.css html/
 html/ecl.css: ecl.css html/index.html
 	cp ecl.css html/
