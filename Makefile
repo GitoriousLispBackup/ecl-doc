@@ -8,7 +8,8 @@ XMLFILES= ecl.xml tmp/bibliography.xml tmp/clos.xml tmp/compiler.xml	\
 	tmp/ref_primitive.xml tmp/ref_aggregate.xml tmp/ref_object.xml	\
 	tmp/ref_string.xml tmp/ref_func_libr.xml tmp/COPYING.GFDL.xml   \
 	tmp/mp.xml tmp/ref_mp.xml tmp/memory.xml tmp/ref_memory.xml  	\
-	tmp/mop.xml tmp/embed.xml tmp/ref_embed.xml
+	tmp/mop.xml tmp/embed.xml tmp/ref_embed.xml tmp/signals.xml	\
+	tmp/ref_signals.xml
 
 XSLFILES= xsl/lispfunc.xml xsl/customization.xml xsl/refentryintoc.xml
 

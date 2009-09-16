@@ -287,6 +287,115 @@
   </para>
  </refsect1>
 </refentry>
+
+<!-- ====================================================================== -->
+<!-- ecl_clear_interrupts()                                               -->
+<!-- ====================================================================== -->
+
+<refentry id="ref.embed.ecl_clear_interrupts">
+ <refnamediv>
+  <refname><function>ecl_clear_interrupts</function></refname>
+  <refpurpose>Clear all pending signals and exceptions.</refpurpose>
+ </refnamediv>
+
+ <refsynopsisdiv>
+  <title>Macro</title>
+  <funcsynopsis>
+   <?dbhtml funcsynopsis-style='ansi'?>
+   <funcprototype>
+    <funcdef><function>ecl_clear_interrupts</function></funcdef>
+    <paramdef></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+
+ <refsect1>
+  <title>Description</title>
+  <para>This macro clears all pending interrupts.
+  </para>
+ </refsect1>
+
+ <refsect1>
+  <title>See also</title>
+  <para> <xref linkend="ref.embed.ecl_disable_interrupts"/> and <xref
+  linkend="ref.embed.ecl_enable_interrupts"/>.
+  </para>
+ </refsect1>
+</refentry>
+
+<!-- ====================================================================== -->
+<!-- ecl_disable_interrupts()                                               -->
+<!-- ====================================================================== -->
+
+<refentry id="ref.embed.ecl_disable_interrupts">
+ <refnamediv>
+  <refname><function>ecl_disable_interrupts</function></refname>
+  <refpurpose>Postpone handling of signals and exceptions.</refpurpose>
+ </refnamediv>
+
+ <refsynopsisdiv>
+  <title>Macro</title>
+  <funcsynopsis>
+   <?dbhtml funcsynopsis-style='ansi'?>
+   <funcprototype>
+    <funcdef><function>ecl_disable_interrupts</function></funcdef>
+    <paramdef></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+
+ <refsect1>
+  <title>Description</title>
+  <para>This macro sets a thread-local flag indicating that all received
+  signals should be queued for later processing.
+  </para>
+ </refsect1>
+
+ <refsect1>
+  <title>See also</title>
+  <para><xref linkend="ref.embed.ecl_enable_interrupts"/> and <xref
+  linkend="ref.embed.ecl_clear_interrupts"/>.
+  </para>
+ </refsect1>
+</refentry>
+
+<!-- ====================================================================== -->
+<!-- ecl_enable_interrupts()                                                -->
+<!-- ====================================================================== -->
+
+<refentry id="ref.embed.ecl_enable_interrupts">
+ <refnamediv>
+  <refname><function>ecl_enable_interrupts</function></refname>
+  <refpurpose>Activate handling of signals and exceptions.</refpurpose>
+ </refnamediv>
+
+ <refsynopsisdiv>
+  <title>Macro</title>
+  <funcsynopsis>
+   <?dbhtml funcsynopsis-style='ansi'?>
+   <funcprototype>
+    <funcdef><function>ecl_enable_interrupts</function></funcdef>
+    <paramdef></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+
+ <refsect1>
+  <title>Description</title>
+  <para>This macro sets a thread-local flag indicating that all received
+  signals can be handled. If there are any pending signals, they will be
+  immediately processed.
+  </para>
+ </refsect1>
+
+ <refsect1>
+  <title>See also</title>
+  <para><xref
+  linkend="ref.embed.ecl_disable_interrupts"/> and <xref
+  linkend="ref.embed.ecl_clear_interrupts"/>.
+  </para>
+ </refsect1>
+</refentry>
 </reference></book>
 <!-- Keep this comment at the end of the file
       Local variables:

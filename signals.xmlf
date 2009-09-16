@@ -1,0 +1,112 @@
+<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<book lang="en">
+<chapter id="ext.signals">
+  <title>Signals and interrupts</title>
+
+  <section id="ext.signals.intro">
+    <title>Problems associated to signals</title>
+
+    <para>POSIX contemplates the notion of "signals", which are events that
+    cause a process or a thread to be interrupted. Windows uses the term
+    "exception", which includes also a more general kind of errors.</para>
+
+    <para>In both cases the consequence is that a thread or process may be
+    interrupted at any time, either by causes which are intrinsic to them
+    (synchronous signals), such as floating point exceptions, or extrinsic
+    (asynchronous signals), such as the process being aborted by the
+    user.</para>
+
+    <para>Of course, those interruptions are not always welcome. When the
+    interrupt is delivered and a handler is invoked, the thread or even the
+    whole program may be in an inconsistent state. For instance the thread may
+    have acquired a lock, or it may be in the process of filling the fields of
+    a structure. Furthermore, sometimes the signal that a thread receive may
+    not even be related to it, as in the case when a user presses Cltr-Break
+    and a SIGINT signal is delivered to an arbitrary thread, or when the
+    processed receives the Windows exception CTRL_CLOSE_EVENT denoting
+    that the terminal window is being closed.</para>
+
+    <para>Understanding this POSIX restricts severely what functions can
+    be called from a signal handler, thereby limiting its usefulness. However,
+    Common Lisp users expect to be able to handle floating point exceptions
+    and to gracefully manage user interrupts, program exits, etc. In an
+    attempt to solve this seemingly impossible problem, &ECL; has taken
+    a pragmatic approach that works, it is rather safe, but involves some
+    work on the &ECL; maintainers and also on users that want to embedd &ECL;
+    as a library.</para>
+  </section>
+
+  <section id="ext.signals.implementation">
+    <title>Signals and interrupts in &ECL;</title>
+
+    <para>&ECL; uses a simple solution, which is to mark the sections of code
+    which are interruptible, and in which it is safe for the handler to run
+    arbitrary code. All other regions would be considered "unsafe" and would be
+    protected from signals and exceptions.</para>
+
+    <para>In principle this "marking" of safe areas can be done using POSIX
+    functions such as <function>pthread_sigmask</function> or
+    <function>sigprocmask</function>. However in practice this is slow, as it
+    involves at least a function call, resolving thread-local variables, etc,
+    etc, and it will not work in Windows.</para>
+
+    <para>Furthermore, sometimes we want signals to be detected but not to be
+    immediately processed. For instance, when reading from the terminal we want
+    to be able to interrupt the process, but we can not execute the code from
+    the handler, since the C function which is used to read from the terminal,
+    <function>read()</function>, may have left the input stream in an
+    inconsistent, or even locked state.</para>
+
+    <para>The approach in &ECL; is more lightweight: we install our own signal
+    hander and use a thread-local variable as a flag that determines whether
+    the thread is executing interrupt safe code or not. More precisely, if the
+    variable <code>ecl_process_env()->disable_interrupts</code> is set, signals
+    and exceptions will be postponed and then the information about the signal is
+    queued. Otherwise the appropriate code is executed: for instance invoking
+    the debugger, jumping to a condition handler, quitting, etc.</para>
+  </section>
+
+  <section id="ext.signals.embedding">
+    <title>Considerations when embedding &ECL;</title>
+
+    <para>There are several approaches when handling signals and interrupts in
+    a program that uses &ECL;. One is to install your own signal handlers. This
+    is perfectly fine, but you should respect the same restrictions as &ECL;.
+    Namely, you may not execute arbitrary code from those signal handlers, and
+    in particular it will not always be safe to execute Common Lisp code from
+    there.</para>
+
+    <para>If you want to use your own signal handlers then you should set the
+    appropriate options before invoking <function>cl_boot()</function>, as
+    explained in <xref linkend="ref.embed.ecl_set_option"/>. Note that in this
+    case &ECL; will not always be able to detect floating point exceptions,
+    specially if your compiler does not support C99 and the corresponding
+    floating point flags.</para>
+
+    <para>The other option is to let &ECL; handle signals itself. This would be
+    safer when the dominant part of the code is Common Lisp, but you may need
+    to protect the code that embeds &ECL; from being interrupted using either
+    the macros <xref linkend="ref.embed.ecl_disable_interrupts"/> and <xref
+    linkend="ref.embed.ecl_enable_interrupts"/> or the POSIX functions
+    <function>pthread_sigmaks</function> and
+    <function>sigprocmask</function>.</para>
+  </section>
+
+  <section id="ext.signals.dict">
+    <title>Signals Reference</title>
+
+    &RefSignals;
+
+  </section>
+</chapter>
+</book>
+<!-- Keep this comment at the end of the file
+     Local variables:
+     mode: nxml
+     sgml-parent-document: "ecl.xml"
+     sgml-indent-step: 1
+     nxml-child-indent: 1
+     nxml-outline-child-indent: 1
+     fill-column: 79
+     End:
+-->
