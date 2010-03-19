@@ -194,7 +194,15 @@
    their purpose is to link C/C++ extensions into the library.</para>
    <para><replaceable>init-name</replaceable> gives the initialization function of the library a
    user-specified name. Thus a the generated library may be used and/or
-   linked to a C application.</para>
+   linked to a C application.
+   The recommended way to invoke <replaceable>init-name</replaceable> is following:
+   <programlisting>
+    cl_object the_block = read_VV(OBJNULL, init_FOO /* function name specified by init-name */);
+   </programlisting>
+   Be sure to call <literal>cl_boot</literal> before the invocation of <replaceable>init-name</replaceable>.
+   In order to avoid that the returned object is garbage collected,
+   you should keep the result of <literal>read_VV</literal> in a local variable.
+   </para>
   </blockquote>
   <!--  -->
  </section>
