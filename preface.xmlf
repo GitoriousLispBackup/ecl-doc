@@ -237,90 +237,104 @@
       <row>
        <entry>Architecture</entry>
        <entry>Operating system</entry>
-       <entry>Notes</entry>
+       <entry>Toolchain</entry>
        <entry>Tested<footnote><para>YES means that a dedicated machine regularly builds and tests &ECL; on this platform.</para></footnote></entry>
-       <entry>Read</entry>
       </row>
      </thead>
      <tbody>
       <row>
-       <entry>ix86 <footnote id="note.x86"><para>Intel 32 bit processors
+       <entry>x86 <footnote id="note.x86"><para>Intel 32 bit processors
        (Pentium, Pentium II, Pentium 3, Pentium 4) and AMD
        clones</para></footnote>
        </entry>
        <entry>Linux</entry>
-       <entry></entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
        <entry>YES</entry>
-       <entry><xref linkend="preface.autoconf"/></entry>
+      </row>
+      <row>
+       <entry>x86_64<footnote id="note.x86"><para>AMD and Intel processors with
+       64 bit extensions.</para></footnote></entry>
+       <entry>Linux</entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
+       <entry>YES</entry>
+      </row>
+      <row>
+       <entry>PPC</entry>
+       <entry>Linux</entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
+       <entry>YES</entry>
+      </row>
+      <row>
+       <entry>Itanium</entry>
+       <entry>Linux</entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
+       <entry>YES</entry>
       </row>
       <row>
        <entry>x86</entry>
-       <entry>FreeBSD, OpenBSD</entry>
-       <entry></entry>
+       <entry>FreeBSD</entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
        <entry>YES</entry>
-       <entry><xref linkend="preface.autoconf"/>,
-       <xref linkend="preface.bsd"/></entry>
       </row>
       <row>
        <entry>x86</entry>
-       <entry>NetBSD</entry>
-       <entry></entry>
+       <entry><link linkend="preface.bsd">OpenBSD</link></entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
        <entry>YES</entry>
-       <entry><xref linkend="preface.autoconf"/>,
-       <xref linkend="preface.netbsd"/></entry>
       </row>
       <row>
        <entry>x86</entry>
-       <entry>Windows 2000, XP</entry>
-       <entry>Microsoft Visual C++ compiler</entry>
+       <entry><link linkend="preface.bsd">NetBSD</link></entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
        <entry>YES</entry>
-       <entry><xref linkend="preface.msvc"/></entry>
       </row>
       <row>
        <entry>x86</entry>
-       <entry>Windows 2000, XP</entry>
-       <entry>&cygwin; tools</entry>
+       <entry>Windows XP, Vista, 7</entry>
+       <entry><link linkend="preface.msvc">Microsoft compilers</link></entry>
        <entry>YES</entry>
-       <entry><xref linkend="preface.autoconf"/></entry>
       </row>
       <row>
        <entry>x86</entry>
-       <entry>Windows 2000, XP</entry>
-       <entry>&mingw; and Msys tools</entry>
+       <entry>Windows XP, Vista, 7</entry>
+       <entry><link linkend="preface.autoconf">&cygwin;</link></entry>
        <entry>YES</entry>
-       <entry><xref linkend="preface.autoconf"/></entry>
+      </row>
+      <row>
+       <entry>x86</entry>
+       <entry>Windows XP, Vista, 7</entry>
+       <entry><link linkend="preface.autoconf">&mingw; and Msys tools</link></entry>
+       <entry>YES</entry>
       </row>
       <row>
        <entry>x86</entry>
        <entry>OS X Tiger</entry>
-       <entry></entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
        <entry>YES</entry>
-       <entry><xref linkend="preface.autoconf"/></entry>
       </row>
       <row>
-       <entry>PowerPC</entry>
+       <entry>x86_64</entry>
        <entry>OS X Tiger</entry>
-       <entry></entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
        <entry>YES</entry>
-       <entry><xref linkend="preface.autoconf"/></entry>
       </row>
       <row>
-       <entry>x86_64
-       <footnote id="note.x86_64">
-	<para>AMD 64 bits and Intel EM64 extensions.</para>
-       </footnote>
-       </entry>
-       <entry>Linux</entry>
-       <entry></entry>
-       <entry>NO</entry>
-       <entry><xref linkend="preface.autoconf"/></entry>
+       <entry>x86</entry>
+       <entry>Solaris</entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
+       <entry>YES</entry>
       </row>
       <row>
-       <entry>Alpha</entry>
-       <entry>Linux</entry>
-       <entry></entry>
-       <entry>NO</entry>
-       <entry><xref linkend="preface.autoconf"/></entry>
+       <entry>x86_64</entry>
+       <entry>Solaris</entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
+       <entry>YES</entry>
+      </row>
+      <row>
+       <entry>Sparc</entry>
+       <entry>Solaris</entry>
+       <entry><link linkend="preface.autoconf">Autoconf</link></entry>
+       <entry>YES</entry>
       </row>
      </tbody>
     </tgroup>
@@ -394,7 +408,7 @@
    <title>Platform specific instructions</title>
 
    <section id="preface.msvc">
-    <title>Windows with Visual C++ compiler</title>
+    <title>Microsoft compilers</title>
 
     <para>If you have a commercial version of Microsoft Visual Studio, the
     steps are simple:</para>
@@ -413,66 +427,26 @@
      windows-nsi</code>.</para></step>
     </procedure>
 
-    <para>If you want to build ECL using the free Microsoft Visual C++ Toolkit
-    2003, you should follow these before building ECL:</para>
+    <para>If you want to build ECL using the free Microsoft Visual Studio
+    Express 2010 or better, you should follow these before building ECL as
+    sketched before:</para>
     <procedure>
      <step><para>Download and install <ulink
-     url="http://msdn.microsoft.com/visualc/vctoolkit2003/">Microsoft Visual
-     C++ Toolkit</ulink>.</para></step>
+     url="http://www.microsoft.com/express/">Microsoft Visual Studio
+     C++ Compiler</ulink>.</para></step>
 
      <step><para>Download and install the <ulink
-     url="http://www.microsoft.com/msdownload/platformsdk/sdkupdate/">Microsoft
-     Platform SDK</ulink></para></step>
+     url="http://msdn.microsoft.com/en-us/windows/bb980924">Windows
+     SDK</ulink></para></step>
 
-     <step><para>Download NMAKE and install. There is an old version in
-     <ulink url="http://download.microsoft.com/download/vc15/Patch/1.52/W95/EN-US/Nmake15.exe">
-     Microsoft's download page</ulink>.</para></step>
-
-     <step><para>Download and install the .NET Framework SDK. Copy the
-     files msvcrt.lib an msvcrtd.lib from this toolkit to the directory where
-     the Visual C++ Toolkit keeps it libraries. Afterwards you can uninstall
-     the .NET SDK.</para></step>
-
-     <step><para>Make sure that:</para>
-     <procedure>
-      <step><para><code>%PATH%</code> includes the directories <code>bin</code> of
-      both the C++ Toolkit, NMAKE and the SDK.</para></step>
-
-      <step><para><code>%INCLUDE%</code> includes the directories
-      <code>include</code> of both the C++ Toolkit and the SDK.</para></step>
-
-      <step><para><code>%LIB%</code>includes the directories <code>lib</code> of
-      both the C++ Toolkit and the SDK.</para></step>
-     </procedure>
+     <step><para>Open the Windows SDK terminal, which will set up the
+     appropriate paths and environment variables.</para>
      </step>
     </procedure>
    </section>
 
-
-   <section id="preface.mingw">
-    <title>Windows with Mingw/Cygwin</title>
-
-    <para></para>
-   </section>
-
-
-   <section id="preface.netbsd">
-    <title>NetBSD</title>
-
-    <para>Before following the instructions in <xref
-    linkend="preface.autoconf"/> you should install the following packages:
-    <application>bash</application>, <application>boehm-gc</application> and
-    <application>gmp-4.1</application> or better. Additionally when
-    configuring, you should first export the environment variable
-    <variable>CONFIG_SHELL</variable> using <code>setenv CONFIG_SHELL
-    /usr/pkg/bin/bash</code> or <code>export
-    CONFIG_SHELL=/usr/pkg/bin</code>.</para>
-
-   </section>
-
-
    <section id="preface.bsd">
-    <title>OpenBSD and FreeBSD</title>
+    <title>OpenBSD and NetBSD</title>
 
     <para>Before following the instructions in <xref
     linkend="preface.autoconf"/> you should install the following packages:
