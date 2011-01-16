@@ -338,7 +338,7 @@ Finished
 <!-- ASDF:MAKE-BUILD                                                        -->
 <!-- ====================================================================== -->
 
-  <refentry id="ref.make-build">
+  <refentry id="ref.load-fasl-op">
    <refnamediv>
     <refname><function>asdf:load-fasl-op</function></refname>
     <refpurpose>Compile and load one ore more libraries using unified &FASL;</refpurpose>
