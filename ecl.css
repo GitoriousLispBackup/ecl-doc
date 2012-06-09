@@ -47,3 +47,9 @@ div.funcsynopsis p  {
 div.variablelist {
 	padding: 0 2em;
 }
+.type, .funcsynopsis, .symbol {
+	font-family: fixed;
+}
+.type, .symbol, .replaceable {
+	white-space: nowrap;
+}
