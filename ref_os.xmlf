@@ -1,11 +1,15 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en"><reference id="os.dict"><title>OS Reference</title>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="os.dict"><title>OS Reference</title>
 
  <!-- ====================================================================== -->
  <!-- EXT:*HELP-MESSAGE*                                                     -->
  <!-- ====================================================================== -->
 
- <refentry id="ref._help-message_">
+ <refentry xml:id="ref._help-message_">
   <refnamediv>
    <refname><varname>ext:*help-message*</varname></refname>
    <refpurpose>Command line help message</refpurpose>
@@ -42,7 +46,7 @@
  <!-- EXT:+LISP-INIT-FILES+                                                  -->
  <!-- ====================================================================== -->
 
- <refentry id="ref._lisp-init-file-list_">
+ <refentry xml:id="ref._lisp-init-file-list_">
   <refnamediv>
    <refname><varname>ext:*lisp-init-file-list*</varname></refname>
    <refpurpose>&ECL; initialization files.</refpurpose>
@@ -83,7 +87,7 @@
  <!-- EXT:+DEFAULT-COMMAND-ARG-RULES+                                        -->
  <!-- ====================================================================== -->
 
- <refentry id="ref._default-command-arg-rules_">
+ <refentry xml:id="ref._default-command-arg-rules_">
   <refnamediv>
    <refname><varname>ext:+default-command-arg-rules+</varname></refname>
    <refpurpose>&ECL; command line options</refpurpose>
@@ -119,7 +123,7 @@
  <!-- EXT:COMMAND-ARGS                                                       -->
  <!-- ====================================================================== -->
 
- <refentry id="ref.command-args">
+ <refentry xml:id="ref.command-args">
   <refnamediv>
    <refname><function>ext:command-args</function></refname>
    <refpurpose>Original list of command line arguments.</refpurpose>
@@ -157,7 +161,7 @@
  <!-- EXT:PROCESS-COMMAND-ARGS                                               -->
  <!-- ====================================================================== -->
 
- <refentry id="ref.process-command-args">
+ <refentry xml:id="ref.process-command-args">
   <refnamediv>
    <refname><function>ext:process-command-args</function></refname>
    <refpurpose>Process command line arguments.</refpurpose>
@@ -286,7 +290,7 @@ ls [--help | -?] filename*
  <!-- EXT:QUIT                                                               -->
  <!-- ====================================================================== -->
 
- <refentry id="ref.quit">
+ <refentry xml:id="ref.quit">
   <refnamediv>
    <refname><function>ext:quit</function></refname>
    <refpurpose>Exit &ECL;.</refpurpose>
@@ -324,7 +328,7 @@ ls [--help | -?] filename*
  <!-- ====================================================================== -->
  <!-- EXT:RUN-PROGRAM                                                        -->
  <!-- ====================================================================== -->
- <refentry id="ref.run-program">
+ <refentry xml:id="ref.run-program">
   <refnamediv>
    <refname><function>ext:run-program</function></refname>
    <refpurpose>Start and communicate with a child process.</refpurpose>
@@ -433,7 +437,7 @@ ls [--help | -?] filename*
  <!-- EXT:SYSTEM                                                             -->
  <!-- ====================================================================== -->
 
- <refentry id="ref.system">
+ <refentry xml:id="ref.system">
   <refnamediv>
    <refname><function>ext:system</function></refname>
    <refpurpose>Invoke a command using the shell.</refpurpose>

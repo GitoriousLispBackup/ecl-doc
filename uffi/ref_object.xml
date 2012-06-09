@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
- <reference id="uffi.objects">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "../ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+ <reference xml:id="uffi.objects">
   <title>Objects</title>
   <partintro>
    <title>Overview</title>
@@ -10,7 +14,7 @@
   </partintro>
 
 
-  <refentry id="uffi.allocate-foreign-object">
+  <refentry xml:id="uffi.allocate-foreign-object">
    <refnamediv>
     <refname><function>allocate-foreign-object</function></refname>
     <refpurpose>Allocates an instance of a foreign object.
@@ -77,7 +81,7 @@
   </refentry>
 
 
-  <refentry id="uffi.free-foreign-object">
+  <refentry xml:id="uffi.free-foreign-object">
    <refnamediv>
     <refname><function>free-foreign-object</function></refname>
     <refpurpose>Frees memory that was allocated for a foreign boject.
@@ -122,7 +126,7 @@
   </refentry>
 
 
-  <refentry id="uffi.with-foreign-object">
+  <refentry xml:id="uffi.with-foreign-object">
    <refnamediv>
     <refname><function>with-foreign-object</function></refname>
     <refpurpose>Wraps the allocation of a foreign object around a body of code.
@@ -193,7 +197,7 @@
    </refsect1>
   </refentry>
 
-  <refentry id="uffi.size-of-foreign-type">
+  <refentry xml:id="uffi.size-of-foreign-type">
    <refnamediv>
     <refname><function>size-of-foreign-type</function></refname>
     <refpurpose>Returns the number of data bytes used by a foreign object type.
@@ -245,7 +249,7 @@
    </refsect1>
   </refentry>
 
-  <refentry id="uffi.pointer-address">
+  <refentry xml:id="uffi.pointer-address">
    <refnamediv>
     <refname><function>pointer-address</function></refname>
     <refpurpose>Returns the address of a pointer.
@@ -296,7 +300,7 @@
   </refentry>
 
 
-  <refentry id="uffi.deref-pointer">
+  <refentry xml:id="uffi.deref-pointer">
    <refnamediv>
     <refname><function>deref-pointer</function></refname>
     <refpurpose>Deferences a pointer.
@@ -371,7 +375,7 @@
    </refsect1>
   </refentry>
 
-  <refentry id="uffi.ensure-char-character">
+  <refentry xml:id="uffi.ensure-char-character">
    <refnamediv>
     <refname><function>ensure-char-character</function></refname>
     <refpurpose>Ensures that a dereferenced <constant>:char</constant> pointer is
@@ -436,7 +440,7 @@
    </refsect1>
   </refentry>
 
-  <refentry id="uffi.ensure-char-integer">
+  <refentry xml:id="uffi.ensure-char-integer">
    <refnamediv>
     <refname><function>ensure-char-integer</function></refname>
     <refpurpose>Ensures that a dereferenced <constant>:char</constant> pointer is
@@ -500,7 +504,7 @@
    </refsect1>
   </refentry>
 
-  <refentry id="uffi.make-null-pointer">
+  <refentry xml:id="uffi.make-null-pointer">
    <refnamediv>
     <refname><function>make-null-pointer</function></refname>
     <refpurpose>Create a &NULL; pointer.
@@ -550,7 +554,7 @@
   </refentry>
 
 
-  <refentry id="uffi.null-pointer-p">
+  <refentry xml:id="uffi.null-pointer-p">
    <refnamediv>
     <refname><function>null-pointer-p</function></refname>
     <refpurpose>Tests a pointer for &NULL; value.
@@ -601,7 +605,7 @@
   </refentry>
 
 
-  <refentry id="uffi.null-cstring-pointer">
+  <refentry xml:id="uffi.null-cstring-pointer">
    <refnamediv>
     <refname><varname>+null-cstring-pointer+</varname></refname>
     <refpurpose>A constant &NULL; cstring pointer.
@@ -617,7 +621,7 @@
    </refsect1>
   </refentry>
 
-  <refentry id="uffi.with-cast-pointer">
+  <refentry xml:id="uffi.with-cast-pointer">
    <refnamediv>
     <refname><function>with-cast-pointer</function></refname>
     <refpurpose>Wraps a body of code with a pointer cast to a new type.
@@ -704,7 +708,7 @@
    </refsect1>
   </refentry>
 
-  <refentry id="uffi.def-foreign-var">
+  <refentry xml:id="uffi.def-foreign-var">
    <refnamediv>
     <refname><function>def-foreign-var</function></refname>
     <refpurpose>

@@ -1,6 +1,10 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd">
-<book lang="en">
-<chapter id="The-interpreter">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter xml:id="The-interpreter">
 <title>The Interpreter</title>
 <para>Former versions of &ECL;, as well as many other lisps, used linked lists to
 represent code. As of version 0.3 a bytecodes compiler and a bytecodes

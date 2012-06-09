@@ -1,11 +1,15 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en"><reference id="mp.dict"><title>Multithreading Reference</title>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="mp.dict"><title>Multithreading Reference</title>
 
 <!-- ====================================================================== -->
 <!-- MP:ALL-PROCESSES                                                       -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.all-processes">
+<refentry xml:id="ref.mp.all-processes">
  <refnamediv>
   <refname><function>mp:all-processes</function></refname>
   <refpurpose>Return the list of active processes.</refpurpose>
@@ -35,7 +39,7 @@
 <!-- MP:EXIT-PROCESS                                                        -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.exit-process">
+<refentry xml:id="ref.mp.exit-process">
  <refnamediv>
   <refname><function>mp:exit-process</function></refname>
   <refpurpose>Exit the task from which it is invoked.</refpurpose>
@@ -69,7 +73,7 @@
 <!-- MP:INTERRUPT-PROCESS                                                   -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.interrupt-process">
+<refentry xml:id="ref.mp.interrupt-process">
  <refnamediv>
   <refname><function>mp:interrupt-process</function></refname>
   <refpurpose>Interrupt a task.</refpurpose>
@@ -124,7 +128,7 @@
 <!-- MP:GET-LOCK                                                            -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.get-lock">
+<refentry xml:id="ref.mp.get-lock">
  <refnamediv>
   <refname><function>mp:get-lock</function></refname>
   <refpurpose>Try to obtain a lock.</refpurpose>
@@ -174,7 +178,7 @@
 <!-- MP:GIVEUP-LOCK                                                         -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.giveup-lock">
+<refentry xml:id="ref.mp.giveup-lock">
  <refnamediv>
   <refname><function>mp:giveup-lock</function></refname>
   <refpurpose>Release a lock we have obtained before.</refpurpose>
@@ -214,7 +218,7 @@
 <!-- MP:MAKE-LOCK                                                           -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.make-lock">
+<refentry xml:id="ref.mp.make-lock">
  <refnamediv>
   <refname><function>mp:make-lock</function></refname>
   <refpurpose>Create a new lock.</refpurpose>
@@ -257,7 +261,7 @@
 <!-- MP:MAKE-PROCESS                                                        -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.make-process">
+<refentry xml:id="ref.mp.make-process">
  <refnamediv>
   <refname><function>mp:make-process</function></refname>
   <refpurpose>Create a new thread.</refpurpose>
@@ -307,7 +311,7 @@
 <!-- MP:PROCESS-ACTIVE-P                                                    -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.process-active-p">
+<refentry xml:id="ref.mp.process-active-p">
  <refnamediv>
   <refname><function>mp:process-active-p</function></refname>
   <refpurpose>Determine whether a task is running.</refpurpose>
@@ -340,7 +344,7 @@
 <!-- MP:PROCESS-ENABLE                                                      -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.process-enable">
+<refentry xml:id="ref.mp.process-enable">
  <refnamediv>
   <refname><function>mp:process-enable</function></refname>
   <refpurpose>Start up a task which was not running.</refpurpose>
@@ -388,7 +392,7 @@
 <!-- MP:PROCESS-KILL                                                        -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.process-kill">
+<refentry xml:id="ref.mp.process-kill">
  <refnamediv>
   <refname><function>mp:process-kill</function></refname>
   <refpurpose>Try to stop a running task.</refpurpose>
@@ -436,7 +440,7 @@
 <!-- MP:PROCESS-NAME                                                        -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.process-name">
+<refentry xml:id="ref.mp.process-name">
  <refnamediv>
   <refname><function>mp:process-name</function></refname>
   <refpurpose>Return the name of a task.</refpurpose>
@@ -469,7 +473,7 @@
 <!-- MP:PROCESS-PRESET                                                      -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.process-preset">
+<refentry xml:id="ref.mp.process-preset">
  <refnamediv>
   <refname><function>mp:process-preset</function></refname>
   <refpurpose>Associate a function to a process.</refpurpose>
@@ -523,7 +527,7 @@
 <!-- MP:PROCESS-RUN-FUNCTION                                                -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.process-run-function">
+<refentry xml:id="ref.mp.process-run-function">
  <refnamediv>
   <refname><function>mp:process-run-function</function></refname>
   <refpurpose>Create a task and execute a function in it.</refpurpose>
@@ -585,7 +589,7 @@
 <!-- MP:WITH-LOCK                                                           -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.mp.with-lock">
+<refentry xml:id="ref.mp.with-lock">
  <refnamediv>
   <refname><function>mp:with-lock</function></refname>
   <refpurpose>Synchronize a piece of code between different tasks.</refpurpose>

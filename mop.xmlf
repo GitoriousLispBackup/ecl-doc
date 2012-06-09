@@ -1,9 +1,13 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
- <chapter id="ext.mop">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+ <chapter xml:id="ext.mop">
   <title>Meta-Object Protocol (MOP)</title>
 
-  <section id="ext.mop.intro">
+  <section xml:id="ext.mop.intro">
    <title>Introduction</title>
 
    <para>The Meta-Object Protocol is an extension to &CommonLisp; which
@@ -40,26 +44,26 @@
    specified.</para>
   </section>
 
-  <section id="ext.mop.classes">
+  <section xml:id="ext.mop.classes">
    <title>Classes</title>
 
    <para>[TODO: Document the class initialization / finalization protocol]</para>
   </section>
 
-  <section id="ext.mop.slots">
+  <section xml:id="ext.mop.slots">
    <title>Slots</title>
 
    <para>[TODO: Document the slot descriptions and parameters.]</para>
 
   </section>
 
-  <section id="ext.mop.generic">
+  <section xml:id="ext.mop.generic">
    <title>Generic functions and methods</title>
 
    <para>[TODO: Document the calling convetions for method functions.]</para>
   </section>
 
-  <section id="ext.mop.slots.sealed">
+  <section xml:id="ext.mop.slots.sealed">
    <title>Sealed slots and classes</title>
    
    <para>[TODO: Document sealed slots]</para>

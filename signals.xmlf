@@ -1,9 +1,13 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
-<chapter id="ext.signals">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter xml:id="ext.signals">
  <title>Signals and interrupts</title>
 
- <section id="ext.signals.intro">
+ <section xml:id="ext.signals.intro">
   <title>Problems associated to signals</title>
 
   <para>POSIX contemplates the notion of "signals", which are events that
@@ -35,10 +39,10 @@
   maintainers and also on users that want to embedd &ECL; as a library.</para>
  </section>
 
- <section id="ext.signals.kinds">
+ <section xml:id="ext.signals.kinds">
   <title>Kinds of signals</title>
 
-  <section id="ext.signals.synchronous">
+  <section xml:id="ext.signals.synchronous">
    <title>Synchronous signals</title>
 
    <para>The name derives from POSIX and it denotes interrupts that occur due
@@ -90,7 +94,7 @@
    be handled by the thread in which they were generated and how.</para>
   </section>
 
-  <section id="ext.signals.asynchronous">
+  <section xml:id="ext.signals.asynchronous">
    <title>Asynchronous signals</title>
 
    <para>In addition to the set of synchronous signals or "exceptions", we
@@ -119,7 +123,7 @@
   </section>
  </section>
 
- <section id="ext.signals.implementation">
+ <section xml:id="ext.signals.implementation">
   <title>Signals and interrupts in &ECL;</title>
 
   <para>The signal handling facilities in &ECL; are constrained by two
@@ -134,7 +138,7 @@
   synchronous and asynchronous signal handling code, as explained in the
   following two sections.</para>
 
-  <section id="ext.signals.asynchronous-handler">
+  <section xml:id="ext.signals.asynchronous-handler">
    <title>Handling of asynchronous signals</title>
 
    <para>In systems in which this is possible, &ECL; creates a signal handling
@@ -171,7 +175,7 @@
    in Windows.</para>
   </section>
 
-  <section id="ext.signals.synchronous-handler">
+  <section xml:id="ext.signals.synchronous-handler">
    <title>Handling of synchronous signals</title>
 
    <para>We have already mentioned that certain synchronous signals and
@@ -219,7 +223,7 @@
   </section>
  </section>
 
- <section id="ext.signals.embedding">
+ <section xml:id="ext.signals.embedding">
   <title>Considerations when embedding &ECL;</title>
 
   <para>There are several approaches when handling signals and interrupts in
@@ -245,10 +249,10 @@
   <function>sigprocmask</function>.</para>
  </section>
 
- <section id="ext.signals.dict">
+ <section xml:id="ext.signals.dict">
   <title>Signals Reference</title>
 
-  &RefSignals;
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ref_signals.xmlf" xpointer="signals.dict"/>
 
  </section>
 </chapter>

@@ -1,9 +1,13 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
- <chapter id="mp">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+ <chapter xml:id="ext.mp">
   <title>Multithreading</title>
 
-  <section id="ext.mp.threads">
+  <section xml:id="ext.mp.threads">
    <title>Tasks, threads or processes</title>
 
    <para>On most platforms, &ECL; supports native multithreading. That means
@@ -39,10 +43,10 @@
 
   </section>
 
-  <section id="ext.mp.dict">
+  <section xml:id="ext.mp.dict">
    <title>MP Reference</title>
 
-   &RefMP;
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="ref_mp.xmlf" xpointer="mp.dict"/>
 
   </section>
  </chapter>

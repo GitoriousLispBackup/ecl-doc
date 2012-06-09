@@ -1,11 +1,15 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en"><reference id="ext.memory.dict"><title>Finalization Reference</title>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="ext.memory.dict"><title>Finalization Reference</title>
 
 <!-- ====================================================================== -->
 <!-- EXT:STACK-OVERFLOW                                                     -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.memory.stack-overflow">
+<refentry xml:id="ref.memory.stack-overflow">
  <refnamediv>
   <refname><classname>ext:stack-overflow</classname></refname>
   <refpurpose>Stack overflow condition.</refpurpose>
@@ -64,7 +68,7 @@
 <!-- EXT:STORAGE-EXHAUSTED                                                  -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.memory.storage-exhausted">
+<refentry xml:id="ref.memory.storage-exhausted">
  <refnamediv>
   <refname><classname>ext:storage-exhausted</classname></refname>
   <refpurpose>Memory overflow condition.</refpurpose>
@@ -113,7 +117,7 @@
 <!-- EXT:GET-FINALIZER                                                      -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.memory.get-finalizer">
+<refentry xml:id="ref.memory.get-finalizer">
  <refnamediv>
   <refname><function>ext:get-finalizer</function></refname>
   <refpurpose>Return finalizer associated to an object.</refpurpose>
@@ -146,7 +150,7 @@
 <!-- EXT::GET-LIMIT                                                         -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.memory.get-limit">
+<refentry xml:id="ref.memory.get-limit">
  <refnamediv>
   <refname><function>ext:get-limit</function></refname>
   <refpurpose>Query a memory or stack limit.</refpurpose>
@@ -184,7 +188,7 @@
 <!-- EXT::SET-FINALIZER                                                     -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.memory.set-finalizer">
+<refentry xml:id="ref.memory.set-finalizer">
  <refnamediv>
   <refname><function>ext:set-finalizer</function></refname>
   <refpurpose>Associate a finalizer to an object.</refpurpose>
@@ -251,7 +255,7 @@
 <!-- EXT::SET-LIMIT                                                         -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.memory.set-limit">
+<refentry xml:id="ref.memory.set-limit">
  <refnamediv>
   <refname><function>ext:set-limit</function></refname>
   <refpurpose>Set a memory or stack limit.</refpurpose>
@@ -293,7 +297,7 @@
   is smaller than what &ECL; is using at the moment, the new value
   will be silently ignored.</para>
 
-  <table id="table.memory.limits">
+  <table xml:id="table.memory.limits">
     <title>Customizable memory limits</title>
     <tgroup cols="3">
       <thead>

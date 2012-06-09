@@ -1,11 +1,15 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en"><reference id="mp.dict"><title>Multithreading Reference</title>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="signals.dict"><title>Multithreading Reference</title>
 
 <!-- ====================================================================== -->
 <!-- EXT:WITH-INTERRUPTS                                                    -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.signals.with-interrupts">
+<refentry xml:id="ref.signals.with-interrupts">
   <refnamediv>
     <refname><function>ext:with-interrupts</function></refname>
     <refpurpose>Execute code with interrupts optionally enabled.</refpurpose>
@@ -38,7 +42,7 @@
 <!-- EXT:WITHOUT-INTERRUPTS                                                 -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.signals.without-interrupts">
+<refentry xml:id="ref.signals.without-interrupts">
   <refnamediv>
     <refname><function>ext:without-interrupts</function></refname>
     <refpurpose>Execute code without being interrupted.</refpurpose>

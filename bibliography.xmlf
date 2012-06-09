@@ -1,9 +1,13 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
- <bibliography id="Bibliography">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+ <bibliography xml:id="Bibliography">
   <title>Bibliography</title>
 
-  <bibliomixed id="bib.LISP1.5" xreflabel="[LISP1.5]">
+  <bibliomixed xml:id="bib.LISP1.5" xreflabel="[LISP1.5]">
    <bibliomset>
     <firstname>John</firstname> <surname>McCarthy</surname> et
     al. <title>LISP 1.5 Programmer's
@@ -17,7 +21,7 @@
    </bibliomset>
   </bibliomixed>
 
-  <bibliomixed id="bib.ANSI" xreflabel="ANSI">
+  <bibliomixed xml:id="bib.ANSI" xreflabel="ANSI">
   <bibliomset>
    <title>ANSI Common Lisp Specification, ANSI/X3.226-1994</title>.
    <corpname>American National Standards Institute</corpname>,
@@ -25,7 +29,7 @@
   </bibliomset>
   </bibliomixed>
 
-  <bibliomixed id="bib.HyperSpec" xreflabel="CLHS">
+  <bibliomixed xml:id="bib.HyperSpec" xreflabel="CLHS">
   <bibliomset>
    <firstname>Kent M.</firstname> <surname>Pitman</surname>.
    <title>The Common Lisp Hyperspec</title>.
@@ -36,7 +40,7 @@
   </bibliomset>
   </bibliomixed>
 
-  <bibliomixed id="bib.CLTL" xreflabel="CLTL">
+  <bibliomixed xml:id="bib.CLTL" xreflabel="CLTL">
    <bibliomset>
     <firstname>Guy L.</firstname> <surname>Steele Jr</surname> et al.
     <title>Common Lisp The Language</title>.
@@ -44,7 +48,7 @@
    </bibliomset>
   </bibliomixed>
 
-  <bibliomixed id="bib.CLTL2" xreflabel="CLTL2">
+  <bibliomixed xml:id="bib.CLTL2" xreflabel="CLTL2">
    <bibliomset>
     <firstname>Guy L.</firstname> <surname>Steele Jr.</surname> et al.
     <title>Common Lisp The Language II</title>.
@@ -52,7 +56,7 @@
    </bibliomset>
   </bibliomixed>
 
-  <bibliomixed id="bib.KCL" xreflabel="KCL">
+  <bibliomixed xml:id="bib.KCL" xreflabel="KCL">
    <bibliomset>
     <firstname>Taichi</firstname> <surname>Yuasa</surname> and
     <firstname>Masami</firstname> <surname>Hagiya</surname>.  <title>Kyoto
@@ -61,7 +65,7 @@
    </bibliomset>
   </bibliomixed>
 
-  <bibliomixed id="bib.ECL" xreflabel="ECL">
+  <bibliomixed xml:id="bib.ECL" xreflabel="ECL">
    <bibliomset>
     <firstname>Giusseppe</firstname> <surname>Attardi</surname>.  <title>The
     Embeddable Common Lisp</title>.  <publishername>ACM Lisp
@@ -70,7 +74,7 @@
    </bibliomset>
   </bibliomixed>
 
-  <bibliomixed id="bib.mk-defsystem" xreflabel="mk-defsystem">
+  <bibliomixed xml:id="bib.mk-defsystem" xreflabel="mk-defsystem">
    <bibliomset>
     <firstname>Mark</firstname> <surname>Kantrowitz</surname>, <title>Portable
     Utilities for Common Lisp. User Guide &amp; Implementation.</title>
@@ -81,7 +85,7 @@
    </bibliomset>
   </bibliomixed>
 
-  <bibliomixed id="bib.AMOP" xreflabel="[AMOP]">
+  <bibliomixed xml:id="bib.AMOP" xreflabel="[AMOP]">
    <bibliomset>
     <firstname>Gregor</firstname> <surname>Kickzales</surname> et al. <title>The
     Art of the Metaobject Protocol</title> <publishername>The

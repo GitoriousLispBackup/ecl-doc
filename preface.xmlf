@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
-<preface id="preface">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE preface [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<preface xml:id="preface">
  <title>Preface</title>
 
- <section id="preface.words">
+ <section xml:id="preface.words">
   <title>About this book</title>
 
   <para>This manual is part of the &ECL; software system. It documents
@@ -35,7 +39,7 @@
   fragile one and prone to change.</para>
  </section>
 
- <section id="preface.what.is.ecl">
+ <section xml:id="preface.what.is.ecl">
   <title>What is &ECL;?</title>
 
   <para>&CommonLisp; is a general purpose programming language. It lays its
@@ -73,10 +77,10 @@
 
  </section>
 
- <section id="preface.history">
+ <section xml:id="preface.history">
   <title>History</title>
 
-  <para><figure float="1" id="fig.family-tree">
+  <para><figure float="1" xml:id="fig.family-tree">
    <title>ECL's family tree</title>
    <mediaobject>
     <imageobject>
@@ -118,7 +122,7 @@
   goal that other Common Lisps were struggling to achieve.</para>
 
   <para>This is where the <acronym>ECLS</acronym> or
-  <acronym>ECL</acronym>-Spain project began. Juanjo Garc&iacute;a-Ripoll took
+  <acronym>ECL</acronym>-Spain project began. Juanjo García-Ripoll took
   the ECoLisp sources and worked on them, with some immediate goals in mind:
   increase portability, make the code 64-bit clean, make it able to build
   itself from scratch, without other implementation of &CommonLisp; and restore
@@ -137,14 +141,14 @@
   and porting &ECL; to new platforms.</para>
 
   <para>Currently, development of &ECL; is still driven by Juanjo
-  Garc&iacute;a-Ripoll with the help of Michael Goffioul in the Windows
+  García-Ripoll with the help of Michael Goffioul in the Windows
   port. The project homepage is located at <ulink
   url="http://ecls.sourceforge.net"><uri>http://ecls.sourceforge.net</uri></ulink>,
   and there is a mailing list where questions, bug reports and other
   discussions may be carried out.</para>
  </section>
 
- <section id="Copyright.ECL">
+ <section xml:id="Copyright.ECL">
   <title>Copyright of ECL</title>
 
   <para>&ECL; is distributed under the GNU LGPL, which allows for commercial
@@ -191,10 +195,10 @@
 ---- END OF COPYRIGHT FOR THE ECL CORE ENVIRONMENT ------------------</programlisting>
  </section>
 
- <section id="Copyright.Manual">
+ <section xml:id="Copyright.Manual">
   <title>Copyright of this manual</title>
 
-  <para>Copyright: Juan Jos&eacute; Garc&iacute;a-Ripoll, 2006.</para>
+  <para>Copyright: Juan José García-Ripoll, 2006.</para>
 
   <para>Copyright: Kevin M. Rosenberg 2002-2003, (UFFI Reference)</para>
 
@@ -218,7 +222,7 @@
 
  </section>
 
- <section id="preface.installation">
+ <section xml:id="preface.installation">
   <title>Installation</title>
 
   <para>The following sections describe which machines are supported by &ECL;,
@@ -227,10 +231,10 @@
   which details the other sections containing installation instructions for
   your platform.</para>
 
-  <section id="preface.platforms">
+  <section xml:id="preface.platforms">
    <title>Supported platforms</title>
 
-   <table id="table.ports">
+   <table xml:id="table.ports">
     <title>Supported platforms</title>
     <tgroup cols="3">
      <thead>
@@ -243,7 +247,7 @@
      </thead>
      <tbody>
       <row>
-       <entry>x86 <footnote id="note.x86"><para>Intel 32 bit processors
+       <entry>x86 <footnote xml:id="note.x86"><para>Intel 32 bit processors
        (Pentium, Pentium II, Pentium 3, Pentium 4) and AMD
        clones</para></footnote>
        </entry>
@@ -252,7 +256,7 @@
        <entry>YES</entry>
       </row>
       <row>
-       <entry>x86_64<footnote id="note.x86"><para>AMD and Intel processors with
+       <entry>x86_64<footnote xml:id="note.amd"><para>AMD and Intel processors with
        64 bit extensions.</para></footnote></entry>
        <entry>Linux</entry>
        <entry><link linkend="preface.autoconf">Autoconf</link></entry>
@@ -348,7 +352,7 @@
 
   </section>
 
-  <section id="preface.autoconf">
+  <section xml:id="preface.autoconf">
    <title>Autoconf based configuration</title>
 
    <para>&ECL;, like many other free programs, can be built and installed a GNU
@@ -404,10 +408,10 @@
 
   </section>
 
-  <section id="preface.osdep">
+  <section xml:id="preface.osdep">
    <title>Platform specific instructions</title>
 
-   <section id="preface.msvc">
+   <section xml:id="preface.msvc">
     <title>Microsoft compilers</title>
 
     <para>If you have a commercial version of Microsoft Visual Studio, the
@@ -445,7 +449,7 @@
     </procedure>
    </section>
 
-   <section id="preface.bsd">
+   <section xml:id="preface.bsd">
     <title>OpenBSD and NetBSD</title>
 
     <para>Before following the instructions in <xref

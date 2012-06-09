@@ -1,11 +1,15 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en"><reference id="embed.dict"><title>Embedding Reference</title>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="embed.dict"><title>Embedding Reference</title>
 
 <!-- ====================================================================== -->
 <!-- CL_CATCH_ALL                                                           -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.embed.cl_catch_all">
+<refentry xml:id="ref.embed.cl_catch_all">
  <refnamediv>
   <refname><function>CL_CATCH_ALL</function></refname>
   <refpurpose>Create a protected region.</refpurpose>
@@ -65,7 +69,7 @@
 <!-- CL_UNWIND_PROTECT                                                      -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.embed.cl_unwind_protect">
+<refentry xml:id="ref.embed.cl_unwind_protect">
  <refnamediv>
   <refname><function>CL_UNWIND_PROTECT</function></refname>
   <refpurpose>Create a protected region.</refpurpose>
@@ -128,7 +132,7 @@
 <!-- cl_boot()                                                              -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.embed.cl_boot">
+<refentry xml:id="ref.embed.cl_boot">
  <refnamediv>
   <refname><function>cl_boot</function></refname>
   <refpurpose>Setup the lisp environment.</refpurpose>
@@ -169,7 +173,7 @@
 <!-- cl_shutdown()                                                          -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.embed.cl_shutdown">
+<refentry xml:id="ref.embed.cl_shutdown">
  <refnamediv>
   <refname><function>cl_shutdown</function></refname>
   <refpurpose>Close the lisp environment.</refpurpose>
@@ -201,7 +205,7 @@
 <!-- ecl_set_option()                                                       -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.embed.ecl_set_option">
+<refentry xml:id="ref.embed.ecl_set_option">
  <refnamediv>
   <refname><function>ecl_set_option</function></refname>
   <refpurpose>Set a boot option.</refpurpose>
@@ -251,7 +255,7 @@
   together with the size of a safety area which, if penetrated, will
   lead to the generation of a correctable error.</para>
 
-  <table id="table.boot_options">
+  <table xml:id="table.boot_options">
     <title>Boot options for embedded &ECL;</title>
     <tgroup cols="4">
       <thead>
@@ -387,7 +391,7 @@
 <!-- ecl_get_option()                                                       -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.embed.ecl_get_option">
+<refentry xml:id="ref.embed.ecl_get_option">
  <refnamediv>
   <refname><function>ecl_get_option</function></refname>
   <refpurpose>Read the value of a boot option.</refpurpose>
@@ -423,7 +427,7 @@
 <!-- ecl_clear_interrupts()                                               -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.embed.ecl_clear_interrupts">
+<refentry xml:id="ref.embed.ecl_clear_interrupts">
  <refnamediv>
   <refname><function>ecl_clear_interrupts</function></refname>
   <refpurpose>Clear all pending signals and exceptions.</refpurpose>
@@ -458,7 +462,7 @@
 <!-- ecl_disable_interrupts()                                               -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.embed.ecl_disable_interrupts">
+<refentry xml:id="ref.embed.ecl_disable_interrupts">
  <refnamediv>
   <refname><function>ecl_disable_interrupts</function></refname>
   <refpurpose>Postpone handling of signals and exceptions.</refpurpose>
@@ -494,7 +498,7 @@
 <!-- ecl_enable_interrupts()                                                -->
 <!-- ====================================================================== -->
 
-<refentry id="ref.embed.ecl_enable_interrupts">
+<refentry xml:id="ref.embed.ecl_enable_interrupts">
  <refnamediv>
   <refname><function>ecl_enable_interrupts</function></refname>
   <refpurpose>Activate handling of signals and exceptions.</refpurpose>

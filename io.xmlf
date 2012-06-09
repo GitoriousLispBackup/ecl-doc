@@ -1,8 +1,12 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd">
-<book lang="en">
-<chapter id="Input-and-output">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter xml:id="Input-and-output">
 <title>Input and Output</title>
-<section id="Read-macros">
+<section xml:id="Read-macros">
 <title>Read macros</title>
 <variablelist>
 <varlistentry>
@@ -34,7 +38,7 @@ interpreted code is loaded, '<literal>#,</literal>' has the same effect as the <
 macro '<literal>#.</literal>'.</para>
 </section>
 
-<section id="Input-Output-functions">
+<section xml:id="Input-Output-functions">
 <title>Input and Output Functions</title>
 <para>The input and output functions of &ECL; almost follow the definitions in
 Chapter 22 of &Steele84;.  Most of the differences come from the fact
@@ -47,7 +51,7 @@ the standard output, nothing will be echoed at the terminal.</para>
 <para>Those functions that deviate from the definitions in &Steele84; are
 listed below.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>load</primary></indexterm>&mdash; Function: <function>load</function> <varname>pathname &amp;key :print :verbose :if-does-not-exist</varname></screen>
+<screen><indexterm role="fn"><primary>load</primary></indexterm>&#151; Function: <function>load</function> <varname>pathname &amp;key :print :verbose :if-does-not-exist</varname></screen>
 <para>If <replaceable>pathname</replaceable> does not specify the filetype of the input file, then load
 uses the association list <replaceable>si::*load-search-list*</replaceable> to find out a suitable
 filetype and the function to load it. Typically, this search list is made of
@@ -55,27 +59,27 @@ the elements <literal>.fas</literal>, <literal>.lsp</literal> and <literal>.lisp
 everything fails, a file without filetype will be loaded.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>open</primary></indexterm>&mdash; Function: <function>open</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>open</primary></indexterm>&#151; Function: <function>open</function> <varname></varname></screen>
 <para>Streams can only have element type <literal>base-char</literal>, <literal>(signed-byte 8)</literal>
 and <literal>(unsigned-byte 8)</literal>. The <literal>:external-format</literal> is always <literal>:default</literal>.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>close</primary></indexterm>&mdash; Function: <function>close</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>close</primary></indexterm>&#151; Function: <function>close</function> <varname></varname></screen>
 <para>The keyword variable <replaceable>:abort</replaceable> is always ignored.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>listen</primary></indexterm>&mdash; Function: <function>listen</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>listen</primary></indexterm>&#151; Function: <function>listen</function> <varname></varname></screen>
 <para>This routine requires some low level functions which are not available on
 all platforms (For instance on <literal>Windows</literal>). When ECL is not able to
 determine whether a stream is interactive, <literal>listen</literal> returns true unless
 an end of file has been previously detected.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>clear-input</primary></indexterm>&mdash; Function: <function>clear-input</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>clear-input</primary></indexterm>&#151; Function: <function>clear-input</function> <varname></varname></screen>
 <para>The functions <literal>clear-input</literal> and <literal>clear-output</literal> do nothing.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>read-char-no-hang</primary></indexterm>&mdash; Function: <function>read-char-no-hang</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>read-char-no-hang</primary></indexterm>&#151; Function: <function>read-char-no-hang</function> <varname></varname></screen>
 <para><literal>read-char-no-hang</literal> is equivalent to <literal>read-char</literal>.</para>
 </blockquote>
 <para>The functions <literal>princ</literal>, <literal>write-char</literal> and <literal>write-byte</literal> do not
@@ -91,25 +95,25 @@ functions operate on <literal>*terminal-io*</literal></para>
 </orderedlist>
 </section>
 
-<section id="Network-streams">
+<section xml:id="Network-streams">
 <title>Network Streams</title>
 <para>With a configuration option, the following function is available which opens
 streams across network connections.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>open-client-stream</primary></indexterm>&mdash; Function: <function>open-client-stream</function> <varname>host port</varname></screen>
+<screen><indexterm role="fn"><primary>open-client-stream</primary></indexterm>&#151; Function: <function>open-client-stream</function> <varname>host port</varname></screen>
 <para>The string <replaceable>host</replaceable> indicates the name of the host, while <replaceable>port</replaceable> is an
 integer which identifies the port number to which to connect.  This function
 returns a two-way stream which can be used in any of the stream operations.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>open-server-stream</primary></indexterm>&mdash; Function: <function>open-server-stream</function> <varname>host port</varname></screen>
+<screen><indexterm role="fn"><primary>open-server-stream</primary></indexterm>&#151; Function: <function>open-server-stream</function> <varname>host port</varname></screen>
 <para>A stream connected to port number <replaceable>port</replaceable> is created to which clients can
 connect.  This function returns a two-way stream which can be used in any of
 the stream operations.</para>
 </blockquote>
 </section>
 
-<section id="CLOS-streams">
+<section xml:id="CLOS-streams">
 <title>CLOS Streams</title>
 <para>When the optional CLOS subsystem is available, an interface is provided by
 &ECL; for using CLOS objects as Common-Lisp input/output character streams.
@@ -125,60 +129,60 @@ operation involves a CLOS object as a stream parameter. The programmer should
 define these methods for any class of objects which are to be used for
 character input/output.</para>
 
-<section id="CLOS-Stream-Input">
+<section xml:id="CLOS-Stream-Input">
 <title>CLOS Stream Input</title>
 <para>Character input from an <literal>clos-stream</literal> is implemented by the
 following methods.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>stream-read-char</primary></indexterm>&mdash; Method: <function>stream-read-char</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
+<screen><indexterm role="fn"><primary>stream-read-char</primary></indexterm>&#151; Method: <function>stream-read-char</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
 <para>Returns the next character object read from the CLOS stream <replaceable>object</replaceable>.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>stream-unread-char</primary></indexterm>&mdash; Method: <function>stream-unread-char</function> (<varname>object</varname> <varname>clos-stream</varname>) <varname>character</varname></screen>
+<screen><indexterm role="fn"><primary>stream-unread-char</primary></indexterm>&#151; Method: <function>stream-unread-char</function> (<varname>object</varname> <varname>clos-stream</varname>) <varname>character</varname></screen>
 <para>Unreads the character object <replaceable>character</replaceable> from the CLOS stream <replaceable>object</replaceable>.
 <replaceable>character</replaceable> will be the next character read by <literal>stream-read-char</literal>.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>stream-listen</primary></indexterm>&mdash; Method: <function>stream-listen</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
+<screen><indexterm role="fn"><primary>stream-listen</primary></indexterm>&#151; Method: <function>stream-listen</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
 <para>Returns () is no character is immediately available from the CLOS stream
 <replaceable>object</replaceable>. Otherwise, the next character is returned, as if
 <literal>stream-peek-char</literal> had been called.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>stream-clear-input</primary></indexterm>&mdash; Method: <function>stream-clear-input</function> <varname>object</varname></screen>
+<screen><indexterm role="fn"><primary>stream-clear-input</primary></indexterm>&#151; Method: <function>stream-clear-input</function> <varname>object</varname></screen>
 <para>Clears any buffered characters on the CLOS stream <replaceable>object</replaceable>. Returns ().</para>
 </blockquote>
 </section>
 
-<section id="CLOS-Stream-Output">
+<section xml:id="CLOS-Stream-Output">
 <title>CLOS Stream Output</title>
 <para>Character output from an <literal>clos-stream</literal> is implemented by the
 following methods.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>stream-write-char</primary></indexterm>&mdash; Method: <function>stream-write-char</function> (<varname>object</varname> <varname>clos-stream</varname>) <varname>character</varname></screen>
+<screen><indexterm role="fn"><primary>stream-write-char</primary></indexterm>&#151; Method: <function>stream-write-char</function> (<varname>object</varname> <varname>clos-stream</varname>) <varname>character</varname></screen>
 <para>Outputs the character <replaceable>character</replaceable> to the CLOS stream <replaceable>object</replaceable> and
 returns it.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>stream-clear-output</primary></indexterm>&mdash; Method: <function>stream-clear-output</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
+<screen><indexterm role="fn"><primary>stream-clear-output</primary></indexterm>&#151; Method: <function>stream-clear-output</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
 <para>Aborts any outstanding output operation on the CLOS stream <replaceable>object</replaceable> and
 returns ().</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>stream-force-output</primary></indexterm>&mdash; Method: <function>stream-force-output</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
+<screen><indexterm role="fn"><primary>stream-force-output</primary></indexterm>&#151; Method: <function>stream-force-output</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
 <para>Initiates the emptying of the internal buffers on the CLOS stream <replaceable>object</replaceable>
 and returns ().</para>
 </blockquote>
 </section>
 
-<section id="CLOS-Stream-common">
+<section xml:id="CLOS-Stream-common">
 <title>CLOS Stream common</title>
 <para>The following functions should be available for all CLOS streams.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>stream-interactive-p</primary></indexterm>&mdash; Method: <function>stream-interactive-p</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
+<screen><indexterm role="fn"><primary>stream-interactive-p</primary></indexterm>&#151; Method: <function>stream-interactive-p</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>stream-close</primary></indexterm>&mdash; Method: <function>stream-close</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
+<screen><indexterm role="fn"><primary>stream-close</primary></indexterm>&#151; Method: <function>stream-close</function> (<varname>object</varname> <varname>clos-stream</varname>)</screen>
 <para>Closes the stream for any further input or output.</para>
 </blockquote>
 </section>

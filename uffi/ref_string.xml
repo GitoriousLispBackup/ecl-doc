@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
- <reference id="uffi.strings">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "../ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+ <reference xml:id="uffi.strings">
   <title>Strings</title>
   <partintro>
    <title>Overview</title>
@@ -72,7 +76,7 @@
    
   </partintro>
   
-  <refentry id="uffi.convert-from-cstring">
+  <refentry xml:id="uffi.convert-from-cstring">
    <refnamediv>
     <refname><function>convert-from-cstring</function></refname>
     <refpurpose>Converts a cstring to a Lisp string.</refpurpose>
@@ -129,7 +133,7 @@
   </refentry>
   
   
-  <refentry id="uffi.convert-to-cstring">
+  <refentry xml:id="uffi.convert-to-cstring">
    <refnamediv>
     <refname><function>convert-to-cstring</function></refname>
     <refpurpose>Converts a Lisp string to a cstring.</refpurpose>
@@ -186,7 +190,7 @@
   </refentry>
   
   
-  <refentry id="uffi.free-cstring">
+  <refentry xml:id="uffi.free-cstring">
    <refnamediv>
     <refname><function>free-cstring</function></refname>
     <refpurpose>Free memory used by cstring.
@@ -233,7 +237,7 @@
   </refentry>
   
   
-  <refentry id="uffi.with-cstring">
+  <refentry xml:id="uffi.with-cstring">
    <refnamediv>
     <refname><function>with-cstring</function></refname>
     <refpurpose>Binds a newly created cstring.</refpurpose>
@@ -309,7 +313,7 @@
   </refentry>
   
   
-  <refentry id="uffi.convert-from-foreign-string">
+  <refentry xml:id="uffi.convert-from-foreign-string">
    <refnamediv>
     <refname><function>convert-from-foreign-string</function></refname>
     <refpurpose>Converts a foreign string into a Lisp string.</refpurpose>
@@ -382,7 +386,7 @@
   </refentry>
   
   
-  <refentry id="uffi.convert-to-foreign-string">
+  <refentry xml:id="uffi.convert-to-foreign-string">
    <refnamediv>
     <refname><function>convert-to-foreign-string</function></refname>
     <refpurpose>Converts a Lisp string to a foreign string.
@@ -437,7 +441,7 @@
    </refsect1>
   </refentry>
   
-  <refentry id="uffi.allocate-foreign-string">
+  <refentry xml:id="uffi.allocate-foreign-string">
    <refnamediv>
     <refname><function>allocate-foreign-string</function></refname>
     <refpurpose>Allocates space for a foreign string.

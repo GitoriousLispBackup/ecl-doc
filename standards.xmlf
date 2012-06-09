@@ -1,6 +1,10 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd">
-<book lang="en"><part><title></title>
-<chapter id="ansi.overview">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><part xml:id="part.standards"><title>Standards</title>
+<chapter xml:id="ansi.overview">
  <title>Overview</title>
 
  <para>&ECL; supports all Common-Lisp data types exactly as defined in the
@@ -23,13 +27,13 @@
  with the same name in the standard.</para>
 </chapter>
 
-<chapter id="ansi.evaluation-and-compilation">
+<chapter xml:id="ansi.evaluation-and-compilation">
  <title>Evaluation and compilation</title>
 
- <section id="ansi.declarations">
+ <section xml:id="ansi.declarations">
   <title>Declarations</title>
 
-  <section id="ansi.declarations.optimize">
+  <section xml:id="ansi.declarations.optimize">
    <title><function>OPTIMIZE</function></title>
 
    <para>The <function>OPTIMIZE</function> declaration includes three concepts:
@@ -46,7 +50,7 @@
    function will not appear in the debugger and, if redefined, some functions
    might not see the redefinition.</para>
 
-   <table id="table.optimize.debug">
+   <table xml:id="table.optimize.debug">
     <title>Behavior for different leves of DEBUG</title>
     <tgroup cols="5">
      <thead>
@@ -94,7 +98,7 @@
    <function>SAFETY</function>, and invoke <function>RPLACA</function>, the
    consequences are unspecified.</para>
 
-   <table id="table.optimize.safety">
+   <table xml:id="table.optimize.safety">
     <title>Behavior for different leves of SAFETY</title>
     <tgroup cols="5">
      <thead>
@@ -166,10 +170,10 @@
  </section>
 </chapter>
 
-<chapter id="ansi.data-and-control">
+<chapter xml:id="ansi.data-and-control">
  <title>Data and control flow</title>
 
- <section id="ansi.minimal-compilation">
+ <section xml:id="ansi.minimal-compilation">
   <title>Minimal compilation</title>
 
   <para>Former versions of &ECL;, as well as many other lisps, used linked
@@ -222,7 +226,7 @@ F
   <literal>-1</literal>.</para>
  </section>
 
- <section id="ansi.functions">
+ <section xml:id="ansi.functions">
   <title>Functions</title>
 
   <para>Functions in &ECL; can be of two types: they are either compiled to
@@ -250,7 +254,7 @@ F
   <para>In <xref linkend="table.function.constants"/> we list all
   &CommonLisp; values related to the limits of functions.</para>
 
-  <table id="table.function.constants">
+  <table xml:id="table.function.constants">
    <title>Function related constants</title>
    <tgroup cols="2">
     <tbody>
@@ -277,17 +281,17 @@ F
  </section>
 </chapter>
 
-<chapter id="Symbols">
+<chapter xml:id="Symbols">
  <title>Symbols</title>
  <para>There are no implementation-specific limits on the size or content of
  symbol names. It is however not allowed to write on the strings which have
  been passed to #'make-symbol or returned from #'symbol-name.</para>
 </chapter>
 
-<chapter id="sec.ansi.packages">
+<chapter xml:id="sec.ansi.packages">
  <title>Packages</title>
 
- <table id="table.all-packages">
+ <table xml:id="table.all-packages">
   <title>ECL packages</title>
   <tgroup cols="3">
    <thead>
@@ -363,17 +367,17 @@ F
 
 </chapter>
 
-<chapter id="sec.ansi.numbers">
+<chapter xml:id="sec.ansi.numbers">
  <title>Numbers</title>
 
- <section id="sec.ansi.number-types">
+ <section xml:id="sec.ansi.number-types">
   <title>Numeric types</title>
 
   <para>&ECL; supports all of the &CommonLisp; numeric tower, which is shown
   in <xref linkend="table.ansi.numbers"/>. The details, however, depend both
   on the platform on which &ECL; runs and on the configuration which was
   chosen when building &ECL;.</para>
-  <table id="table.ansi.numbers">
+  <table xml:id="table.ansi.numbers">
    <title>Numeric types in &ECL;</title>
    <tgroup cols="2">
     <thead>
@@ -447,7 +451,7 @@ F
   takes up no memory.</para>
  </section>
 
- <section id="sec.ansi.random-states">
+ <section xml:id="sec.ansi.random-states">
   <title>Random-States</title>
 
   <para>&ECL; provides a reader macro <literal>#$</literal> that reads a
@@ -464,12 +468,12 @@ F
 
 </chapter>
 
-<chapter id="sec.ansi.characters">
+<chapter xml:id="sec.ansi.characters">
  <title>Characters</title>
  <para>&ECL; is fully ANSI Common-Lisp compliant in all aspects of the character
  data type, with the following peculiarities.</para>
 
- <section id="ansi.character-types">
+ <section xml:id="ansi.character-types">
   <title>Character types</title>
 
   <para>If compiled without Unicode support, &ECL; all characters are
@@ -507,14 +511,14 @@ F
   </informaltable>
  </section>
 
- <section id="sec.ansi.character-names">
+ <section xml:id="sec.ansi.character-names">
   <title>Character names</title>
 
   <para>All characters have a name. For non-printing characters between 0 and 32, and for 127 we use the ordinary
   <acronym>ASCII</acronym> names. Characters above 127 are printed and read
   using Unicode notation as in <literal>#U0126</literal>, where the
   <literal>U</literal> is followed by the hexadecimal code.</para>
-  <table id="table.character-names">
+  <table xml:id="table.character-names">
    <title>Examples of character names</title>
    <tgroup cols="2">
     <thead>
@@ -555,9 +559,9 @@ F
  </section>
 </chapter>
 
-<chapter id="sec.ansi.arrays">
+<chapter xml:id="sec.ansi.arrays">
  <title>Arrays</title>
- <section id="sec.ansi.array-limits">
+ <section xml:id="sec.ansi.array-limits">
   <title>Array limits</title>
 
   <para>&ECL; arrays can have up to 64 dimensions.  Common-Lisp constants
@@ -588,7 +592,7 @@ F
   </informaltable>
  </section>
 
- <section id="sec.ansi.array-spec">
+ <section xml:id="sec.ansi.array-spec">
   <title>Specializations</title>
 
   <para>&ECL; provides specialized array types for several element kinds. In
@@ -662,7 +666,7 @@ F
 
 </chapter>
 
-<chapter id="sec.ansi.strings">
+<chapter xml:id="sec.ansi.strings">
  <title>Strings</title>
 
  <para>The &ECL; implementation of strings is ANSI Common-Lisp
@@ -671,7 +675,7 @@ F
  disabled, <type>character</type> and <type>base-character</type> are the
  same type and the last two string types are equivalent to the first
  two.</para>
- <table id="table.ansi.strings">
+ <table xml:id="table.ansi.strings">
   <title>&CommonLisp; string types</title>
   <tgroup cols="2">
    <thead>
@@ -712,16 +716,16 @@ F
  </important>
 </chapter>
 
-<chapter id="sec.ansi.hash-tables">
+<chapter xml:id="sec.ansi.hash-tables">
  <title>Hash tables</title>
 
  <para>...</para>
 </chapter>
 
-<chapter id="sec.ansi.pathnames">
+<chapter xml:id="sec.ansi.pathnames">
  <title>Pathnames</title>
 
- <section id="sec.ansi.pathnames.syntax">
+ <section xml:id="sec.ansi.pathnames.syntax">
   <title>Syntax</title>
   <para>A pathname in the file system of Common-Lisp consists of six
   elements: host, device, directory, name, type and version. Pathnames are
@@ -880,7 +884,7 @@ F
   </table>
  </section>
 
- <section id="sec.ansi.pathnames.wild">
+ <section xml:id="sec.ansi.pathnames.wild">
   <title>Wild pathnames and matching</title>
 
   <para>&ECL; accepts four kind of wildcards in pathnames.</para>
@@ -920,10 +924,10 @@ F
   </section>
 </chapter>
 
-<chapter id="sec.ansi.files">
+<chapter xml:id="sec.ansi.files">
  <title>Files</title>
 
- <section id="sec.ansi.resolving">
+ <section xml:id="sec.ansi.resolving">
   <title>Mapping pathnames to files</title>
 
   <para>Pathnames are used to represent files in a storage
@@ -960,10 +964,10 @@ F
   current working directory as understood by the operating system.</para>
  </section>
 
- <section id="sec.ansi.files.dict">
+ <section xml:id="sec.ansi.files.dict">
   <title>Dictionary</title>
 
-  <section id="sec.ansi.files.directory">
+  <section xml:id="sec.ansi.files.directory">
    <title><function>DIRECTORY</function></title>
 
    <para>This function does not have any additional arguments other than the
@@ -1007,10 +1011,10 @@ F
 
 </chapter>
 
-<chapter id="sec.ansi.streams">
+<chapter xml:id="sec.ansi.streams">
  <title>Streams</title>
 
- <section id="sec.ansi.streams.types">
+ <section xml:id="sec.ansi.streams.types">
   <title>Stream types</title>
 
   <para>&ECL; implements all stream types described in &ANSI;. Additionally,
@@ -1023,7 +1027,7 @@ F
 
  </section>
 
- <section id="sec.ansi.streams.io">
+ <section xml:id="sec.ansi.streams.io">
   <title>Input/Output model</title>
 
   <para>&ECL; distinguishes between two kinds of streams: character streams
@@ -1059,7 +1063,7 @@ F
  </section>
 </chapter>
 
-<chapter id="sec.ansi.printer">
+<chapter xml:id="sec.ansi.printer">
  <title>Printer</title>
 
  <para>In all situations where the rules are well specified, &ECL; prints
@@ -1072,7 +1076,7 @@ F
  just informative and should not be used to reconstruct or compare
  objects.</para>
 
- <table id="table.printer">
+ <table xml:id="table.printer">
   <title>Implementation specific printed representation</title>
   <tgroup cols="3">
    <thead>
@@ -1193,13 +1197,13 @@ F
  </table>
 </chapter>
 
-<chapter id="ansi.environment">
+<chapter xml:id="ansi.environment">
  <title>Environment</title>
 
- <section id="ansi.environment.dict">
+ <section xml:id="ansi.environment.dict">
   <title>Dictionary</title>
 
-  <refentry id="ansi.environment.disassemble">
+  <refentry xml:id="ansi.environment.disassemble">
    <refnamediv>
     <refname><function>disassemble</function></refname>
     <refpurpose>Display the assembly code of a function</refpurpose>
@@ -1238,7 +1242,7 @@ F
    </refsect1>
   </refentry>
 
-  <refentry id="ansi.environment.trace">
+  <refentry xml:id="ansi.environment.trace">
    <refnamediv>
     <refname><function>trace</function></refname>
     <refpurpose>Follow execution of functions</refpurpose>

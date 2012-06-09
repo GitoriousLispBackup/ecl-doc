@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
-<chapter id="ext.asdf">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter xml:id="ext.asdf">
  <title>System building</title>
 
- <section id="ext.asdf.intro">
+ <section xml:id="ext.asdf.intro">
   <title>Introduction</title>
 
   <para>A typical application will consist of multiple lisp files that have to
@@ -32,7 +36,7 @@
   let &ECL; build the desired target for you. This approach is described in the
   following sections.</para>
 
-  <table id="table.make-build">
+  <table xml:id="table.make-build">
    <title>Code distribution models</title>
    <tgroup cols="4">
     <thead>
@@ -95,7 +99,7 @@
 
  </section>
 
- <section id="ext.asdf.sdf">
+ <section xml:id="ext.asdf.sdf">
   <title>System definition files</title>
 
   <para>A System Definition File, or just <emphasis>system</emphasis>, is the
@@ -152,7 +156,7 @@
   before.</para>
  </section>
 
- <section id="ext.asdf.make-build">
+ <section xml:id="ext.asdf.make-build">
   <title>Practical examples</title>
 
   <para>The version of &ASDF; which is shipped with &ECL; has been further
@@ -224,14 +228,14 @@ Finished
 
  </section>
 
- <section id="ext.asdf.dict">
+ <section xml:id="ext.asdf.dict">
   <title>ASDF Reference</title>
 
 <!-- ====================================================================== -->
 <!-- ASDF:MAKE-BUILD                                                        -->
 <!-- ====================================================================== -->
 
-  <refentry id="ref.make-build">
+  <refentry xml:id="ref.make-build">
    <refnamediv>
     <refname><function>asdf:make-build</function></refname>
     <refpurpose>Block-build an &ASDF; system definition</refpurpose>
@@ -338,7 +342,7 @@ Finished
 <!-- ASDF:MAKE-BUILD                                                        -->
 <!-- ====================================================================== -->
 
-  <refentry id="ref.load-fasl-op">
+  <refentry xml:id="ref.load-fasl-op">
    <refnamediv>
     <refname><function>asdf:load-fasl-op</function></refname>
     <refpurpose>Compile and load one ore more libraries using unified &FASL;</refpurpose>

@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
- <reference id="uffi.primitives">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "../ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+ <reference xml:id="uffi.primitives">
   <title>Primitive Types</title>
   <partintro>
    <title>Overview</title>
@@ -75,7 +79,7 @@
    </itemizedlist>
   </partintro>
   
-  <refentry id="uffi.def-constant">
+  <refentry xml:id="uffi.def-constant">
    <refnamediv>
     <refname><function>def-constant</function></refname>
     <refpurpose>Binds a symbol to a constant. 
@@ -142,7 +146,7 @@
    </refsect1>
   </refentry>
   
-  <refentry id="uffi.def-foreign-type">
+  <refentry xml:id="uffi.def-foreign-type">
    <refnamediv>
     <refname><function>def-foreign-type</function></refname>
     <refpurpose>Defines a new foreign type. 
@@ -204,7 +208,7 @@
    </refsect1>
   </refentry>
   
-  <refentry id="uffi.null-char-p">
+  <refentry xml:id="uffi.null-char-p">
    <refnamediv>
     <refname><function>null-char-p</function></refname>
     <refpurpose>Tests a character for &NULL; value.

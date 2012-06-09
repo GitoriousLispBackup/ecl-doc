@@ -1,9 +1,13 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
- <chapter id="ext.memory">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+ <chapter xml:id="ext.memory">
   <title>Memory Management</title>
 
-  <section id="ext.memory.intro">
+  <section xml:id="ext.memory.intro">
    <title>Introduction</title>
 
    <para>&ECL; relies on the Boehm-Weiser garbage collector for handling
@@ -19,7 +23,7 @@
 
   </section>
 
-  <section id="ext.memory.boehm">
+  <section xml:id="ext.memory.boehm">
    <title>Boehm-Weiser garbage collector</title>
 
    <para>First of all, the garbage collector must be able to determine which
@@ -65,7 +69,7 @@
    library to avoid interfering with &ECL;'s expectations.</para>
   </section>
 
-  <section id="ext.memory.limits">
+  <section xml:id="ext.memory.limits">
    <title>Memory limits</title>
 
    <para>Beginning with version 9.2.1, &ECL; operates a tighter control of the
@@ -111,7 +115,7 @@
 
   </section>
 
-  <section id="ext.memory.conditions">
+  <section xml:id="ext.memory.conditions">
    <title>Memory Conditions</title>
 
    <para>When &ECL; surpasses or approaches the memory limits it will signal a
@@ -139,7 +143,7 @@ Top level.
 </programlisting>
   </section>
 
-  <section id="ext.memory.finalization">
+  <section xml:id="ext.memory.finalization">
    <title>Finalization</title>
 
    <para>As we all know, Common-Lisp relies on garbage collection for deleting
@@ -177,10 +181,10 @@ Top level.
    finalizer functions for certain objects.</para>
   </section>
 
-  <section id="ext.memory.dict">
+  <section xml:id="ext.memory.dict">
    <title>Memory Management Reference</title>
 
-   &RefMemory;
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="ref_memory.xmlf" xpointer="memory.dict"/>
 
   </section>
  </chapter>

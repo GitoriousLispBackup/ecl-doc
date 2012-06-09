@@ -1,9 +1,13 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
-<chapter id="ext.ffi">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter xml:id="ext.ffi">
  <title>Foreign Function Interface</title>
 
- <section id="ext.ffi.what">
+ <section xml:id="ext.ffi.what">
   <title>What is a FFI?</title>
 
   <para>A Foreign Function Interface, or &FFI; for short, is a means for a
@@ -50,7 +54,7 @@
   <emphasis>all</emphasis> sections.</para>
  </section>
 
- <section id="ext.ffi.dffi">
+ <section xml:id="ext.ffi.dffi">
   <title>Two kinds of FFI</title>
 
   <para>&ECL; allows for two different appraoches when building a &FFI;. Both
@@ -82,7 +86,7 @@
   </para>
 
   <para>
-  <figure float="1" id="fig.ffi">
+  <figure float="1" xml:id="fig.ffi">
    <title>FFI components</title>
    <mediaobject>
     <imageobject>
@@ -110,7 +114,7 @@
   DFFI by inspecting whether the symbol <symbol>:DFFI</symbol> is present in
   the list from variable <symbol>*FEATURES*</symbol>.</para>
 
-  <table id="table.dffi">
+  <table xml:id="table.dffi">
    <title>DFFI support</title>
    <tgroup cols="3">
     <thead>
@@ -141,7 +145,7 @@
   </table>
  </section>
 
- <section id="ext.ffi.objects">
+ <section xml:id="ext.ffi.objects">
   <title>Foreign objects</title>
 
   <para>While the foreign function invocation protocols differ strongly between
@@ -190,7 +194,7 @@
 </programlisting>
  </section>
 
- <section id="ext.ffi.uffi.and.cffi">
+ <section xml:id="ext.ffi.uffi.and.cffi">
   <title>Higher level interfaces</title>
 
   <para>Up to now we have only discussed vague ideas about how a &FFI; works,
@@ -219,7 +223,7 @@
   <para>In the following two subsections we will discuss two practical examples
   of using the native &UFFI; and the &CFFI; library.</para>
 
-  <section id="ext.ffi.uffi-example">
+  <section xml:id="ext.ffi.uffi-example">
    <title>UFFI example</title>
 
    <para>The example below shows how to use &UFFI; in an application. There are
@@ -258,7 +262,7 @@ Build and load this module with (compile-file "uffi.lsp" :load t)
 </programlisting>
   </section>
 
-  <section id="ext.ffi.cffi-example">
+  <section xml:id="ext.ffi.cffi-example">
    <title>CFFI example</title>
 
    <para>The &CFFI; library is an independent project and it is not shipped
@@ -301,7 +305,7 @@ Build and load this module with (compile-file "cffi.lsp" :load t)
 </programlisting>
   </section>
 
-  <section id="ext.ffi.ecl-example">
+  <section xml:id="ext.ffi.ecl-example">
    <title>Low level example</title>
 
    <para>To compare with the previous pieces of code, we show how the previous
@@ -328,7 +332,7 @@ Build and load this module with (compile-file "ecl.lsp" :load t)
   </section>
  </section>
 
- <section id="ext.ffi.dict">
+ <section xml:id="ext.ffi.dict">
   <title>FFI Reference</title>
   <toc/>
 
@@ -336,7 +340,7 @@ Build and load this module with (compile-file "ecl.lsp" :load t)
 <!-- FFI:CLINES                                                             -->
 <!-- ====================================================================== -->
 
-  <refentry id="ref.clines">
+  <refentry xml:id="ref.clines">
    <refnamediv>
     <refname><function>ffi:clines</function></refname>
     <refpurpose>Insert C declarations and definitions</refpurpose>
@@ -393,7 +397,7 @@ Build and load this module with (compile-file "ecl.lsp" :load t)
 <!-- FFI:C-INLINE                                                           -->
 <!-- ====================================================================== -->
 
-  <refentry id="ref.c-inline">
+  <refentry xml:id="ref.c-inline">
    <refnamediv>
     <refname><function>ffi:c-inline</function></refname>
     <refpurpose>Inline C code in a lisp form.</refpurpose>

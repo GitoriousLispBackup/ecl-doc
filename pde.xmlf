@@ -1,12 +1,16 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd">
-<book lang="en">
-<chapter id="Program-development">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter xml:id="Program-development">
  <title>Program Development Facilities</title>
 
-<section id="The-stepper">
+<section xml:id="The-stepper">
 <title>The Stepper</title>
 <blockquote>
-<screen><indexterm role="fn"><primary>step</primary></indexterm>&mdash; Macro: <function>step</function> <varname>form</varname></screen>
+<screen><indexterm role="fn"><primary>step</primary></indexterm>&#151; Macro: <function>step</function> <varname>form</varname></screen>
 <para>Starts evaluating the <replaceable>form</replaceable> in the single-step mode.  In this mode, before
 any form is evaluated, the Stepper will print the form and prompt the user for
 a Stepper command.  The Stepper binds the two variables print-level
@@ -75,10 +79,10 @@ accessing <literal>*</literal>.</para>
 </variablelist>
 </section>
 
-<section id="Errors">
+<section xml:id="Errors">
 <title>Errors</title>
 <blockquote>
-<screen><indexterm role="vr"><primary>*break-enable*</primary></indexterm>&mdash; Variable: <varname>*break-enable*</varname></screen>
+<screen><indexterm role="vr"><primary>*break-enable*</primary></indexterm>&#151; Variable: <varname>*break-enable*</varname></screen>
 <para>This variable is used to determine whether to enter the break loop (see Section
 5.4) when an error occurs.  Even the function <literal>break</literal> checks this
 variable.  Initially, this variable is set to <replaceable>T</replaceable>, and thus an error will
@@ -95,7 +99,7 @@ break-enable is (), no backtrace appears on the screen.</para>
 </blockquote>
 </section>
 
-<section id="The-break-loop">
+<section xml:id="The-break-loop">
 <title>The Break Loop</title>
 <para>The break loop is a read-eval-print loop similar to the top-level loop.  In
 addition to ordinary Lisp forms, the break loop accepts various commands with
@@ -180,13 +184,13 @@ abbreviation in the keywords that identify them.  For example, the user may
 abbreviate <replaceable>:current</replaceable> as <replaceable>:c</replaceable>.  The break loop commands return no values
 at all.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>:current</primary></indexterm>&mdash; Break Command: <function>:current</function></screen>
-<screen><indexterm role="fn"><primary>:c</primary></indexterm>&mdash; Break Command: <function>:c</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>:current</primary></indexterm>&#151; Break Command: <function>:current</function></screen>
+<screen><indexterm role="fn"><primary>:c</primary></indexterm>&#151; Break Command: <function>:c</function> <varname></varname></screen>
 <para>Prints the event symbol of the current event.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:previous</primary></indexterm>&mdash; Break Command: <function>:previous</function> <varname>&amp;optional</varname> <varname>n</varname></screen>
-<screen><indexterm role="fn"><primary>:p</primary></indexterm>&mdash; Break Command: <function>:p</function> <varname>&amp;optional n</varname></screen>
+<screen><indexterm role="fn"><primary>:previous</primary></indexterm>&#151; Break Command: <function>:previous</function> <varname>&amp;optional</varname> <varname>n</varname></screen>
+<screen><indexterm role="fn"><primary>:p</primary></indexterm>&#151; Break Command: <function>:p</function> <varname>&amp;optional n</varname></screen>
 <para>Makes the <replaceable>n</replaceable>-th previous visible event the
 new current event.  Invisible events are not counted.  If there are
 less than <replaceable>n</replaceable> previous events, then the first visible event in the
@@ -194,8 +198,8 @@ invocation sequence becomes the new current event. <replaceable>n</replaceable> 
 positive integer and the default is <literal>1</literal>.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:next</primary></indexterm>&mdash; Break Command: <function>:next</function> <varname>&amp;optional</varname> <varname>n</varname></screen>
-<screen><indexterm role="fn"><primary>:n</primary></indexterm>&mdash; Break Command: <function>:n</function> <varname>&amp;optional n</varname></screen>
+<screen><indexterm role="fn"><primary>:next</primary></indexterm>&#151; Break Command: <function>:next</function> <varname>&amp;optional</varname> <varname>n</varname></screen>
+<screen><indexterm role="fn"><primary>:n</primary></indexterm>&#151; Break Command: <function>:n</function> <varname>&amp;optional n</varname></screen>
 <para>Makes the <replaceable>n</replaceable>-th next visible event the
 new current event.  If there are less than <replaceable>n</replaceable> next events,
 then the last visible event in the invocation sequence
@@ -203,27 +207,27 @@ becomes the new current event. <replaceable>n</replaceable>  must be a positive 
 default is <literal>1</literal>.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:backtrace</primary></indexterm>&mdash; Break Command: <function>:backtrace</function></screen>
-<screen><indexterm role="fn"><primary>:b</primary></indexterm>&mdash; Break Command: <function>:b</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>:backtrace</primary></indexterm>&#151; Break Command: <function>:backtrace</function></screen>
+<screen><indexterm role="fn"><primary>:b</primary></indexterm>&#151; Break Command: <function>:b</function> <varname></varname></screen>
 <para>Prints the event symbols of all visible events in order.  The symbol of
 the current event is printed
 in upper-case letters and the event symbols of other events are in lower-case.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:help</primary></indexterm>&mdash; Break Command: <function>:help</function></screen>
-<screen><indexterm role="fn"><primary>:h</primary></indexterm>&mdash; Break Command: <function>:h</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>:help</primary></indexterm>&#151; Break Command: <function>:help</function></screen>
+<screen><indexterm role="fn"><primary>:h</primary></indexterm>&#151; Break Command: <function>:h</function> <varname></varname></screen>
 <para>Lists the break loop commands.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:quit</primary></indexterm>&mdash; Break Command: <function>:quit</function> <varname>&amp;optional</varname> <varname>n</varname></screen>
-<screen><indexterm role="fn"><primary>:q</primary></indexterm>&mdash; Break Command: <function>:q</function> <varname>&amp;optional n</varname></screen>
+<screen><indexterm role="fn"><primary>:quit</primary></indexterm>&#151; Break Command: <function>:quit</function> <varname>&amp;optional</varname> <varname>n</varname></screen>
+<screen><indexterm role="fn"><primary>:q</primary></indexterm>&#151; Break Command: <function>:q</function> <varname>&amp;optional n</varname></screen>
 <para>Returns control to the level <replaceable>n</replaceable> break loop.  If <replaceable>n</replaceable> is 0 or if <replaceable>n</replaceable>
 is omitted, then control will return to the top-level loop. <replaceable>n</replaceable> must be a
 non-negative integer smaller than the current break level.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:continue</primary></indexterm>&mdash; Break Command: <function>:continue</function></screen>
-<screen><indexterm role="fn"><primary>:c</primary></indexterm>&mdash; Break Command: <function>:c</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>:continue</primary></indexterm>&#151; Break Command: <function>:continue</function></screen>
+<screen><indexterm role="fn"><primary>:c</primary></indexterm>&#151; Break Command: <function>:c</function> <varname></varname></screen>
 <para>Returns control to the caller of the break loop.  If the break loop has been
 entered from <literal>cerror</literal>, <literal>cerror</literal> returns () as its value and
 control will resume at that point.  Otherwise, this command returns control to
@@ -231,14 +235,14 @@ the previous break loop (or to the top-level loop, if the current break level
 is <literal>1</literal>).</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:variables</primary></indexterm>&mdash; Break Command: <function>:variables</function></screen>
-<screen><indexterm role="fn"><primary>:v</primary></indexterm>&mdash; Break Command: <function>:v</function> <varname></varname></screen>
+<screen><indexterm role="fn"><primary>:variables</primary></indexterm>&#151; Break Command: <function>:variables</function></screen>
+<screen><indexterm role="fn"><primary>:v</primary></indexterm>&#151; Break Command: <function>:v</function> <varname></varname></screen>
 <para>Prints the names of the bound variables in the current
 environment.  To see the value of a bound variable, just type the
 variable name.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:functions</primary></indexterm>&mdash; Break Command: <function>:functions</function></screen>
+<screen><indexterm role="fn"><primary>:functions</primary></indexterm>&#151; Break Command: <function>:functions</function></screen>
 <para>Prints the names of the local functions and local macros in the current
 environment.  To see the definition of a local function or macro, use the
 function special form in the usual way.  That is, <literal>(function <replaceable>name</replaceable>)</literal>
@@ -246,7 +250,7 @@ will return the definition of the local function or macro whose name is
 <replaceable>name</replaceable>.  Local functions and local macros may be invoked as usual.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:blocks</primary></indexterm>&mdash; Break Command: <function>:blocks</function></screen>
+<screen><indexterm role="fn"><primary>:blocks</primary></indexterm>&#151; Break Command: <function>:blocks</function></screen>
 <para>Prints the names of the blocks established in the current environment.  If a
 block <replaceable>block</replaceable> is established, then the <literal>return-from</literal> form
 <literal>(return-from <replaceable>block value</replaceable>)</literal> works as usual.  That is, the block form
@@ -254,15 +258,15 @@ that established <replaceable>block</replaceable> will return <replaceable>value
 will resume at that point.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:tags</primary></indexterm>&mdash; Break Command: <function>:tags</function></screen>
+<screen><indexterm role="fn"><primary>:tags</primary></indexterm>&#151; Break Command: <function>:tags</function></screen>
 <para>Prints the tags established in the current environment.  If a tag <replaceable>tag</replaceable> is
 established, then the <literal>go</literal> form <literal>(go <replaceable>tag</replaceable>)</literal> works as usual.
 That is, control will resume at the position of <replaceable>tag</replaceable> in the surrounding
 <literal>tagbody</literal>.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:local</primary></indexterm>&mdash; Break Command: <function>:local</function> <varname>&amp;optional</varname> <varname>n</varname></screen>
-<screen><indexterm role="fn"><primary>:l</primary></indexterm>&mdash; Break Command: <function>:l</function> <varname>&amp;optional n</varname></screen>
+<screen><indexterm role="fn"><primary>:local</primary></indexterm>&#151; Break Command: <function>:local</function> <varname>&amp;optional</varname> <varname>n</varname></screen>
+<screen><indexterm role="fn"><primary>:l</primary></indexterm>&#151; Break Command: <function>:l</function> <varname>&amp;optional n</varname></screen>
 <para>If <replaceable>n</replaceable> is <literal>0</literal> or if it is omitted, then this command prints the value
 stored in the main stack entry that is pointed to by the current event
 environment. <replaceable>n</replaceable> is an offset from that entry.  If <replaceable>n</replaceable> is positive,
@@ -273,7 +277,7 @@ must be an integer.  It is an error if the specified entry does not lie between
 the bottom and the top of the stack.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:hide</primary></indexterm>&mdash; Break Command: <function>:hide</function> <varname>symbol</varname></screen>
+<screen><indexterm role="fn"><primary>:hide</primary></indexterm>&#151; Break Command: <function>:hide</function> <varname>symbol</varname></screen>
 <para>Hides all events whose event symbol is <replaceable>symbol</replaceable>.  In particular, by
 <literal>:hide 'lambda</literal> and <literal>hide 'lambda-closure</literal>, all events become
 invisible whose event functions are lambda-expressions and closures,
@@ -287,7 +291,7 @@ visible is the simplest way to avoid the silly attempts of the user to hide all
 events.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:hide-package</primary></indexterm>&mdash; Break Command: <function>:hide-package</function> <varname>package</varname></screen>
+<screen><indexterm role="fn"><primary>:hide-package</primary></indexterm>&#151; Break Command: <function>:hide-package</function> <varname>package</varname></screen>
 <para>Hides all events whose event symbol belongs to the package
 <replaceable>package</replaceable>. <replaceable>package</replaceable> may be any object that represents a package, i.e.,
 a package object, a symbol, or a string.  If the event symbol of the current
@@ -297,14 +301,14 @@ was specified as <replaceable>package</replaceable>, events of <literal>eval</li
 not become invisible.  See the description of <replaceable>:hide</replaceable> above.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:unhide</primary></indexterm>&mdash; Break Command: <function>:unhide</function> <varname>symbol</varname></screen>
+<screen><indexterm role="fn"><primary>:unhide</primary></indexterm>&#151; Break Command: <function>:unhide</function> <varname>symbol</varname></screen>
 <para><replaceable>:unhide</replaceable> is the inverse command of <replaceable>:hide</replaceable>.  If, however, <replaceable> symbol</replaceable>
 belongs to one of the <replaceable>:hide-package</replaceable>d packages, events of <replaceable>symbol</replaceable>
 become visible only after the package is <literal>:unhide-package
 'd</literal>. <replaceable>symbol</replaceable> must be a symbol.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>:unhide-package</primary></indexterm>&mdash; Break Command: <function>:unhide-package</function> <varname>package</varname></screen>
+<screen><indexterm role="fn"><primary>:unhide-package</primary></indexterm>&#151; Break Command: <function>:unhide-package</function> <varname>package</varname></screen>
 <para><replaceable>:unhide-package</replaceable> is the inverse command of <replaceable>:hide-package</replaceable>.  However, an
 event whose event symbol belongs to <replaceable>package</replaceable> becomes visible only after
 the symbol is <literal>unhide 'd</literal>, if the symbol was <replaceable>:code 'd</replaceable>
@@ -386,10 +390,10 @@ Block names: FACT.
 </screen></para>
 </section>
 
-<section id="Describe-and-inspect">
+<section xml:id="Describe-and-inspect">
 <title>Describe and Inspect</title>
 <blockquote>
-<screen><indexterm role="fn"><primary>describe</primary></indexterm>&mdash; Function: <function>describe</function> <varname>object</varname></screen>
+<screen><indexterm role="fn"><primary>describe</primary></indexterm>&#151; Function: <function>describe</function> <varname>object</varname></screen>
 <para>Prints the information about <replaceable>object</replaceable> to the stream that is the value of
 <literal>*standard-output*</literal>.  The description of an object consists of several
 fields, each of which is described in a recursive manner.  For example, a
@@ -398,7 +402,7 @@ function documentation, function binding, type documentation, <literal>deftype</
 definition, properties.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>inspect</primary></indexterm>&mdash; Function: <function>inspect</function> <varname>object</varname></screen>
+<screen><indexterm role="fn"><primary>inspect</primary></indexterm>&#151; Function: <function>inspect</function> <varname>object</varname></screen>
 <para>Prints the information about <replaceable>object</replaceable> in an interactive manner.  The output
 of inspect is similar to that of <literal>describe</literal>, but after printing the label
 and the value of a field (the value itself is not <literal>describe 'd</literal>), it
@@ -464,12 +468,12 @@ resulting values.  Then prompts again with the same field.</para>
 </blockquote>
 </section>
 
-<section id="The-profiler">
+<section xml:id="The-profiler">
 <title>The Profiler</title>
 <para>The profiler tool is enabled by default in the basic &ECL; configuration.  It
 can be disabled with the <literal>configure</literal> option <literal>--disable-profiler</literal>.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>profile</primary></indexterm>&mdash; sys: <function>profile</function> <varname>grain</varname> <varname>&amp;optional</varname> <varname>address</varname></screen>
+<screen><indexterm role="fn"><primary>profile</primary></indexterm>&#151; sys: <function>profile</function> <varname>grain</varname> <varname>&amp;optional</varname> <varname>address</varname></screen>
 <para>This function activates the profiling of subsequent executions.  <replaceable>grain</replaceable> is
 a value between 1 and 16384 which indicates the granularity of code segments to
 consider. There is a counter for each such segment.  With each clock tick, the
@@ -478,34 +482,34 @@ incremented.  A value of 0 for <replaceable>grain</replaceable> means stop profi
 indicates the base address for the code being profiled.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>display-profile</primary></indexterm>&mdash; sys: <function>display-profile</function></screen>
+<screen><indexterm role="fn"><primary>display-profile</primary></indexterm>&#151; sys: <function>display-profile</function></screen>
 <para>Displays the histogram of accumulated tick counts.  The ticks are attributed to
 the compiled Lisp function whose base address is closest to the start of the
 segment.  This may not be totally accurate for system functions which invoke
 some auxiliary function to do the job.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>clear-profile</primary></indexterm>&mdash; sys: <function>clear-profile</function></screen>
+<screen><indexterm role="fn"><primary>clear-profile</primary></indexterm>&#151; sys: <function>clear-profile</function></screen>
 <para>Clears the profile histogram.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="vr"><primary>sys</primary></indexterm>&mdash; Variable: <varname>sys</varname> <type>*profile-array*</type></screen>
+<screen><indexterm role="vr"><primary>sys</primary></indexterm>&#151; Variable: <varname>sys</varname> <type>*profile-array*</type></screen>
 <para>Contains the profile histogram: two short integer counters are packed in each
 value of this array of fixnums.</para>
 </blockquote>
 </section>
 
-<section id="Online-help">
+<section xml:id="Online-help">
 <title>Online Help</title>
 <para>Online help is provided by the following functions.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>help</primary></indexterm>&mdash; Function: <function>help</function> <varname>&amp;optional symbol</varname></screen>
+<screen><indexterm role="fn"><primary>help</primary></indexterm>&#151; Function: <function>help</function> <varname>&amp;optional symbol</varname></screen>
 <para><literal>help</literal> with no arguments prints a greeting message to &ECL; beginners.
 <literal>help</literal> with a symbol argument prints the documentation associated
 with the symbol.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>help*</primary></indexterm>&mdash; Function: <function>help*</function> <varname>string &amp;optional package</varname></screen>
+<screen><indexterm role="fn"><primary>help*</primary></indexterm>&#151; Function: <function>help*</function> <varname>string &amp;optional package</varname></screen>
 <para>Prints the documentation associated with those symbols in the specified
 <replaceable>package</replaceable> whose print names contain <replaceable>string</replaceable> as substring.
 <replaceable>string</replaceable> may be a symbol, in which case the print name of that symbol is

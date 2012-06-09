@@ -1,6 +1,10 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd">
-<book lang="en">
-<chapter  id="Macros">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter  xml:id="Macros">
 <title>Macros</title>
 <para>A <firstterm>defmacro lambda-list</firstterm> is a lambda-list-like construct that is used as
 the third element in the <literal>defmacro</literal> form,</para>

@@ -1,18 +1,22 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
- <chapter id="ext.embed">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+ <chapter xml:id="ext.embed">
   <title>Embedding &ECL;</title>
 
-  <section id="ext.embed.intro">
+  <section xml:id="ext.embed.intro">
    <title>Introduction</title>
 
    <para>TBD.</para>
   </section>
 
-  <section id="ext.embed.dict">
+  <section xml:id="ext.embed.dict">
    <title>Embedding Reference</title>
 
-   &RefEmbed;
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="ref_embed.xmlf" xpointer="embed.dict"/>
 
   </section>
  </chapter>

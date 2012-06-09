@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-<book lang="en">
- <reference id="uffi.ref_declarations">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "../ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+ <reference xml:id="uffi.ref_declarations">
   <title>Declarations</title>
   
   <partintro>
@@ -14,7 +18,7 @@
    </sect1>
   </partintro>
 
-  <refentry id="uffi.def-type">
+  <refentry xml:id="uffi.def-type">
    <refnamediv>
     <refname>def-type</refname>
     <refpurpose>Defines a Common Lisp type. 

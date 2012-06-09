@@ -95,6 +95,13 @@
 "ref_signals.xmlf"
 "signals.xmlf"
 "standards.xmlf"
+"uffi/ref_aggregate.xml"
+"uffi/ref_declare.xml"
+"uffi/ref_func_libr.xml"
+"uffi/ref_object.xml"
+"uffi/ref_primitive.xml"
+"uffi/ref_string.xml"
+
                 )))
 
 (mapcar 'find-file ecl-doc-files)

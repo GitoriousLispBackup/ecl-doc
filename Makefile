@@ -1,15 +1,16 @@
 XMLTO = xmlto
 
-XMLFILES= ecl.xml tmp/bibliography.xml tmp/clos.xml tmp/compiler.xml	\
-	tmp/declarations.xml tmp/ecldev.xml 				\
-	tmp/internals.xml tmp/interpreter.xml tmp/preface.xml		\
-	tmp/io.xml tmp/mp.xml tmp/asdf.xml tmp/os.xml tmp/pde.xml	\
-	tmp/standards.xml tmp/copyright.xml tmp/ffi.xml tmp/ref_os.xml	\
-	tmp/ref_primitive.xml tmp/ref_aggregate.xml tmp/ref_object.xml	\
-	tmp/ref_string.xml tmp/ref_func_libr.xml tmp/COPYING.GFDL.xml   \
-	tmp/mp.xml tmp/ref_mp.xml tmp/memory.xml tmp/ref_memory.xml  	\
-	tmp/mop.xml tmp/embed.xml tmp/ref_embed.xml tmp/signals.xml	\
-	tmp/ref_signals.xml
+GEN_XMLFILES= tmp/COPYING.GFDL.xml
+XMLFILES= ecl.xml bibliography.xmlf clos.xmlf compiler.xmlf			\
+	declarations.xmlf ecldev.xmlf						\
+	internals.xmlf interpreter.xmlf preface.xmlf				\
+	io.xmlf mp.xmlf asdf.xmlf os.xmlf pde.xmlf				\
+	standards.xmlf copyright.xmlf ffi.xmlf ref_os.xmlf			\
+	uffi/ref_primitive.xml uffi/ref_aggregate.xml uffi/ref_object.xml	\
+	uffi/ref_string.xml uffi/ref_func_libr.xml				\
+	mp.xmlf ref_mp.xmlf memory.xmlf ref_memory.xmlf				\
+	mop.xmlf embed.xmlf ref_embed.xmlf signals.xmlf				\
+	ref_signals.xmlf $(GEN_XMLFILES)
 
 XSLFILES= xsl/lispfunc.xml xsl/customization.xml xsl/refentryintoc.xml
 
@@ -27,15 +28,16 @@ html/ecl.css: ecl.css html/index.html
 ecl.pdf: $(XMLFILES)
 	$(XMLTO) -o $@ pdf ecl.xml
 
-tmp/%.xml: %.xmlf Makefile
-	@test -d tmp || mkdir tmp
-	grep -v '<\(!DOCTYPE\|book\|/book\)'  $< > $@
-
-tmp/%.xml: uffi/%.xml Makefile
-	@test -d tmp || mkdir tmp
-	grep -v '<\(!DOCTYPE\|book\|/book\)'  $< > $@
+tmp/ecl.ent: ecl.ent
+	cp $< $@
 
 tmp/COPYING.GFDL.xml: COPYING.GFDL Makefile
 	echo '<![CDATA[' > $@
 	cat $< >> $@
 	echo ']]>' >> $@
+
+jing:
+	java -jar ~/Downloads/jing-20081028/bin/jing.jar -t -i /usr/local/Cellar/docbook/5.0/docbook/xml/5.0/rng/docbookxi.rng ecl.xml
+
+clean:
+	rm -f tmp/ecl.ent $(GEN_XMLFILES) html/*.html

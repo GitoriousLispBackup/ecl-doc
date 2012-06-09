@@ -1,6 +1,10 @@
-<?xml version="1.0"?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN" "http://www.oasis-open.org/docbook/xml/4.1/docbookx.dtd">
-<book lang="en">
-<chapter id="Declarations">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter xml:id="Declarations">
 <title>Declarations</title>
 <para>&ECL; supports all kinds of declarations described in the
 &Steele84;.  Any valid declaration will affect the &ECL; environment
@@ -29,7 +33,7 @@ the construct that surrounds the declaration.</para>
 surrounding <literal>let</literal> form.  In this case, we say that the <literal>let</literal> form is
 the <emphasis>surrounding construct</emphasis> of these declarations.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>the</primary></indexterm>&mdash; Special Form: <function>the</function> <varname>value-type form</varname></screen>
+<screen><indexterm role="fn"><primary>the</primary></indexterm>&#151; Special Form: <function>the</function> <varname>value-type form</varname></screen>
 <para>The &ECL; interpreter does actually check whether the value of the
 <emphasis>form</emphasis> conforms to the data type specified by <emphasis>value-type</emphasis> and
 signals an error if the value does not.  The type checking is performed by
@@ -50,19 +54,19 @@ the function <literal>typep</literal>.  For example,</para>
 obtain type information for compiled code optimization. No code for
 runtime type-checking is embedded in the compiled code.</para>
 
-<section id="Declaration-specifiers">
+<section xml:id="Declaration-specifiers">
 <title>Declaration Specifiers</title>
 <para>&ECL; recognizes all declaration specifiers defined in &Steele84;.
 The syntax of each such declaration specifier is exactly the same as defined in
 &Steele84;.  In addition, &ECL; recognizes the <literal>object</literal>
 declaration specifier which is specific to &ECL;.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>special</primary></indexterm>&mdash; Declaration: <function>special</function> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>special</primary></indexterm>&#151; Declaration: <function>special</function> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
 <para>The interpreter and the compiler of &ECL; both treat special declarations
 exactly as described in &Steele84;.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>type</primary></indexterm>&mdash; Declaration: <function>type</function> <varname>type</varname> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>type</primary></indexterm>&#151; Declaration: <function>type</function> <varname>type</varname> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
 <para>A <literal>type</literal> proclamation <literal>(type
 <replaceable>type var1 var2</replaceable> ...)</literal></para>
 <para>specifies
@@ -90,7 +94,7 @@ foo
 </screen></para>
 <para>See Section 7.3 for further information on <literal>type</literal> declarations.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>type</primary></indexterm>&mdash; Declaration: <function>type</function> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>type</primary></indexterm>&#151; Declaration: <function>type</function> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
 <para>(<replaceable>type var1 var2</replaceable> ...) is equivalent to <literal>(type <replaceable>type var1 var2</replaceable>
 ...)</literal>, provided that <replaceable>type</replaceable> is one of the symbols in Table 4-1 of
 &Steele84;, other than <literal>function</literal>.  Declaration specifications
@@ -98,7 +102,7 @@ that begin with <literal>function</literal> are regarded as <literal>function</l
 (see below).</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>function</primary></indexterm>&mdash; Declaration: <function>function</function> <varname>function-name</varname> <varname>argument-types</varname> <varname>.</varname> <varname>return-types</varname></screen>
+<screen><indexterm role="fn"><primary>function</primary></indexterm>&#151; Declaration: <function>function</function> <varname>function-name</varname> <varname>argument-types</varname> <varname>.</varname> <varname>return-types</varname></screen>
 <para>A <literal>function</literal> declaration is used to obtain type information for function
 call forms.  That is, a <literal>function</literal> declaration specifies the argument and
 the return types of each form that calls the named function.</para>
@@ -156,7 +160,7 @@ useless: <literal>(function <replaceable>function-name argument-types</replaceab
 <replaceable>function-name argment-types type1 type2</replaceable> &hellip;)</literal>.</para>
 <para>See Section 7.3 for further information on <literal>function</literal> declarations.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>ftype</primary></indexterm>&mdash; Declaration: <function>ftype</function> <varname>function-type</varname> <varname>{</varname><varname>function-name</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>ftype</primary></indexterm>&#151; Declaration: <function>ftype</function> <varname>function-type</varname> <varname>{</varname><varname>function-name</varname><varname>}</varname><varname>*</varname></screen>
 <para><replaceable>function-type</replaceable> must be a list whose first element is the symbol
 <literal>function</literal>.  <literal>(ftype (function . <replaceable>rest</replaceable>) <replaceable>function-name-1</replaceable>
 ...  <replaceable>function-name-n</replaceable>)</literal> is equivalent to <replaceable>n</replaceable> consecutive
@@ -164,14 +168,14 @@ useless: <literal>(function <replaceable>function-name argument-types</replaceab
 . <replaceable>rest</replaceable>)</literal> ... <literal>(function <replaceable>function-name-n</replaceable> . <replaceable>rest</replaceable>)</literal>.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>notinline</primary></indexterm>&mdash; Declaration: <function>notinline</function> <varname>{</varname><varname>function-name</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>notinline</primary></indexterm>&#151; Declaration: <function>notinline</function> <varname>{</varname><varname>function-name</varname><varname>}</varname><varname>*</varname></screen>
 <para><literal>(notinline <replaceable>function1 function2</replaceable> ...)</literal>  specifies that the
 compiler should not compile the named functions in-line.  Calls to the
 named functions can be traced and an event (see Section 5.4) is pushed
 on the event stack when any one of the named functions is invoked.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>inline</primary></indexterm>&mdash; Declaration: <function>inline</function> <varname>{</varname><varname>function-name</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>inline</primary></indexterm>&#151; Declaration: <function>inline</function> <varname>{</varname><varname>function-name</varname><varname>}</varname><varname>*</varname></screen>
 <para>An <literal>inline</literal> proclamation cancels currently effective <literal>notinline</literal>
 proclamations, and a local <literal>inline</literal> declaration locally shadows currently
 effective <literal>notinline</literal> declarations.</para>
@@ -202,7 +206,7 @@ Thus an <literal>inline</literal> declaration <literal>(inline <replaceable>func
 is worthless if none of the named functions have previously been declared to be
 <literal>notinline</literal>.</para>
 <blockquote>
-<screen><indexterm role="fn"><primary>ignore</primary></indexterm>&mdash; Declaration: <function>ignore</function> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>ignore</primary></indexterm>&#151; Declaration: <function>ignore</function> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
 <para>Usually, the compiler issues a warning if a lexical variable is never referred
 to.  <literal>(ignore <replaceable>var1 ...  varn</replaceable>)</literal> causes the compiler not to issue a
 warning even if the named variables are never referred to.  The compiler issues
@@ -211,7 +215,7 @@ construct, or if a named variable is actually referred to.  <literal>ignore</lit
 proclamations are simply ignored.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>optimize</primary></indexterm>&mdash; Declaration: <function>optimize</function> <varname>{</varname>(<varname>quality</varname> <varname>value</varname>) <varname>|</varname> <varname>quality</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>optimize</primary></indexterm>&#151; Declaration: <function>optimize</function> <varname>{</varname>(<varname>quality</varname> <varname>value</varname>) <varname>|</varname> <varname>quality</varname><varname>}</varname><varname>*</varname></screen>
 <para>&ECL; supports the four <literal>optimize</literal> qualities listed in the
 &Steele84;.</para>
 <para><literal>speed</literal> and <literal>compilation-speed</literal> are used to set up the optimization
@@ -236,12 +240,12 @@ treat all functions as if they were declared to be <literal>notinline</literal>.
 &ECL; session is started, the <literal>safety</literal> quality is set to 0.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>declaration</primary></indexterm>&mdash; Declaration: <function>declaration</function> <varname>{</varname><varname>name</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>declaration</primary></indexterm>&#151; Declaration: <function>declaration</function> <varname>{</varname><varname>name</varname><varname>}</varname><varname>*</varname></screen>
 <para>A <literal>declaration</literal> declaration is used exactly as specified in the
 &Steele84;.</para>
 </blockquote>
 <blockquote>
-<screen><indexterm role="fn"><primary>object</primary></indexterm>&mdash; Declaration: <function>object</function> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
+<screen><indexterm role="fn"><primary>object</primary></indexterm>&#151; Declaration: <function>object</function> <varname>{</varname><varname>variable-name</varname><varname>}</varname><varname>*</varname></screen>
 <para>This is the only declaration specifier that is specific to &ECL;.
 <literal>(object <replaceable>var1 ...  varn</replaceable>)</literal> affects only variable bindings and
 specifies that the named variables can be allocated in the C stack (see Section
@@ -250,7 +254,7 @@ by the surrounding construct. <literal>object</literal> proclamations are simply
 </blockquote>
 </section>
 
-<section id="Type-specifiers">
+<section xml:id="Type-specifiers">
 <title>Significant Type Specifiers</title>
 <para>Whenever a declaration is encountered, each type specifier (if any) in the
 declaration is converted to one of the following type specifiers, which are
@@ -305,7 +309,7 @@ nil
 function type of <literal>foo</literal> is checked.</para>
 </section>
 
-<section id="Type-declarations">
+<section xml:id="Type-declarations">
 <title>Treatment of Type Declarations</title>
 <para>&ECL; uses several runtime stacks.</para>
 <para>Arguments to functions, lexical and temporary variables are allocated on the C
@@ -319,7 +323,7 @@ helpful for numeric code which computes with floating point numbers.</para>
 references to live object.</para>
 </section>
 
-<section id="Variable-allocations">
+<section xml:id="Variable-allocations">
 <title>Variable Allocations</title>
 <para>If a lexical variable is declared to be of fixnum, <literal>character</literal>,
 <literal>short-float</literal>, <literal>long-float</literal>, or their subtypes, then it is allocated
@@ -361,7 +365,7 @@ allocated on the value stack, but may possibly be allocated on the C stack
 automatically by the compiler.</para>
 </section>
 
-<section id="Raw-data-functions">
+<section xml:id="Raw-data-functions">
 <title>Built-in Functions that Operate on Raw Data Directly</title>
 <para>Some built-in Common-Lisp functions can directly operate on raw data, if
 appropriate declarations are supplied.  The addition function <literal>+</literal> is among
@@ -456,7 +460,7 @@ the fixnum variable <literal>sum</literal>, producing the raw fixnum datum to be
 (array long-float)</literal>, and <literal>(vector long-float)</literal>.</para>
 </section>
 
-<section id="Arguments-Values-passing">
+<section xml:id="Arguments-Values-passing">
 <title>Arguments/Values Passing</title>
 <para>Function proclamations <literal>(function <replaceable>function-name</replaceable> (<replaceable>arg-type1</replaceable>
 <replaceable>arg-type2</replaceable> ...) <replaceable>return-type</replaceable>)</literal> or its equivalents give the compiler
