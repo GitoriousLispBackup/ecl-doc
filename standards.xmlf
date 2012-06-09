@@ -927,43 +927,6 @@ F
 <chapter xml:id="sec.ansi.files">
  <title>Files</title>
 
- <section xml:id="sec.ansi.resolving">
-  <title>Mapping pathnames to files</title>
-
-  <para>Pathnames are used to represent files in a storage
-  device<footnote><para>Actually, the &ECL; syntax allows physical pathnames to
-  represent any <acronym>URL</acronym>.</para></footnote>. However, before
-  using a pathname to perform a filesystem operation, &ECL; will have to apply
-  a number of transformations to it. First of all, if the pathname is a logical
-  one it has to be converted to a physical pathname. Second, this physical
-  pathname must not be a relative one, it has to be converted into an absolute
-  pathname.</para>
-
-  <para>The convertion of a relative pathname into an absolute one is performed
-  automatically by many &CommonLisp; functions. The overall procedure consists
-  on merging the pathname with the value of
-  <varname>*default-pathname-defaults*</varname>.</para>
-
-  <para>A problem with this approach is that many Lisp programs are not
-  prepared to have <varname>*default-pathname-defaults*</varname> pointing to
-  an actual directory. Also, additional to the maintaining value of this
-  variable, programs have to take care of the notion of the "current working
-  directory" as understood by the operating system. Finally the variable
-  <varname>*default-pathname-defaults*</varname> influences not only the
-  resolution of relative pathnames, but also many other functions
-  (<function>MAKE-PATHNAME</function>, <function>MERGE-PATHNAMES</function>,
-  etc), what makes its use complicated.</para>
-
-  <para>The approach followed by &ECL; is to set
-  <varname>*default-pathname-defaults*</varname> to a pathname with all
-  elements set to NIL, <code>(MAKE-PATHNAME :NAME NIL :TYPE NIL
-  ...)</code>. Then, every physical pathname which is to be converted to an
-  absolute one is first merged with the value of
-  <varname>*default-pathname-defaults*</varname> and afterwards with the
-  pathname with the output of <function>SI:GETCWD</function>, which returns the
-  current working directory as understood by the operating system.</para>
- </section>
-
  <section xml:id="sec.ansi.files.dict">
   <title>Dictionary</title>
 
