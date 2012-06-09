@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter>
+<title>Characters</title>
+<section xml:id="ansi.characters.c-dict">
+<title>C Reference</title>
+<toc/>
+  <refentry xml:id="ansi.characters.c-types">
+    <refnamediv>
+      <refname>C types</refname>
+      <refpurpose>C character types</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Type names</title>
+      <simplelist columns="2" type="horiz">
+	<member><type>ecl_character</type></member>
+	<member><type>character</type></member>
+
+	<member><type>ecl_base_char</type></member>
+	<member><type>base-char</type></member>
+      </simplelist>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>&ECL; defines two C types to hold its characters: <type>ecl_base_char</type> and <type>ecl_character</type>.</para>
+      <itemizedlist>
+	<listitem><para>When &ECL; is built without Unicode, they both coincide and typically match <type>unsigned char</type>, to cover the 256 codes that are needed.</para></listitem>
+	<listitem><para>When &ECL; is built with Unicode, the two types are no longer equivalent, with <type>ecl_character</type> being larger.</para></listitem>
+      </itemizedlist>
+
+      <para>For your code to be portable and future proof, use both types to really express what you intend to do.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>Lisp character constructors</refname>
+      <refpurpose>Creating and extracting characters from Lisp objects</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions and macros</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_code_char</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>code</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>ecl_character <function>ecl_char_code</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>o</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>These macros convert back and forth from C character types to Lisp. They do not check their arguments and thus will signal no errors.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>Lisp character predicates</refname>
+      <refpurpose>C predicates for Lisp characters</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions and macros</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>bool <function>ecl_base_char_p</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>bool <function>ecl_alpha_char_p</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>bool <function>ecl_alphanumeric_p</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>bool <function>ecl_graphic_char_p</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>bool <function>ecl_digit_p</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>bool <function>ecl_standard_char_p</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>These functions are equivalent to their Lisp equivalents but return C booleans.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>Character case</refname>
+      <refpurpose>C functions related to the character case</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions and macros</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>bool <function>ecl_upper_case_p</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>bool <function>ecl_lower_case_p</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>bool <function>ecl_both_case_p</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>ecl_character <function>ecl_char_downcase</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>ecl_character <function>ecl_char_upcase</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>c</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>These functions check or change the case of a character. Note that in an Unicode context, the output of these functions might not be accurate (for instance when the uppercase character has two or more codepoints).</para>
+    </refsect1>
+  </refentry>
+
+</section>
+</chapter>
+</book>

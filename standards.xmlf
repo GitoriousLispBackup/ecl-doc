@@ -547,6 +547,8 @@ F
 
   <para>Internally, &ECL; represents the <literal>#\Newline</literal> character by a single code. However, when using external formats, &ECL; may parse character pairs as a single <literal>#\Newline</literal>, and viceversa, use multiple characters to represent a single <literal>#\Newline</literal>.</para>
  </section>
+
+ <xi:include href="ref_c_characters.xml" xpointer="ansi.characters.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
 
 <chapter xml:id="sec.ansi.arrays">
