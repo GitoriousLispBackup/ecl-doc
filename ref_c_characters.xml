@@ -50,14 +50,31 @@
       <funcsynopsis>
 	<funcprototype>
 	  <?dbhtml funcsynopsis-style='ansi'?>
-	  <funcdef>cl_object <function>ecl_code_char</function></funcdef>
+	  <funcdef>cl_object <function>ECL_CODE_CHAR</function></funcdef>
 	  <paramdef><type>ecl_character</type> <parameter>code</parameter></paramdef>
 	</funcprototype>
       </funcsynopsis>
+
       <funcsynopsis>
 	<funcprototype>
 	  <?dbhtml funcsynopsis-style='ansi'?>
-	  <funcdef>ecl_character <function>ecl_char_code</function></funcdef>
+	  <funcdef>ecl_character <function>ECL_CHAR_CODE</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>o</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_char_code</function></funcdef>
+	  <paramdef><type>ecl_character</type> <parameter>code</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>ecl_base_char <function>ecl_base_char_code</function></funcdef>
 	  <paramdef><type>cl_object</type> <parameter>o</parameter></paramdef>
 	</funcprototype>
       </funcsynopsis>
@@ -65,7 +82,7 @@
 
     <refsect1>
       <title>Description</title>
-      <para>These macros convert back and forth from C character types to Lisp. They do not check their arguments and thus will signal no errors.</para>
+      <para>These functions and macros convert back and forth from C character types to Lisp. The macros <function>ECL_CHAR_CODE</function> and <function>ECL_CODE_CHAR</function> perform this coercion without checking the arguments. The functions <function>ecl_char_code</function> and <function>ecl_base_char_code</function>, on the other hand, verify that the argument has the right type and signal an error otherwise.</para>
     </refsect1>
   </refentry>
 
