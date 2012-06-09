@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter>
+<title>Numbers</title>
+<section xml:id="ansi.numbers.c-dict">
+<title>C Reference</title>
+<toc/>
+  <refentry xml:id="ansi.numbers.c-types">
+    <refnamediv>
+      <refname>C types</refname>
+      <refpurpose>Numeric C types understood by ECL</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Type names</title>
+      <simplelist columns="2" type="horiz">
+	<member><type>cl_fixnum</type></member>
+	<member><type>fixnum</type></member>
+
+	<member><type>cl_index</type></member>
+	<member><type>(integer 0 most-positive-fixnum)</type></member>
+
+	<member><type>float</type></member>
+	<member><type>short-float</type>, <type>single-float</type></member>
+
+	<member><type>double</type></member>
+	<member><type>double-float</type></member>
+
+	<member><type>long double</type> (*)</member>
+	<member><type>long-float</type></member>
+
+	<member><type>uint8_t</type></member>
+	<member><type>(unsigned-byte 8)</type></member>
+
+	<member><type>int8_t</type></member>
+	<member><type>(signed-byte 8)</type></member>
+
+	<member><type>uint16_t</type></member>
+	<member><type>(unsigned-byte 16)</type></member>
+
+	<member><type>int16_t</type></member>
+	<member><type>(signed-byte 16)</type></member>
+
+	<member><type>uint32_t</type></member>
+	<member><type>(unsigned-byte 32)</type></member>
+
+	<member><type>int32_t</type></member>
+	<member><type>(signed-byte 32)</type></member>
+
+	<member><type>uint64_t</type></member>
+	<member><type>(unsigned-byte 64)</type></member>
+
+	<member><type>int64_t</type></member>
+	<member><type>(signed-byte 64)</type></member>
+
+	<member><type>long</type></member>
+	<member><type>(integer si:c-long-min si:c-long-max)</type></member>
+
+	<member><type>unsigned long </type></member>
+	<member><type>(integer 0 si:c-long-max)</type></member>
+
+	<member><type>long long</type></member>
+	<member><type>(usigned-byte si:c-long-long-bit)</type></member>
+
+	<member><type>unsigned long long</type></member>
+	<member><type>(signed-byte si:c-long-long-bit)</type></member>
+      </simplelist>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>The table above shows the relation between C types and the equivalent Common Lisp types. All types are standard <acronym>C99</acronym> types, except for two. First,  <type>cl_fixnum</type> is the smallest signed integer that can fit a <type>fixnum</type>. Second, <type>cl_index</type> is the smallest unsigned integer that fits a fixnum and is typically the unsigned counterpart of <type>cl_fixnum</type>.</para>
+
+      <para>(*) The <type>long double</type> does not exist on all platforms. When it exists, the macro <constant>ECL_LONG_DOUBLE</constant> will be defined, and <type>long-double</type> will be equivalent to it.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>Lisp number constructors</refname>
+      <refpurpose>Creating Lisp types from C numbers</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions and macros</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_fixnum</function></funcdef>
+	  <paramdef><type>cl_fixnum</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_integer</function></funcdef>
+	  <paramdef><type>cl_fixnum</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_unsigned_integer</function></funcdef>
+	  <paramdef><type>cl_index</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_single_float</function></funcdef>
+	  <paramdef><type>float</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_double_float</function></funcdef>
+	  <paramdef><type>double</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_long_float</function></funcdef>
+	  <paramdef><type>long double</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_uint8_t</function></funcdef>
+	  <paramdef><type>uint8_t</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_int8_t</function></funcdef>
+	  <paramdef><type>int8_t</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_uint16_t</function></funcdef>
+	  <paramdef><type>uint16_t</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_int16_t</function></funcdef>
+	  <paramdef><type>int16_t</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_uint32_t</function></funcdef>
+	  <paramdef><type>uint32_t</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_int32_t</function></funcdef>
+	  <paramdef><type>int32_t</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_uint64_t</function></funcdef>
+	  <paramdef><type>uint64_t</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_int64_t</function></funcdef>
+	  <paramdef><type>int64_t</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_long_long</function></funcdef>
+	  <paramdef><type>long long</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_unsigned_long_long</function></funcdef>
+	  <paramdef><type>unsigned long long</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_ratio</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>numerator</parameter></paramdef>
+	  <paramdef><type>cl_object</type> <parameter>denominator</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_complex</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>real</parameter></paramdef>
+	  <paramdef><type>cl_object</type> <parameter>imag</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>These functions create a Lisp object from the corresponding C number. If the number is an integer type, the result will always be an integer, which may be a <type>bignum</type>. If on the other hand the C number is a <type>float</type>, <type>double</type> or <type>long double</type>, the result will be a <type>float</type>.</para>
+
+      <para>There is some redundancy in the list of functions that convert from <type>cl_fixnum</type> and <type>cl_index</type> to lisp. On the one hand, <function>ecl_make_fixnum()</function> always creates a fixnum, dropping bits if necessary. On the other hand, <function>ecl_make_integer</function> and <function>ecl_make_unsigned_integer</function> faithfully converts to a Lisp integer, which may a bignum.</para>
+
+      <para>Note also that some of the constructors do not use C numbers. This is the case of <function>ecl_make_ratio</function> and <function>ecl_make_complex</function>, because they are composite Lisp types.</para>
+
+      <para>These functions or macros signal no errors.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>Extracting C numbers</refname>
+      <refpurpose>Unchecked conversion from Lisp types to C numbers</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions and macros</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_fixnum <function>ecl_fixnum</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>float <function>ecl_single_float</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>double <function>ecl_double_float</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>long double <function>ecl_long_float</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>These functions and macros extract a C number from a Lisp object. They do not check the type of the Lisp object as they typically just access directly the value from a C structure.</para>
+    </refsect1>
+
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>Coercion to C number</refname>
+      <refpurpose>Checked conversion from Lisp types to C numbers</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions and macros</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_fixnum <function>ecl_to_fixnum</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_index <function>ecl_to_unsigned_integer</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>double <function>ecl_to_double</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>long double <function>ecl_to_long_double</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>float <function>ecl_to_float</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>int8_t <function>ecl_to_uint8_t</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>int8_t <function>ecl_to_int8_t</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>uint16_t <function>ecl_to_uint16_t</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>int16_t <function>ecl_to_int16_t</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>uint32_t <function>ecl_to_uint32_t</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>int32_t <function>ecl_to_int32_t</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>uint64_t <function>ecl_to_uint64_t</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>int64_t <function>ecl_to_int64_t</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>These functions and macros convert a Lisp object to the corresponding C number type. The conversion is done through a coercion process which may signal an error if the argument does not fit the expected type.</para>
+    </refsect1>
+
+  </refentry>
+</section>
+</chapter>
+</book>

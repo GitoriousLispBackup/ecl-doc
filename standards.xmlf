@@ -316,10 +316,16 @@ F
      <entry>Symbols from the &AMOP;.</entry>
     </row>
     <row>
+     <entry><package>EXT</package></entry>
+     <entry></entry>
+     <entry>&ECL; core</entry>
+     <entry>&ECL; extensions to the language &amp; library.</entry>
+    </row>
+    <row>
      <entry><package>SYSTEM</package></entry>
      <entry><package>SI</package>, <package>SYS</package></entry>
      <entry>&ECL; core</entry>
-     <entry>Functions and variables internal to the implementation</entry>
+     <entry>Functions and variables internal to the implementation. Never to be used.</entry>
     </row>
     <row>
      <entry><package>CMP</package></entry>
@@ -359,7 +365,7 @@ F
  available in &ECL;. The nicknames are aliases for a package. Thus,
  <symbol>system:symbol</symbol> may be written as
  <symbol>sys:symbol</symbol> or <symbol>si:symbol</symbol>. The module field
- explains which library provides that package. For instance, the
+ explains which library provides what package. For instance, the
  <package>ASDF</package> is obtained when loading the
  <package>ASDF</package> library with <code>(require 'asdf)</code>; and the
  <package>XLIB</package> package when configuring and loading the
@@ -398,6 +404,10 @@ F
       <entry>Arbitrary size rational number, made up of two integers.</entry>
      </row>
      <row>
+      <entry><type>SHORT-FLOAT</type></entry>
+      <entry>Equivalent to <type>SINGLE-FLOAT</type>.</entry>
+     </row>
+     <row>
       <entry><type>SINGLE-FLOAT</type></entry>
       <entry>32-bits IEEE floating point number.</entry>
      </row>
@@ -406,14 +416,9 @@ F
       <entry>64-bits IEEE floating point number.</entry>
      </row>
      <row>
-      <entry><type>SHORT-FLOAT</type></entry>
-      <entry>Either equivalent to SINGLE-FLOAT, or a 29-bit immediate floating
-      point number.</entry>
-     </row>
-     <row>
       <entry><type>LONG-FLOAT</type></entry>
-      <entry>Either equivalent to DOUBLE-FLOAT, or a 96/128 bits IEEE floating
-      point number.</entry>
+      <entry>Either equivalent to <type>DOUBLE-FLOAT</type>, or a 96/128 bits IEEE floating
+      point number (<type>long double</type> in C/C++).</entry>
      </row>
      <row>
       <entry><type>RATIONAL</type></entry>
@@ -446,25 +451,16 @@ F
   64 bits respectively. In machines where it is supported, it is possible to
   associate the lisp <type>LONG-FLOAT</type> with the machine type <type>long
   double</type> whose size ranges from 96 to 128 bits, and which are a bit
-  slower. Finally, in 32-bit architectures it is also possible to associate
-  the type <type>SHORT-FLOAT</type> with a 29-bits floating point number that
-  takes up no memory.</para>
+  slower.</para>
  </section>
 
  <section xml:id="sec.ansi.random-states">
   <title>Random-States</title>
 
-  <para>&ECL; provides a reader macro <literal>#$</literal> that reads a
-  random state. <literal>#$<replaceable>integer</replaceable></literal> is
-  equivalent to <code>(make-random-state
-  <replaceable>integer</replaceable>)</code>.  The same format is used when a
-  random state is printed.</para>
-
-  <important>
-   <para>Random states are implemented using a very crude 32-bits algorithm
-   which probably has a short period. Help is welcome in improving it.</para>
-  </important>
+  <para>&ECL; relies internally on a 32-bit or 64-bit Mersenne-Twister random number generator, using a relatively large buffer to precompute about 5000 pseud-random bytes. This implies also that random states can be printed readably and also read, using the <literal>#$</literal> macro. There is no provision to create random states from user arrays, though.</para>
  </section>
+
+ <xi:include href="ref_c_numbers.xml" xpointer="ansi.numbers.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 </chapter>
 
@@ -514,10 +510,7 @@ F
  <section xml:id="sec.ansi.character-names">
   <title>Character names</title>
 
-  <para>All characters have a name. For non-printing characters between 0 and 32, and for 127 we use the ordinary
-  <acronym>ASCII</acronym> names. Characters above 127 are printed and read
-  using Unicode notation as in <literal>#U0126</literal>, where the
-  <literal>U</literal> is followed by the hexadecimal code.</para>
+  <para>All characters have a name. For non-printing characters between 0 and 32, and for 127 we use the ordinary <acronym>ASCII</acronym> names. Characters above 127 are printed and read using hexadecimal Unicode notation, with a <literal>U</literal> followed by 24 bit hexadecimal number, as in <literal>U0126</literal>.</para>
   <table xml:id="table.character-names">
    <title>Examples of character names</title>
    <tgroup cols="2">
@@ -552,10 +545,7 @@ F
  <section>
   <title>Line Divisions</title>
 
-  <para>&ECL; represents the <literal>#\Newline</literal> character by a
-  single code. In platforms with other new line conventions, additional
-  characters such as carriage returns are ignored when reading and they are
-  not automatically appended when writing.</para>
+  <para>Internally, &ECL; represents the <literal>#\Newline</literal> character by a single code. However, when using external formats, &ECL; may parse character pairs as a single <literal>#\Newline</literal>, and viceversa, use multiple characters to represent a single <literal>#\Newline</literal>.</para>
  </section>
 </chapter>
 
@@ -595,9 +585,7 @@ F
  <section xml:id="sec.ansi.array-spec">
   <title>Specializations</title>
 
-  <para>&ECL; provides specialized array types for several element kinds. In
-  the following table we list those types, together with the machine type
-  which is used to implement them, and the expected size.</para>
+  <para>&ECL; provides specialized array types for several element kinds. In the following table we list those types, together with the machine type which is used to implement them, and the expected size.</para>
   <informaltable>
    <tgroup cols="3">
     <thead>
@@ -637,6 +625,36 @@ F
       <entry><type>(unsigned-byte 8)</type></entry>
       <entry><type>uint8_t</type></entry>
       <entry>8 bits</entry>
+     </row>
+     <row>
+      <entry><type>(signed-byte 16)</type></entry>
+      <entry><type>int16_t</type></entry>
+      <entry>16 bits</entry>
+     </row>
+     <row>
+      <entry><type>(unsigned-byte 16)</type></entry>
+      <entry><type>uint16_t</type></entry>
+      <entry>16 bits</entry>
+     </row>
+     <row>
+      <entry><type>(signed-byte 32)</type></entry>
+      <entry><type>int32_t</type></entry>
+      <entry>32 bits</entry>
+     </row>
+     <row>
+      <entry><type>(unsigned-byte 32)</type></entry>
+      <entry><type>uint32_t</type></entry>
+      <entry>32 bits</entry>
+     </row>
+     <row>
+      <entry><type>(signed-byte 64)</type></entry>
+      <entry><type>int64_t</type></entry>
+      <entry>64 bits</entry>
+     </row>
+     <row>
+      <entry><type>(unsigned-byte 64)</type></entry>
+      <entry><type>uint64_t</type></entry>
+      <entry>64 bits</entry>
      </row>
      <row>
       <entry><type>single-float</type> or <type>short-float</type></entry>
@@ -710,10 +728,7 @@ F
   </tgroup>
  </table>
 
- <important>
-  <para>Currently, strings with unicode characters cannot be printed
-  readably.</para>
- </important>
+ <para>It is important to remember that strings with unicode characters can only be printed readably when the external format supports those characters. If this is not the case, &ECL; will signal a <type>serious-condition</type>, aborting your program.</para>
 </chapter>
 
 <chapter xml:id="sec.ansi.hash-tables">
@@ -914,13 +929,7 @@ F
    </listitem>
   </itemizedlist>
 
-  <para>The matching rules in &CommonLisp; and &ECL; are simple but have some
-  unintuitive consequences when compared to Unix/DOS rules. The most important
-  one is that directories must always end with a trailing slash
-  <literal>/</literal>. Second to that, <symbol>NIL</symbol> values can only be
-  matched by <symbol>NIL</symbol> and <symbol>:WILD</symbol>. Hence,
-  <literal>"*"</literal> can only match files without file type. For some
-  examples see <xref linkend="sec.ansi.files.directory"/>.</para>
+  <para>The matching rules in &CommonLisp; and &ECL; are simple but have some unintuitive consequences when compared to Unix/DOS rules. The most important one is that directories must always end with a trailing slash <literal>/</literal>, as in <literal>#p"/my/home/directory/"</literal>. Second to that, <symbol>NIL</symbol> values can only be matched by <symbol>NIL</symbol> and <symbol>:WILD</symbol>. Hence, <literal>"*"</literal> can only match files without file type. For some examples see <xref linkend="sec.ansi.files.directory"/>.</para>
   </section>
 </chapter>
 
@@ -1051,18 +1060,13 @@ F
    </thead>
    <tbody>
     <row>
-     <entry><type>character</type></entry>
-     <entry><literal>#U<replaceable>xxxx</replaceable></literal></entry>
-     <entry>Only used for non standard characters without names.</entry>
-    </row>
-    <row>
      <entry><type>package</type></entry>
-     <entry><literal>#&lt;PACKAGE <replaceable>name</replaceable>&gt;</literal></entry>
+     <entry><literal>#&lt;package <replaceable>name</replaceable>&gt;</literal></entry>
      <entry></entry>
     </row>
     <row>
      <entry><type>random-state</type></entry>
-     <entry><literal>#$<replaceable>base-10-integer</replaceable></literal></entry>
+     <entry><literal>#$<replaceable>character array</replaceable></literal></entry>
      <entry></entry>
     </row>
     <row>
@@ -1191,17 +1195,14 @@ F
    <refsect1>
     <title>Function</title>
 
-    <para>As specified in &ANSI; this function outputs the internal represention
-    of a compiled function, or of a lambda form, were it to be compiled.</para>
+    <para>As specified in &ANSI; this function outputs the internal represention of a compiled function, or of a lambda form, as it would look after being compiled.</para>
 
-    <para>&ECL; only has a particular difference. If a function has been
-    bytecompiled, as it happens with forms which are passed to
-    <code>EVAL</code>, functions written at the toplevel interpreter and lambda
-    forms coerced to functions, the output will be &ECL;'s bytecodes.</para>
-
-    <para>If the function on the other hand has been compiled to C, then most likely
-    <code>DISASSEMBLE</code> will be unable to find the source code and will output
-    nothing.</para>
+    <para>&ECL; only has a particular difference: it has two different compilers, one based on bytecodes and one based on the C language. The output will thus depend on the arguments and on which compiler is active at the moment in which this function is run.</para>
+    <itemizedlist>
+     <listitem><para>If the argument is a bytecompiled function, the output will be bytecodes.</para></listitem>
+     <listitem><para>If the argument is a lambda form, it will be processed by the active compiler and the appropriate output (bytecodes or C) will be shown.</para></listitem>
+     <listitem><para>If the argument is a C-compiled form, &ECL; will retrieve its original lambda form and process it with the currently active compiler.</para></listitem>
+    </itemizedlist>
    </refsect1>
   </refentry>
 
