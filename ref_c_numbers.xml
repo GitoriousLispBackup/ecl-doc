@@ -17,70 +17,112 @@
 
     <refsynopsisdiv>
       <title>Type names</title>
-      <simplelist columns="2" type="horiz">
+      <simplelist columns="4" type="horiz">
 	<member><type>cl_fixnum</type></member>
 	<member><type>fixnum</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>cl_index</type></member>
 	<member><type>(integer 0 most-positive-fixnum)</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>float</type></member>
 	<member><type>short-float</type>, <type>single-float</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>double</type></member>
 	<member><type>double-float</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>long double</type> (*)</member>
 	<member><type>long-float</type></member>
+	<member><constant>ECL_LONG_FLOAT</constant></member>
+	<member><symbol>:long-float</symbol></member>
 
 	<member><type>uint8_t</type></member>
 	<member><type>(unsigned-byte 8)</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>int8_t</type></member>
 	<member><type>(signed-byte 8)</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>uint16_t</type></member>
 	<member><type>(unsigned-byte 16)</type></member>
+	<member><constant>ecl_uint16_t</constant></member>
+	<member><symbol>:uint16-t</symbol></member>
 
 	<member><type>int16_t</type></member>
 	<member><type>(signed-byte 16)</type></member>
+	<member><constant>ecl_int16_t</constant></member>
+	<member><symbol>:uint16-t</symbol></member>
 
 	<member><type>uint32_t</type></member>
 	<member><type>(unsigned-byte 32)</type></member>
+	<member><constant>ecl_uint32_t</constant></member>
+	<member><symbol>:uint32-t</symbol></member>
 
 	<member><type>int32_t</type></member>
 	<member><type>(signed-byte 32)</type></member>
+	<member><constant>ecl_int32_t</constant></member>
+	<member><symbol>:uint32-t</symbol></member>
 
 	<member><type>uint64_t</type></member>
 	<member><type>(unsigned-byte 64)</type></member>
+	<member><constant>ecl_uint32_t</constant></member>
+	<member><symbol>:uint32-t</symbol></member>
 
 	<member><type>int64_t</type></member>
 	<member><type>(signed-byte 64)</type></member>
+	<member><constant>ecl_int64_t</constant></member>
+	<member><symbol>:uint32-t</symbol></member>
 
 	<member><type>short</type></member>
 	<member><type>(integer ffi:c-short-min ffi:c-short-max)</type></member>
+	<member><constant>ecl_uint64_t</constant></member>
+	<member><symbol>:uint32-t</symbol></member>
 
 	<member><type>unsigned short </type></member>
 	<member><type>(integer 0 ffi:c-ushort-max)</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>int</type></member>
 	<member><type>(integer ffi:c-int-min ffi:c-int-max)</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>unsigned int </type></member>
 	<member><type>(integer 0 ffi:c-uint-max)</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>long</type></member>
 	<member><type>(integer ffi:c-long-min ffi:c-long-max)</type></member>
+	<member></member>
+	<member></member>
 
 	<member><type>unsigned long </type></member>
 	<member><type>(integer 0 ffi:c-long-max)</type></member>
+	<member></member>
+	<member></member>
 
-	<member><type>long long (**)</type></member>
+	<member><type>long long</type></member>
 	<member><type>(integer ffi:c-long-long-min ffi:c-long-long-max)</type></member>
+	<member><constant>ecl_long_long_t</constant></member>
+	<member><symbol>:long-long</symbol></member>
 
 	<member><type>unsigned long long</type></member>
 	<member><type>(integer 0 ffi:c-ulong-long-max)</type></member>
-      </simplelist>
+	<member><constant>ecl_ulong_long_t</constant></member>
+	<member><symbol>:long-long</symbol></member>
+     </simplelist>
     </refsynopsisdiv>
 
     <refsect1>
@@ -90,7 +132,11 @@
 
       <para>(*) The <type>long double</type> does not exist on all platforms. When it exists, the macro <constant>ECL_LONG_DOUBLE</constant> will be defined, and <type>long-double</type> will be equivalent to it.</para>
 
-      <para>(**) The <type>long long</type> and <type>unsigned long long</type> types also do not exist on all platforms.</para>
+      <para>Many other types might also not exist on all platforms. This includes not only <type>long long</type> and <type>unsigned long long</type>, but also some of the <acronym>C99</acronym> integer types. There are two ways to detect which integer types are available in your system</para>
+      <itemizedlist>
+	<listitem><para>Check for the definition of C macros with a similar name, shown in the fourth column above.</para></listitem>
+	<listitem><para>In Lisp code, check for the presence of the associated features, shown in the fifth column above.</para></listitem>
+      </itemizedlist>
     </refsect1>
   </refentry>
 

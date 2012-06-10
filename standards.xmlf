@@ -671,8 +671,7 @@ F
      <row>
       <entry><type>long-float</type></entry>
       <entry><type>long double</type></entry>
-      <entry>Between 96 and 128 bits. Only when compiled with support for
-      long-float.</entry>
+      <entry>Between 96 and 128 bits.</entry>
      </row>
      <row>
       <entry><type>t</type></entry>
@@ -682,6 +681,8 @@ F
     </tbody>
    </tgroup>
   </informaltable>
+
+  <para>Some of these specialized types might not exist in your platform. This is detected using conditional reading and features (See <xref linkend="ansi.numbers.c-types"/>).</para>
  </section>
 
 </chapter>
