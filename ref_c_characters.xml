@@ -41,7 +41,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>Lisp character constructors</refname>
+      <refname>Constructors</refname>
       <refpurpose>Creating and extracting characters from Lisp objects</refpurpose>
     </refnamediv>
 
@@ -88,7 +88,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>Lisp character predicates</refname>
+      <refname>Predicates</refname>
       <refpurpose>C predicates for Lisp characters</refpurpose>
     </refnamediv>
 

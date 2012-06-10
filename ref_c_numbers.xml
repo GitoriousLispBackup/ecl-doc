@@ -142,7 +142,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>Lisp number constructors</refname>
+      <refname>Constructors</refname>
       <refpurpose>Creating Lisp types from C numbers</refpurpose>
     </refnamediv>
 
@@ -342,7 +342,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>Extracting C numbers</refname>
+      <refname>Accessors</refname>
       <refpurpose>Unchecked conversion from Lisp types to C numbers</refpurpose>
     </refnamediv>
 
@@ -390,7 +390,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>Coercion to C number</refname>
+      <refname>Coercion</refname>
       <refpurpose>Checked conversion from Lisp types to C numbers</refpurpose>
     </refnamediv>
 

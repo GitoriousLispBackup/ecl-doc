@@ -309,6 +309,9 @@ F
  <para>There are no implementation-specific limits on the size or content of
  symbol names. It is however not allowed to write on the strings which have
  been passed to #'make-symbol or returned from #'symbol-name.</para>
+
+ <xi:include href="ref_c_symbols.xml" xpointer="ansi.symbols.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
 <chapter xml:id="sec.ansi.packages">
@@ -393,8 +396,6 @@ F
  <package>ASDF</package> library with <code>(require 'asdf)</code>; and the
  <package>XLIB</package> package when configuring and loading the
  <package>CLX</package> library.</para>
-
- <xi:include href="ref_c_symbols.xml" xpointer="ansi.symbols.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 </chapter>
 

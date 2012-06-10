@@ -68,7 +68,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>String accessors</refname>
+      <refname>Accessors</refname>
       <refpurpose>Reading and writing characters into a string</refpurpose>
     </refnamediv>
 
