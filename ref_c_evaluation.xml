@@ -11,7 +11,7 @@
 <toc/>
   <refentry xml:id="ecl_process_env">
     <refnamediv>
-      <refname><function>ecl_lisp_env</function></refname>
+      <refname><function>ecl_process_env</function></refname>
       <refpurpose>Per-thread environment</refpurpose>
     </refnamediv>
 
