@@ -10,6 +10,7 @@ XMLFILES= ecl.xml bibliography.xmlf clos.xmlf compiler.xmlf			\
 	uffi/ref_string.xml uffi/ref_func_libr.xml				\
 	mp.xmlf ref_mp.xmlf memory.xmlf ref_memory.xmlf				\
 	mop.xmlf embed.xmlf ref_embed.xmlf signals.xmlf				\
+	ref_c_evaluation.xml ref_c_data_flow.xml				\
 	ref_c_numbers.xml ref_c_characters.xml					\
 	ref_signals.xmlf $(GEN_XMLFILES)
 

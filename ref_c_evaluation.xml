@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter>
+<title>Evaluation and compilation</title>
+<section xml:id="ansi.evaluation.c-dict">
+<title>C Reference</title>
+<toc/>
+  <refentry xml:id="ecl_process_env">
+    <refnamediv>
+      <refname><function>ecl_lisp_env</function></refname>
+      <refpurpose>Per-thread environment</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Function</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_env_ptr <function>ecl_process_env</function></funcdef>
+	  <paramdef></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>&ECL; stores information about each thread on a dedicated structure, which is the process environment. A pointer to this structure can be retrieved using the function or macro above. This pointer can be used for a variety of tasks, such as defining special variable bindings, controlling interrupts, retrieving function output values, etc.</para>
+    </refsect1>
+  </refentry>
+</section>
+</chapter>
+</book>

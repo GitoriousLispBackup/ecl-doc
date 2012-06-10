@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter>
+<title>Data and control flow</title>
+<section xml:id="ansi.data-and-control.c-dict">
+<title>C Reference</title>
+<toc/>
+  <refentry>
+    <refnamediv>
+      <refname><function>ecl_nth_value</function>, <function>ecl_nvalues</function></refname>
+      <refpurpose>Accessing output values</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions and macros</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_nvalues</function></funcdef>
+	  <paramdef>cl_env_ptr <parameter>env</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis xml:id="ecl_nth_value">
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_nth_value</function></funcdef>
+	  <paramdef>cl_env_ptr <parameter>env</parameter></paramdef>
+	  <paramdef>int <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>Common Lisp functions may return zero, one or more values. In &ECL;, the first two cases do not require any special manipulation, as the C function returns either <symbol>NIL</symbol> or the first (zeroth) value directly. However, if one wishes to access additional values from a function, one needs to use these two macros or functions</para>
+      <itemizedlist>
+	<listitem><para><code>ecl_nvalues(env)</code> returns the number of values that the function actually outputs. The single argument is the <link linkend="ecl_process_env">lisp environment</link>. This value is larger or equal to 0 and smaller than <constant>ECL_MULTIPLE_VALUES_LIMIT</constant>.</para></listitem>
+
+	<listitem><para>Once we know the number of return values, they can be directly accessed using the function <code>ecl_nth_value(env,n)</code>, where <replaceable>n</replaceable> is a number larger than or equal to 1, and smaller than <constant>ECL_MULTIPLE_VALUES_LIMIT</constant>, which must correspond to a valid output value. No checking is done.</para></listitem>
+      </itemizedlist>
+
+      <para>Note that in both cases these macros and functions have to be used right after the Lisp function was called. This is so because other Lisp functions might destroy the content of the return stack.</para>
+    </refsect1>
+
+    <refsect1>
+      <title>Example</title>
+      <para>A C/C++ exceprt</para>
+<programlisting>
+cl_env_ptr env = ecl_process_env();
+cl_object a = ecl_make_fixnum(13);
+cl_object b = ecl_make_fixnum(6);
+cl_object modulus = cl_floor(2, a, b);
+cl_object remainder = ecl_nth_value(env, 1);
+</programlisting>
+      <para>The somewhat equivalent Common Lisp code</para>
+<programlisting>
+(multiple-value-bind (modulus equivalent)
+    (floor 13 6))
+</programlisting>
+    </refsect1>
+  </refentry>
+</section>
+</chapter>
+</book>
