@@ -57,17 +57,29 @@
 	<member><type>int64_t</type></member>
 	<member><type>(signed-byte 64)</type></member>
 
+	<member><type>short</type></member>
+	<member><type>(integer ffi:c-short-min ffi:c-short-max)</type></member>
+
+	<member><type>unsigned short </type></member>
+	<member><type>(integer 0 ffi:c-ushort-max)</type></member>
+
+	<member><type>int</type></member>
+	<member><type>(integer ffi:c-int-min ffi:c-int-max)</type></member>
+
+	<member><type>unsigned int </type></member>
+	<member><type>(integer 0 ffi:c-uint-max)</type></member>
+
 	<member><type>long</type></member>
-	<member><type>(integer si:c-long-min si:c-long-max)</type></member>
+	<member><type>(integer ffi:c-long-min ffi:c-long-max)</type></member>
 
 	<member><type>unsigned long </type></member>
-	<member><type>(integer 0 si:c-long-max)</type></member>
+	<member><type>(integer 0 ffi:c-long-max)</type></member>
 
-	<member><type>long long</type></member>
-	<member><type>(usigned-byte si:c-long-long-bit)</type></member>
+	<member><type>long long (**)</type></member>
+	<member><type>(integer ffi:c-long-long-min ffi:c-long-long-max)</type></member>
 
 	<member><type>unsigned long long</type></member>
-	<member><type>(signed-byte si:c-long-long-bit)</type></member>
+	<member><type>(integer 0 ffi:c-ulong-long-max)</type></member>
       </simplelist>
     </refsynopsisdiv>
 
@@ -77,6 +89,8 @@
       <para>The table above shows the relation between C types and the equivalent Common Lisp types. All types are standard <acronym>C99</acronym> types, except for two. First,  <type>cl_fixnum</type> is the smallest signed integer that can fit a <type>fixnum</type>. Second, <type>cl_index</type> is the smallest unsigned integer that fits a fixnum and is typically the unsigned counterpart of <type>cl_fixnum</type>.</para>
 
       <para>(*) The <type>long double</type> does not exist on all platforms. When it exists, the macro <constant>ECL_LONG_DOUBLE</constant> will be defined, and <type>long-double</type> will be equivalent to it.</para>
+
+      <para>(**) The <type>long long</type> and <type>unsigned long long</type> types also do not exist on all platforms.</para>
     </refsect1>
   </refentry>
 
@@ -191,6 +205,51 @@
       <funcsynopsis>
 	<funcprototype>
 	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_short</function></funcdef>
+	  <paramdef><type>short</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_ushort</function></funcdef>
+	  <paramdef><type>unsigned short</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_int</function></funcdef>
+	  <paramdef><type>int</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_uint</function></funcdef>
+	  <paramdef><type>unsigned int</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_long</function></funcdef>
+	  <paramdef><type>long</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_ulong</function></funcdef>
+	  <paramdef><type>unsigned long</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
 	  <funcdef>cl_object <function>ecl_make_long_long</function></funcdef>
 	  <paramdef><type>long long</type> <parameter>n</parameter></paramdef>
 	</funcprototype>
@@ -198,7 +257,7 @@
       <funcsynopsis>
 	<funcprototype>
 	  <?dbhtml funcsynopsis-style='ansi'?>
-	  <funcdef>cl_object <function>ecl_make_unsigned_long_long</function></funcdef>
+	  <funcdef>cl_object <function>ecl_make_ulong_long</function></funcdef>
 	  <paramdef><type>unsigned long long</type> <parameter>n</parameter></paramdef>
 	</funcprototype>
       </funcsynopsis>
@@ -310,6 +369,14 @@
       <funcsynopsis>
 	<funcprototype>
 	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>flaot <function>ecl_to_float</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
 	  <funcdef>double <function>ecl_to_double</function></funcdef>
 	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
 	</funcprototype>
@@ -394,6 +461,71 @@
 	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
 	</funcprototype>
       </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>short <function>ecl_to_short</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>unsigned short <function>ecl_to_ushort</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>int <function>ecl_to_int</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>unsigned int <function>ecl_to_uint</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>long <function>ecl_to_long</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>unsigned long <function>ecl_to_ulong</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>long long <function>ecl_to_long_long</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>unsigned long long <function>ecl_to_ulong_long</function></funcdef>
+	  <paramdef><type>cl_object</type> <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
     </refsynopsisdiv>
 
     <refsect1>
