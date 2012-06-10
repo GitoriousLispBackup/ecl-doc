@@ -755,6 +755,9 @@ F
  </table>
 
  <para>It is important to remember that strings with unicode characters can only be printed readably when the external format supports those characters. If this is not the case, &ECL; will signal a <type>serious-condition</type>, aborting your program.</para>
+
+ <xi:include href="ref_c_strings.xml" xpointer="ansi.strings.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
 <chapter xml:id="sec.ansi.hash-tables">
