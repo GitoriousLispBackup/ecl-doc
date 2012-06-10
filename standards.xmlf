@@ -394,6 +394,8 @@ F
  <package>XLIB</package> package when configuring and loading the
  <package>CLX</package> library.</para>
 
+ <xi:include href="ref_c_symbols.xml" xpointer="ansi.symbols.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
 <chapter xml:id="sec.ansi.numbers">

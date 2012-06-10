@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter>
+<title>Symbols and compilation</title>
+<section xml:id="ansi.symbols.c-dict">
+<title>C Reference</title>
+<toc/>
+  <refentry>
+    <refnamediv>
+      <refname><function>ecl_make_keyword</function></refname>
+      <refpurpose>Find a lisp keyword</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Function</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_keyword</function></funcdef>
+	  <paramdef><type>char *</type> <parameter>name</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>Many Lisp functions take keyword arguments. When invoking a function with keyword arguments we need keywords, which are a kind of symbols that live in the <literal>KEYWORD</literal> package. This function does the task of finding or creating those keywords from C strings.</para>
+      <itemizedlist>
+	<listitem><para>It is usually safe to store the resulting pointer, because keywords are always referenced by their package and will not be garbage collected (unless of course, you decide to delete it).</para></listitem>
+	<listitem><para>Remember that the case of the string is significant. <code>ecl_make_keyword("TO")</code> with return <literal>:TO</literal>, while <code>ecl_make_keyword("to")</code> returns a completely different keywod, <literal>:|to|</literal>. In short, you usually want to use uppercase.</para></listitem>
+      </itemizedlist>
+    </refsect1>
+
+    <refsect1>
+      <title>Example</title>
+      <para>The following example converts a section of a string to uppercase characters:</para>
+<programlisting>
+cl_object start = ecl_make_keyword("START");
+cl_object end = ecl_make_keyword("END");
+...
+sup = cl_string_upcase(4, s, start, ecl_make_fixnum(2),
+                       end, ecl_make_fixnum(6));
+...
+</programlisting>
+    </refsect1>
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname><function>ecl_make_symbol</function></refname>
+      <refpurpose>Find a lisp symbol</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Function</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_make_symbol</function></funcdef>
+	  <paramdef><type>const char *</type> <parameter>name</parameter></paramdef>
+	  <paramdef><type>const char *</type> <parameter>package_name</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>This function finds or create a symbol in the given package. First of all, it tries to find the package named by <replaceable>package_name</replaceable>. If it does not exist, an error is signaled. Then, a symbol with the suppled <replaceable>name</replaceable> is searched in the given package. If the symbol exists, it is returned. If it does not exist, using <function>INTERN</function>.</para>
+    </refsect1>
+  </refentry>
+
+</section>
+</chapter>
+</book>
