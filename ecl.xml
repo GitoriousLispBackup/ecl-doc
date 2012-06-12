@@ -17,7 +17,7 @@
  <xi:include href="standards.xmlf" xpointer="part.standards" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
  <part xml:id="part.extensions">
- <title>Extensions and libraries</title>
+ <title>Extensions and Libraries</title>
  <xi:include href="asdf.xmlf" xpointer="element(ext.asdf)" xmlns:xi="http://www.w3.org/2001/XInclude"/>
  <xi:include href="os.xmlf" xpointer="ext.os" xmlns:xi="http://www.w3.org/2001/XInclude"/>
  <xi:include href="ffi.xmlf" xpointer="ext.ffi" xmlns:xi="http://www.w3.org/2001/XInclude"/>

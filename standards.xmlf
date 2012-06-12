@@ -68,7 +68,7 @@
    might not see the redefinition.</para>
 
    <table xml:id="table.optimize.debug">
-    <title>Behavior for different leves of DEBUG</title>
+    <title>Behavior for different levels of DEBUG</title>
     <tgroup cols="5">
      <thead>
       <row>
@@ -116,7 +116,7 @@
    consequences are unspecified.</para>
 
    <table xml:id="table.optimize.safety">
-    <title>Behavior for different leves of SAFETY</title>
+    <title>Behavior for different levels of SAFETY</title>
     <tgroup cols="5">
      <thead>
       <row>

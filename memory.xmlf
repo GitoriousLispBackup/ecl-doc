@@ -54,12 +54,12 @@
 
     <listitem><para>The collector is configured to ignore pointers that point
     to the middle of allocated objects. This minimizes the risk of
-    misinterpreting integers as pointers to life obejcts.</para></listitem>
+    misinterpreting integers as pointers to live obejcts.</para></listitem>
 
     <listitem><para>It is possible to register finalizers that are invoked when
     an object is destroyed, but for that you should use &ECL;'s API and
     understand the restriction described later in <xref
-    linkend="ext.memory.finalization"/></para></listitem>
+    linkend="ext.memory.finalization" xrefstyle="select: label"/></para></listitem>
    </itemizedlist>
 
    <para>Except for finalization, which is a questionable feature, the previous
@@ -79,8 +79,7 @@
    evolution of a program, handling memory and stack overflow gracefully via
    the &CommonLisp; condition system.</para>
 
-   <para>The customizable limits are listed in <xref
-   linkend="table.memory.limits"/>, but they need a careful description.</para>
+   <para>The customizable limits are listed in <xref linkend="table.memory.limits" xrefstyle="select: label"/>, but they need a careful description.</para>
    <itemizedlist>
     <listitem><para><varname>ext:heap-size</varname> limits the total amount of
     memory which is available for lisp objects. This is the memory used when
@@ -107,23 +106,14 @@
     interpreter stack. It only affects interpreted code.</para></listitem>
    </itemizedlist>
 
-   <para>If you look at <xref linkend="table.memory.limits"/>, some of these
-   limits may seem very stringent, but they exist to allow detecting and
-   correcting both stack and memory overflow conditions. Larger values can be
-   set systematically either in the <filename>~/.eclrc</filename>
-   initialization file, or using the command line options from the table.</para>
+   <para>If you look at <xref linkend="table.memory.limits" xrefstyle="select: label"/>, some of these limits may seem very stringent, but they exist to allow detecting and correcting both stack and memory overflow conditions. Larger values can be set systematically either in the <filename>~/.eclrc</filename> initialization file, or using the command line options from the table.</para>
 
   </section>
 
   <section xml:id="ext.memory.conditions">
    <title>Memory Conditions</title>
 
-   <para>When &ECL; surpasses or approaches the memory limits it will signal a
-   &CommonLisp; condition. There are two types of conditions, <xref
-   linkend="ref.memory.stack-overflow"/> and <xref
-   linkend="ref.memory.storage-exhausted"/>, for stack and heap overflows,
-   respectively. Both errors are correctable, as the following session
-   shows:</para>
+   <para>When &ECL; surpasses or approaches the memory limits it will signal a &CommonLisp; condition. There are two types of conditions, <link linkend="ref.memory.stack-overflow"><symbol>ext:stack-overflow</symbol></link> and <link linkend="ref.memory.storage-exhausted"><symbol>ext:storage-exhausted</symbol></link>, for stack and heap overflows, respectively. Both errors are correctable, as the following session shows:</para>
 <programlisting>
 > (defun foo (x) (foo x))
 
@@ -175,16 +165,13 @@ Top level.
     exiting in a non ordinary way.</para></listitem>
    </itemizedlist>
 
-   <para>The implementation is based on two functions, <xref
-   linkend="ref.memory.set-finalizer"/> and <xref
-   linkend="ref.memory.get-finalizer"/>, which allow setting and querying the
-   finalizer functions for certain objects.</para>
+   <para>The implementation is based on two functions, <link linkend="ref.memory.set-finalizer"><symbol>ext:set-finalizer</symbol></link> and <link linkend="ref.memory.get-finalizer"><symbol>ext:get-finalizer</symbol></link>, which allow setting and querying the finalizer functions for certain objects.</para>
   </section>
 
   <section xml:id="ext.memory.dict">
    <title>Memory Management Reference</title>
 
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="ref_memory.xmlf" xpointer="memory.dict"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="ref_memory.xmlf" xpointer="ext.memory.dict"/>
 
   </section>
  </chapter>

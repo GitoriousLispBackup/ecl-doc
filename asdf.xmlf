@@ -18,7 +18,7 @@
   shipping code in the form of multiple binaries and a script to load them is
   far from optimal.</para>
 
-  <para>Tratidionally, &CommonLisp; implemenations have provided a function to
+  <para>Traditionally, &CommonLisp; implemenations have provided a function to
   save the dump all data from a running Lisp process into a file. The result
   was called the Lisp image and could be shipped to other version compatible
   implementations.Nowadays, having less control of the systems it runs in, a Lisp

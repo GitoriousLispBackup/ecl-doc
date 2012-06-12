@@ -24,10 +24,10 @@
   interrupt is delivered and a handler is invoked, the thread or even the
   whole program may be in an inconsistent state. For instance the thread may
   have acquired a lock, or it may be in the process of filling the fields of
-  a structure. Furthermore, sometimes the signal that a thread receives may
+  a structure. Furthermore, sometimes the signal that a process receives may
   not even be related to it, as in the case when a user presses Cltr-C
   and a SIGINT signal is delivered to an arbitrary thread, or when the
-  processed receives the Windows exception CTRL_CLOSE_EVENT denoting
+  process receives the Windows exception CTRL_CLOSE_EVENT denoting
   that the terminal window is being closed.</para>
 
   <para>Understanding this, POSIX restricts severely what functions can be
@@ -36,7 +36,7 @@
   to gracefully manage user interrupts, program exits, etc. In an attempt to
   solve this seemingly impossible problem, &ECL; has taken a pragmatic
   approach that works, it is rather safe, but involves some work on the &ECL;
-  maintainers and also on users that want to embedd &ECL; as a library.</para>
+  maintainers and also on users that want to embed &ECL; as a library.</para>
  </section>
 
  <section xml:id="ext.signals.kinds">
@@ -71,11 +71,11 @@
    is compiled with low security settings, performing mathematical operations
    without checks.</para>
 
-   <para>The second family of signals may seem are, but unfortunately they
+   <para>The second family of signals may seem rare, but unfortunately they
    still happen quite often. One scenario is wrong code that handles memory
    directly via FFI. Another one is undetected stack overflows, which typically
    result in access to protected memory regions. Finally, a very common cause
-   of this kind of exceptions is invoking a function that has been compiled
+   of these kind of exceptions is invoking a function that has been compiled
    with very low security settings with arguments that are not of the expected
    type -- for instance, passing a float when a structure is expected.</para>
 
@@ -88,7 +88,7 @@
 
    <para>Note that in neither of these cases we should let the signal pass
    unnoticed. Access violations and floating point exceptions may propagate
-   through the program causing more harm than it is wished for, and without
+   through the program causing more harm than expected, and without
    process interrupts we will not be able to stop and cancel different
    threads. The only question that remains, though, is whether such signals can
    be handled by the thread in which they were generated and how.</para>

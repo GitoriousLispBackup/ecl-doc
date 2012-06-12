@@ -53,15 +53,13 @@
     (return nil)))
 </programlisting>
 
-   <para>As explained in <xref linkend="ref.embed.cl_unwind_protect_begin"/>,
-   it is normally advisable to set up an unwind-protect frame to avoid the
-   embedded lisp code to perform arbitary transfers of control.</para>
+   <para>As explained in <xref linkend="ref.embed.cl_unwind_protect_begin" xrefstyle="select: label"/>,it is normally advisable to set up an unwind-protect frame to avoid the embedded lisp code to perform arbitary transfers of control.</para>
  </refsect1>
 
  <refsect1>
   <title>See also</title>
 
-  <para><xref linkend="ref.embed.cl_unwind_protect"/></para>
+  <para><link linkend="ref.embed.cl_unwind_protect"><function>cl_unwind_protect</function></link></para>
  </refsect1>
 </refentry>
 
