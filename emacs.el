@@ -62,7 +62,7 @@
 
 (setq ecl-doc-files
       (mapcar (lambda (x)
-		(set-buffer "emacs.el")
+		;(set-buffer "emacs.el")
 		(concat (subseq (buffer-file-name (current-buffer)) 0 -8) x))
 	      '(
 "ecl.xml"
