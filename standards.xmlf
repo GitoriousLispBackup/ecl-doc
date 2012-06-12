@@ -711,6 +711,8 @@ F
   <para>Some of these specialized types might not exist in your platform. This is detected using conditional reading and features (See <xref linkend="ansi.numbers.c-types"/>).</para>
  </section>
 
+ <xi:include href="ref_c_arrays.xml" xpointer="ansi.arrays.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
 <chapter xml:id="sec.ansi.strings">

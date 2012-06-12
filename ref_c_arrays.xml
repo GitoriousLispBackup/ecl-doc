@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter>
+<title>Arrays</title>
+<section xml:id="ansi.arrays.c-dict">
+<title>C Reference</title>
+  <refentry xml:id="ansi.arrays.c-types">
+    <refnamediv>
+      <refname>Types and constants</refname>
+      <refpurpose>C types, limits and enumerations</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Constants and types</title>
+
+      <synopsis><constant>ECL_ARRAY_RANK_LIMIT</constant></synopsis>
+
+      <synopsis><constant>ECL_ARRAY_DIMENSION_LIMIT</constant></synopsis>
+
+      <synopsis><constant>ECL_ARRAY_TOTAL_LIMIT</constant></synopsis>
+
+      <synopsis><type>typedef enum { ecl_aet_object, ...} cl_elttype;</type></synopsis>
+
+      <simplelist columns="4" type="horiz" xml:id="cl_elttype">
+	<member>Lisp or C type</member>
+	<member>Enumeration value</member>
+
+	<member>Lisp or C type</member>
+	<member>Enumeration value</member>
+
+	<member><type>t</type></member>
+	<member><type>ecl_aet_object</type></member>
+
+	<member><type>(unsigned-byte 1)</type></member>
+	<member><type>ecl_aet_bit</type></member>
+
+	<member><type>cl_fixnum</type></member>
+	<member><type>ecl_aet_fix</type></member>
+
+	<member><type>cl_index</type></member>
+	<member><type>ecl_aet_index</type></member>
+
+	<member><type>(unsigned-byte 8)</type></member>
+	<member><type>ecl_aet_b8</type></member>
+
+	<member><type>(signed-byte 8)</type></member>
+	<member><type>ecl_aet_i8</type></member>
+
+	<member><type>(unsigned-byte 16)</type></member>
+	<member><type>ecl_aet_b16</type></member>
+
+	<member><type>(signed-byte 16)</type></member>
+	<member><type>ecl_aet_i16</type></member>
+
+	<member><type>(unsigned-byte 32)</type></member>
+	<member><type>ecl_aet_b32</type></member>
+
+	<member><type>(signed-byte 32)</type></member>
+	<member><type>ecl_aet_i32</type></member>
+
+	<member><type>(unsigned-byte 64)</type></member>
+	<member><type>ecl_aet_b64</type></member>
+
+	<member><type>(signed-byte 64)</type></member>
+	<member><type>ecl_aet_i64</type></member>
+
+	<member><type>ecl_character</type></member>
+	<member><type>ecl_aet_ch</type></member>
+
+	<member><type>ecl_base_char</type></member>
+	<member><type>ecl_aet_bc</type></member>
+
+	<member><type>single-float</type></member>
+	<member><type>ecl_aet_sf</type></member>
+
+	<member><type>double-float</type></member>
+	<member><type>ecl_aet_df</type></member>
+      </simplelist>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>This list contains the constants that limit the rank of an array (<constant>ECL_ARRAY_RANK_LIMIT</constant>), the maximum size of each dimension (<constant>ECL_ARRAY_DIMENSION_LIMIT</constant>) and the maximum number of elements in an array (<constant>ECL_ARRAY_TOTAL_LIMIT</constant>).</para>
+
+      <para>&ECL; uses also internally a set of constants to describe the different specialized arrays. The constants form up the enumeration type <type>cl_elttype</type>. They are listed in the table above, which associates enumeration values with the corresponding Common Lisp element type.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname><function>ecl_aet_to_symbol</function>,
+      <function>ecl_symbol_to_aet</function></refname>
+      <refpurpose>To and from element types</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions</title>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_aet_to_symbol</function></funcdef>
+	  <paramdef>cl_elttype <parameter>param</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_elttype <function>ecl_symbol_to_aet</function></funcdef>
+	  <paramdef>cl_object <parameter>type</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para><function>ecl_aet_to_symbol</function> returns the Lisp type associated to the elements of that specialized array class. <function>ecl_symbol_to_aet</function> does the converse, computing the C constant that is associated to a Lisp elment type.</para>
+
+      <para>The functions may signal an error if any of the arguments is an invalid C or Lisp type.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>Constructors</refname>
+      <refpurpose>Creating arrays and vectors</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_alloc_simple_vector</function></funcdef>
+	  <paramdef>cl_elttype <parameter>element_type</parameter></paramdef>
+	  <paramdef>cl_index <parameter>length</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>si_make_vector</function></funcdef>
+	  <paramdef>cl_object <parameter>element_type</parameter></paramdef>
+	  <paramdef>cl_object <parameter>length</parameter></paramdef>
+	  <paramdef>cl_object <parameter>adjustablep</parameter></paramdef>
+	  <paramdef>cl_object <parameter>fill_pointerp</parameter></paramdef>
+	  <paramdef>cl_object <parameter>displaced_to</parameter></paramdef>
+	  <paramdef>cl_object <parameter>displacement</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>si_make_array</function></funcdef>
+	  <paramdef>cl_object <parameter>element_type</parameter></paramdef>
+	  <paramdef>cl_object <parameter>dimensions</parameter></paramdef>
+	  <paramdef>cl_object <parameter>adjustablep</parameter></paramdef>
+	  <paramdef>cl_object <parameter>fill_pointerp</parameter></paramdef>
+	  <paramdef>cl_object <parameter>displaced_to</parameter></paramdef>
+	  <paramdef>cl_object <parameter>displacement</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>The function <function>ecl_alloc_simple_vector</function> is the simplest constructor, creating a simple vector (i.e. non-adjustable and without a fill pointer), of the given size, preallocating the memory for the array data. The first argument, <replaceable>element_type</replaceable>, is a C constant that represents a valid array element type (See <link linkend="cl_elttype">cl_elttype</link>).</para>
+
+      <para>The function <function>si_make_vector</function> does the same job but allows creating an array with fill pointer, which is adjustable or displaced to another array.</para>
+      <itemizedlist>
+	<listitem><para><replaceable>element_type</replaceable> is now a Common Lisp type descriptor, which is a symbol or list denoting a valid element type</para></listitem>
+	<listitem><para><replaceable>dimension</replaceable> is a non-negative fixnum with the vector size.</para></listitem>
+	<listitem><para><replaceable>fill_pointerp</replaceable> is either <symbol>Cnil</symbol> or a non-negative fixnum denoting the fill pointer value.</para></listitem>
+	<listitem><para><replaceable>displaced_to</replaceable> is either <symbol>Cnil</symbol> or a valid array to which the new array is displaced.</para></listitem>
+	<listitem><para><replaceable>displacement</replaceable> is either <symbol>Cnil</symbol> or a non-negative value with the array displacement.</para></listitem>
+      </itemizedlist>
+      <para>Finally, the function <function>si_make_array</function> does a similar job to <function>si_make_function</function> but its second argument, <replaceable>dimension</replaceable>, can be a list of dimensions, to create a multidimensional array.</para>
+
+    </refsect1>
+
+    <refsect1>
+      <title>Example</title>
+
+      <para>Create one-dimensional <type>base-string</type> with room for 11 characters:</para>
+<programlisting>
+cl_object s = ecl_alloc_simple_vector(ecl_aet_bc, 11);
+</programlisting>
+
+      <para>Create a one-dimensional <type>array</type> with a fill pointer</para>
+<programlisting>
+cl_object type = ecl_make_symbol("BYTE8","EXT");
+cl_object a = si_make_vector(ecl_make_fixnum(16), type, Cnil, /* adjustable */
+                             ecl_make_fixnum(0) /* fill-pointer */,
+                             Cnil /* displaced_to */,
+                             Cnil /* displacement */);
+</programlisting>
+
+      <para>An alternative formulation</para>
+<programlisting>
+cl_object type = ecl_make_symbol("BYTE8","EXT");
+cl_object a = si_make_array(ecl_make_fixnum(16), type, Cnil, /* adjustable */
+                            ecl_make_fixnum(0) /* fill-pointer */,
+                            Cnil /* displaced_to */,
+                            Cnil /* displacement */);
+</programlisting>
+
+      <para>Create a 2-by-3 two-dimensional <type>array</type>, specialized for an integer type:</para>
+<programlisting>
+cl_object dims = cl_list(2, ecl_make_fixnum(2), ecl_make_fixnum(3));
+cl_object type = ecl_make_symbol("BYTE8","EXT");
+cl_object a = si_make_array(dims, type, Cnil, /* adjustable */
+                            Cnil /* fill-pointer */,
+                            Cnil /* displaced_to */,
+                            Cnil /* displacement */);
+</programlisting>
+    </refsect1>
+
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>Accessors</refname>
+      <refpurpose>Reading and writing array elements</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions</title>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_aref</function></funcdef>
+	  <paramdef>cl_object <parameter>array</parameter></paramdef>
+	  <paramdef>cl_index <parameter>row_major_index</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_aset</function></funcdef>
+	  <paramdef>cl_object <parameter>array</parameter></paramdef>
+	  <paramdef>cl_index <parameter>row_major_index</parameter></paramdef>
+	  <paramdef>cl_object <parameter>new_value</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_aref1</function></funcdef>
+	  <paramdef>cl_object <parameter>vector</parameter></paramdef>
+	  <paramdef>cl_index <parameter>row_major_index</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_aset1</function></funcdef>
+	  <paramdef>cl_object <parameter>vector</parameter></paramdef>
+	  <paramdef>cl_index <parameter>row_major_index</parameter></paramdef>
+	  <paramdef>cl_object <parameter>new_value</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para><function>ecl_aref</function> accesses an array using the supplied  <replaceable>row_major_index</replaceable>, checking the array bounds and returning a Lisp object for the value at that position. <function>ecl_aset</function> does the converse, storing a Lisp value at the given <replaceable>row_major_index</replaceable>.</para>
+
+      <para>The first argument to <function>ecl_aref</function> or <function>ecl_aset</function> is an array of any number of dimensions. For an array of rank <replaceable>N</replaceable> and dimensions <replaceable>d1</replaceable>, <replaceable>d2</replaceable> ... up to <replaceable>dN</replaceable>, the row major index associated to the indices <replaceable>(i1,i2,...iN)</replaceable> is computed using the formula <code>i1+d1*(i2+d3*(i3+...))</code>.</para>
+
+      <para><function>ecl_aref1</function> and <function>ecl_aset1</function> are specialized versions that only work with one-dimensional arrays or vectors. They verify that the first argument is indeed a vector.</para>
+
+      <para>All functions above check that the index does not exceed the array bounds, that the values match the array element type and that the argument is an array (or a vector). If these conditions are not met, a type error is signaled.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>Array properties</refname>
+      <refpurpose>Array size, fill pointer, etc</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_elttype <function>ecl_array_elttype</function></funcdef>
+	  <paramdef>cl_object <parameter>array</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_index <function>ecl_array_rank</function></funcdef>
+	  <paramdef>cl_object <parameter>array</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_index <function>ecl_array_dimension</function></funcdef>
+	  <paramdef>cl_object <parameter>array</parameter></paramdef>
+	  <paramdef>cl_index <parameter>index</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>These functions query various properties of the arrays. Some of them belong to the list of functions in the Common Lisp package, without any need for specialized versions. More precisely</para>
+      <itemizedlist>
+	<listitem><para><function>ecl_array_elttype</function> returns the array element type, with the encoding found in the enumeration <link linkend="cl_elttype">cl_elttype</link>.</para></listitem>
+	<listitem><para><function>ecl_array_rank</function> returns the number of dimensions of the vector or array.</para></listitem>
+	<listitem><para><function>ecl_array_dimension</function> queries the dimension of an array, where <replaceable>index</replaceable> is a non-negative integer between 0 and <code>ecl_array_dimension(array)-1</code>.</para></listitem>
+      </itemizedlist>
+    </refsect1>
+  </refentry>
+</section>
+</chapter>
+</book>
