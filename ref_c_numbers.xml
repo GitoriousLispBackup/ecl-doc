@@ -8,7 +8,7 @@
 <title>Numbers</title>
 <section xml:id="ansi.numbers.c-dict">
 <title>C Reference</title>
-<toc/>
+
   <refentry xml:id="ansi.numbers.c-types">
     <refnamediv>
       <refname>C types</refname>
@@ -580,6 +580,339 @@
     </refsect1>
 
   </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>ANSI Dictionary</refname>
+      <refpurpose>Translation from lisp symbols to C functions</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+<simplelist columns="2" type="horiz">
+<member>Lisp symbol</member>
+<member>C function</member>
+
+<member><ulink url="&clhs;f_eq_sle.htm"><symbol>=</symbol></ulink></member>
+<member><code>cl_object cl_E()</code></member>
+
+<member><ulink url="&clhs;f_eq_sle.htm"><symbol>/=</symbol></ulink></member>
+<member><code>cl_object cl_NE()</code></member>
+
+<member><ulink url="&clhs;f_eq_sle.htm"><symbol>&lt;</symbol></ulink></member>
+<member><code>cl_object cl_L()</code></member>
+
+<member><ulink url="&clhs;f_eq_sle.htm"><symbol>&gt;</symbol></ulink></member>
+<member><code>cl_object cl_G()</code></member>
+
+<member><ulink url="&clhs;f_eq_sle.htm"><symbol>&lt;=</symbol></ulink></member>
+<member><code>cl_object cl_LE()</code></member>
+
+<member><ulink url="&clhs;f_eq_sle.htm"><symbol>&gt;=</symbol></ulink></member>
+<member><code>cl_object cl_GE()</code></member>
+
+<member><ulink url="&clhs;f_max_m.htm"><symbol>max</symbol></ulink></member>
+<member><code>cl_object cl_max(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_max_m.htm"><symbol>min</symbol></ulink></member>
+<member><code>cl_object cl_min(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_minusp.htm"><symbol>minusp</symbol></ulink></member>
+<member><code>cl_object cl_minusp(cl_object real)</code></member>
+
+<member><ulink url="&clhs;f_minusp.htm"><symbol>plusp</symbol></ulink></member>
+<member><code>cl_object cl_plusp(cl_object real)</code></member>
+
+<member><ulink url="&clhs;f_zerop.htm"><symbol>zerop</symbol></ulink></member>
+<member><code>cl_object cl_zerop(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_floorc.htm"><symbol>floor</symbol></ulink></member>
+<member><code>cl_object cl_floor(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_floorc.htm"><symbol>ffloor</symbol></ulink></member>
+<member><code>cl_object cl_ffloor(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_floorc.htm"><symbol>ceiling</symbol></ulink></member>
+<member><code>cl_object cl_ceiling(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_floorc.htm"><symbol>fceiling</symbol></ulink></member>
+<member><code>cl_object cl_fceiling(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_floorc.htm"><symbol>truncate</symbol></ulink></member>
+<member><code>cl_object cl_truncate(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_floorc.htm"><symbol>ftruncate</symbol></ulink></member>
+<member><code>cl_object cl_ftruncate(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_floorc.htm"><symbol>round</symbol></ulink></member>
+<member><code>cl_object cl_round(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_floorc.htm"><symbol>fround</symbol></ulink></member>
+<member><code>cl_object cl_fround(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_sin_c.htm"><symbol>sin</symbol></ulink></member>
+<member><code>cl_object cl_sin(cl_object radians)</code></member>
+
+<member><ulink url="&clhs;f_sin_c.htm"><symbol>cos</symbol></ulink></member>
+<member><code>cl_object cl_cos(cl_object radians)</code></member>
+
+<member><ulink url="&clhs;f_sin_c.htm"><symbol>tan</symbol></ulink></member>
+<member><code>cl_object cl_tan(cl_object radians)</code></member>
+
+<member><ulink url="&clhs;f_asin_.htm"><symbol>asin</symbol></ulink></member>
+<member><code>cl_object cl_asin(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_asin_.htm"><symbol>acos</symbol></ulink></member>
+<member><code>cl_object cl_acos(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_asin_.htm"><symbol>atan</symbol></ulink></member>
+<member><code>cl_object cl_atan(cl_narg narg, cl_object number1, ...)</code></member>
+
+<member><ulink url="&clhs;c_number.htm"><symbol>sinh</symbol></ulink></member>
+<member><code>cl_object cl_sinh(cl_object number)</code></member>
+
+<member><ulink url="&clhs;c_number.htm"><symbol>cosh</symbol></ulink></member>
+<member><code>cl_object cl_cosh(cl_object number)</code></member>
+
+<member><ulink url="&clhs;c_number.htm"><symbol>tanh</symbol></ulink></member>
+<member><code>cl_object cl_tanh(cl_object number)</code></member>
+
+<member><ulink url="&clhs;c_number.htm"><symbol>asinh</symbol></ulink></member>
+<member><code>cl_object cl_asinh(cl_object number)</code></member>
+
+<member><ulink url="&clhs;c_number.htm"><symbol>cosh</symbol></ulink></member>
+<member><code>cl_object cl_acosh(cl_object number)</code></member>
+
+<member><ulink url="&clhs;c_number.htm"><symbol>atanh</symbol></ulink></member>
+<member><code>cl_object cl_atanh(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_st.htm"><symbol>*</symbol></ulink></member>
+<member><code>cl_object cl_X(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_pl.htm"><symbol>+</symbol></ulink></member>
+<member><code>cl_object cl_P(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f__.htm"><symbol>-</symbol></ulink></member>
+<member><code>cl_object cl_M(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_sl.htm"><symbol>/</symbol></ulink></member>
+<member><code>cl_object cl_N(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_1pl_1_.htm"><symbol>1+</symbol></ulink></member>
+<member><code>cl_object cl_1P()</code></member>
+
+<member><ulink url="&clhs;f_1pl_1_.htm"><symbol>1-</symbol></ulink></member>
+<member><code>cl_object cl_1M()</code></member>
+
+<member><ulink url="&clhs;f_abs.htm"><symbol>abs</symbol></ulink></member>
+<member><code>cl_object cl_abs(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_evenpc.htm"><symbol>evenp</symbol></ulink></member>
+<member><code>cl_object cl_evenp(cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_evenpc.htm"><symbol>oddp</symbol></ulink></member>
+<member><code>cl_object cl_oddp(cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_exp_e.htm"><symbol>exp</symbol></ulink></member>
+<member><code>cl_object cl_exp(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_exp_e.htm"><symbol>expt</symbol></ulink></member>
+<member><code>cl_object cl_expt(cl_object base, cl_object power)</code></member>
+
+<member><ulink url="&clhs;f_gcd.htm"><symbol>gcd</symbol></ulink></member>
+<member><code>cl_object cl_gcd(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_lcm.htm"><symbol>lcm</symbol></ulink></member>
+<member><code>cl_object cl_lcm(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_log.htm"><symbol>log</symbol></ulink></member>
+<member><code>cl_object cl_log(cl_narg narg, cl_object number, ...)</code></member>
+
+<member><ulink url="&clhs;f_mod_r.htm"><symbol>mod</symbol></ulink></member>
+<member><code>cl_object cl_mod(cl_object number, cl_object divisor)</code></member>
+
+<member><ulink url="&clhs;f_mod_r.htm"><symbol>rem</symbol></ulink></member>
+<member><code>cl_object cl_rem(cl_object number, cl_object divisor)</code></member>
+
+<member><ulink url="&clhs;f_signum.htm"><symbol>signum</symbol></ulink></member>
+<member><code>cl_object cl_signum(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_sqrt_.htm"><symbol>sqrt</symbol></ulink></member>
+<member><code>cl_object cl_sqrt(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_sqrt_.htm"><symbol>isqrt</symbol></ulink></member>
+<member><code>cl_object cl_isqrt(cl_object natural)</code></member>
+
+<member><ulink url="&clhs;f_mk_rnd.htm"><symbol>make-random-state</symbol></ulink></member>
+<member><code>cl_object cl_make_random_state(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_random.htm"><symbol>random</symbol></ulink></member>
+<member><code>cl_object cl_random(cl_narg narg, cl_object limit, ...)</code></member>
+
+<member><ulink url="&clhs;f_rnd_st.htm"><symbol>random-state-p</symbol></ulink></member>
+<member><code>cl_object cl_random_state_p(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_nump.htm"><symbol>numberp</symbol></ulink></member>
+<member><code>cl_object cl_numberp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_cis.htm"><symbol>cis</symbol></ulink></member>
+<member><code>cl_object cl_cis(cl_object radians)</code></member>
+
+<member><ulink url="&clhs;f_comp_2.htm"><symbol>complex</symbol></ulink></member>
+<member><code>cl_object cl_complex(cl_narg narg, cl_object realpart, ...)</code></member>
+
+<member><ulink url="&clhs;f_comp_3.htm"><symbol>complexp</symbol></ulink></member>
+<member><code>cl_object cl_complexp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_conjug.htm"><symbol>conjugate</symbol></ulink></member>
+<member><code>cl_object cl_conjugate(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_phase.htm"><symbol>phase</symbol></ulink></member>
+<member><code>cl_object cl_phase(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_realpa.htm"><symbol>realpart</symbol></ulink></member>
+<member><code>cl_object cl_realpart(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_realpa.htm"><symbol>imagpart</symbol></ulink></member>
+<member><code>cl_object cl_imagpart(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_upgrad.htm"><symbol>upgraded-complex-part-type</symbol></ulink></member>
+<member><code>cl_object cl_upgraded_complex_part_type(cl_narg narg, cl_object typespec, ...)</code></member>
+
+<member><ulink url="&clhs;f_realp.htm"><symbol>realp</symbol></ulink></member>
+<member><code>cl_object cl_realp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_numera.htm"><symbol>numerator</symbol></ulink></member>
+<member><code>cl_object cl_numerator(cl_object rational)</code></member>
+
+<member><ulink url="&clhs;f_numera.htm"><symbol>denominator</symbol></ulink></member>
+<member><code>cl_object cl_denominator(cl_object rational)</code></member>
+
+<member><ulink url="&clhs;f_ration.htm"><symbol>rational</symbol></ulink></member>
+<member><code>cl_object cl_rational(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_ration.htm"><symbol>rationalize</symbol></ulink></member>
+<member><code>cl_object cl_rationalize(cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_rati_1.htm"><symbol>rationalp</symbol></ulink></member>
+<member><code>cl_object cl_rationalp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_ash.htm"><symbol>ash</symbol></ulink></member>
+<member><code>cl_object cl_ash(cl_object integer, cl_object count)</code></member>
+
+<member><ulink url="&clhs;f_intege.htm"><symbol>integer-length</symbol></ulink></member>
+<member><code>cl_object cl_integer_length(cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_inte_1.htm"><symbol>integerp</symbol></ulink></member>
+<member><code>cl_object cl_integerp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_parse_.htm"><symbol>parse-integer</symbol></ulink></member>
+<member><code>cl_object cl_parse_integer(cl_narg narg, cl_object string, ...)</code></member>
+
+<member><ulink url="&clhs;f_boole.htm"><symbol>boole</symbol></ulink></member>
+<member><code>cl_object cl_boole(cl_object op, cl_object integer1, cl_object integer2)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>logand</symbol></ulink></member>
+<member><code>cl_object cl_logand(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>logandc1</symbol></ulink></member>
+<member><code>cl_object cl_logandc1(cl_object integer1, cl_object integer2)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>logandc2</symbol></ulink></member>
+<member><code>cl_object cl_logandc2(cl_object integer1, cl_object integer2)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>logeqv</symbol></ulink></member>
+<member><code>cl_object cl_logeqv(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>logior</symbol></ulink></member>
+<member><code>cl_object cl_logior(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>lognand</symbol></ulink></member>
+<member><code>cl_object cl_lognand(cl_object integer1, cl_object integer2)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>lognor</symbol></ulink></member>
+<member><code>cl_object cl_lognor(cl_object integer1, cl_object integer2)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>lognot</symbol></ulink></member>
+<member><code>cl_object cl_lognot(cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>logorc1</symbol></ulink></member>
+<member><code>cl_object cl_logorc1(cl_object integer1, cl_object integer2)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>logorc2</symbol></ulink></member>
+<member><code>cl_object cl_logorc2(cl_object integer1, cl_object integer2)</code></member>
+
+<member><ulink url="&clhs;f_logand.htm"><symbol>logxor</symbol></ulink></member>
+<member><code>cl_object cl_logxor(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_logbtp.htm"><symbol>logbitp</symbol></ulink></member>
+<member><code>cl_object cl_logbitp(cl_object index, cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_logcou.htm"><symbol>logcount</symbol></ulink></member>
+<member><code>cl_object cl_logcount(cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_logtes.htm"><symbol>logtest</symbol></ulink></member>
+<member><code>cl_object cl_logtest(cl_object integer1, cl_object integer2)</code></member>
+
+<member><ulink url="&clhs;f_by_by.htm"><symbol>byte</symbol></ulink></member>
+<member><code>cl_object cl_byte(cl_object size, cl_object position)</code></member>
+
+<member><ulink url="&clhs;f_by_by.htm"><symbol>bytes-size</symbol></ulink></member>
+<member><code>cl_object cl_byte_size(cl_object bytespec)</code></member>
+
+<member><ulink url="&clhs;f_by_by.htm"><symbol>byte-position</symbol></ulink></member>
+<member><code>cl_object cl_byte_position(cl_object bytespec)</code></member>
+
+<member><ulink url="&clhs;f_deposi.htm"><symbol>deposit-field</symbol></ulink></member>
+<member><code>cl_object cl_deposit_field(cl_object newbyte, cl_object bytespec, cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_dpb.htm"><symbol>dpb</symbol></ulink></member>
+<member><code>cl_object cl_dpb(cl_object newbyte, cl_object bytespec, cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_ldb.htm"><symbol>ldb</symbol></ulink></member>
+<member><code>cl_object cl_ldb(cl_object bytespec, cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_ldb_te.htm"><symbol>ldb-test</symbol></ulink></member>
+<member><code>cl_object cl_ldb_test(cl_object bytespec, cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_mask_f.htm"><symbol>mask-field</symbol></ulink></member>
+<member><code>cl_object cl_mask_field(cl_object bytespec, cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_dec_fl.htm"><symbol>decode-float</symbol></ulink></member>
+<member><code>cl_object cl_decode_float(cl_object float)</code></member>
+
+<member><ulink url="&clhs;f_dec_fl.htm"><symbol>scale-float</symbol></ulink></member>
+<member><code>cl_object cl_scale_float(cl_object float, cl_object integer)</code></member>
+
+<member><ulink url="&clhs;f_dec_fl.htm"><symbol>float-radix</symbol></ulink></member>
+<member><code>cl_object cl_float_radix(cl_object float)</code></member>
+
+<member><ulink url="&clhs;f_dec_fl.htm"><symbol>float-sign</symbol></ulink></member>
+<member><code>cl_object cl_float_sign(cl_narg narg, cl_object float1, ...)</code></member>
+
+<member><ulink url="&clhs;f_dec_fl.htm"><symbol>float-digits</symbol></ulink></member>
+<member><code>cl_object cl_float_digits(cl_object float)</code></member>
+
+<member><ulink url="&clhs;f_dec_fl.htm"><symbol>float-precision</symbol></ulink></member>
+<member><code>cl_object cl_float_precision(cl_object float)</code></member>
+
+<member><ulink url="&clhs;f_dec_fl.htm"><symbol>integer-decode-float</symbol></ulink></member>
+<member><code>cl_object cl_integer_decode_float(cl_object float)</code></member>
+
+<member><ulink url="&clhs;f_float.htm"><symbol>float</symbol></ulink></member>
+<member><code>cl_object cl_float(cl_narg narg, cl_object number)</code></member>
+
+<member><ulink url="&clhs;f_floatp.htm"><symbol>floatp</symbol></ulink></member>
+<member><code>cl_object cl_floatp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_arithm.htm"><symbol>arithmetic-error-operands</symbol></ulink></member>
+<member><code>[Only in Common Lisp]</code></member>
+
+<member><ulink url="&clhs;f_arithm.htm"><symbol>arithmetic-error-operation</symbol></ulink></member>
+<member><code>[Only in Common Lisp]</code></member>
+</simplelist>
+    </refsynopsisdiv>
+  </refentry>
+
 </section>
 </chapter>
 </book>

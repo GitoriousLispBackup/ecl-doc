@@ -204,6 +204,114 @@
     </refsect1>
   </refentry>
 
+  <refentry>
+    <refnamediv>
+      <refname>ANSI Dictionary</refname>
+      <refpurpose>Translation from lisp symbols to C functions</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+<simplelist columns="2" type="horiz">
+<member>Lisp symbol</member>
+<member>C function</member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char=</symbol></ulink></member>
+<member><code>cl_object cl_charE(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char/=</symbol></ulink></member>
+<member><code>cl_object cl_charNE(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char&lt;</symbol></ulink></member>
+<member><code>cl_object cl_charL(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char&gt;</symbol></ulink></member>
+<member><code>cl_object cl_charG(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char&lt;=</symbol></ulink></member>
+<member><code>cl_object cl_charLE(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char&gt;=</symbol></ulink></member>
+<member><code>cl_object cl_charGE(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char-equal</symbol></ulink></member>
+<member><code>cl_object cl_char_equal(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char-not-equal</symbol></ulink></member>
+<member><code>cl_object cl_char_not_equal(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char-lessp</symbol></ulink></member>
+<member><code>cl_object cl_char_lessp(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char-greaterp</symbol></ulink></member>
+<member><code>cl_object cl_char_greaterp(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char-not-greaterp</symbol></ulink></member>
+<member><code>cl_object cl_char_not_greaterp(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_chareq.htm"><symbol>char-not-lessp</symbol></ulink></member>
+<member><code>cl_object cl_char_not_lessp(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_ch.htm"><symbol>character</symbol></ulink></member>
+<member><code>cl_object cl_character(cl_object char_designator)</code></member>
+
+<member><ulink url="&clhs;f_chp.htm"><symbol>characterp</symbol></ulink></member>
+<member><code>cl_object cl_characterp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_alpha_.htm"><symbol>alpha-char-p</symbol></ulink></member>
+<member><code>cl_object cl_alpha_char_p(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_alphan.htm"><symbol>alphanumericp</symbol></ulink></member>
+<member><code>cl_object cl_alphanumericp(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_digit_.htm"><symbol>digit-char</symbol></ulink></member>
+<member><code>cl_object cl_digit_char(cl_narg narg, cl_object character, ...)</code></member>
+
+<member><ulink url="&clhs;f_digi_1.htm"><symbol>digit-char-p</symbol></ulink></member>
+<member><code>cl_object cl_digit_char_p(cl_narg narg, cl_object character, ...)</code></member>
+
+<member><ulink url="&clhs;f_graphi.htm"><symbol>graphic-char-p</symbol></ulink></member>
+<member><code>cl_object cl_graphic_char_p(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_std_ch.htm"><symbol>standard-char-p</symbol></ulink></member>
+<member><code>cl_object cl_standard_char_p(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_char_u.htm"><symbol>char_upcase</symbol></ulink></member>
+<member><code>cl_object cl_char_upcase(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_char_u.htm"><symbol>char-downcase</symbol></ulink></member>
+<member><code>cl_object cl_char_downcase(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_upper_.htm"><symbol>upper-case-p</symbol></ulink></member>
+<member><code>cl_object cl_upper_case_p(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_upper_.htm"><symbol>lower-case-p</symbol></ulink></member>
+<member><code>cl_object cl_lower_case_p(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_upper_.htm"><symbol>both-case-p</symbol></ulink></member>
+<member><code>cl_object cl_both_case_p(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_char_c.htm"><symbol>char-code</symbol></ulink></member>
+<member><code>cl_object cl_char_code(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_char_i.htm"><symbol>char-int</symbol></ulink></member>
+<member><code>cl_object cl_char_int(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_code_c.htm"><symbol>code-char</symbol></ulink></member>
+<member><code>cl_object cl_code_char(cl_object code)</code></member>
+
+<member><ulink url="&clhs;f_char_n.htm"><symbol>char-name</symbol></ulink></member>
+<member><code>cl_object cl_char_name(cl_object character)</code></member>
+
+<member><ulink url="&clhs;f_name_c.htm"><symbol>name-char</symbol></ulink></member>
+<member><code>cl_object cl_name_char(cl_object name)</code></member>
+</simplelist>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para></para>
+    </refsect1>
+  </refentry>
 </section>
 </chapter>
 </book>

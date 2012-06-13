@@ -36,5 +36,6 @@
 <!ENTITY NULL "<constant>NULL</constant>">
 <!ENTITY C "<acronym>C</acronym>">
 <!ENTITY defsystem "<application>defsystem</application>">
+<!ENTITY clhs "http://www.lispworks.com/documentation/HyperSpec/Body/">
 <!ENTITY cygwin "<ulink url='http://www.cygwin.com/'><application>Cygwin</application></ulink>">
 <!ENTITY mingw "<ulink url='http://mingw.sourceforge.net/'><application>Mingw</application></ulink>">

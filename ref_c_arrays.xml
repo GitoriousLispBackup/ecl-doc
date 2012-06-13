@@ -331,6 +331,137 @@ cl_object a = si_make_array(dims, type, Cnil, /* adjustable */
       </itemizedlist>
     </refsect1>
   </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>ANSI Dictionary</refname>
+      <refpurpose>Translation from lisp symbols to C functions</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+<simplelist columns="2" type="horiz">
+<member>Lisp symbol</member>
+<member>C function</member>
+
+<member><ulink url="&clhs;f_mk_ar.htm"><symbol>make-array</symbol></ulink></member>
+<member><code>cl_object cl_make_array(cl_narg narg, cl_object dimension...)</code></member>
+
+<member><ulink url="&clhs;f_adjust.htm"><symbol>adjust-array</symbol></ulink></member>
+<member><code>cl_object cl_adjust_array(cl_narg narg, cl_object array, cl_object dimensions, ...)</code></member>
+
+<member><ulink url="&clhs;f_adju_1.htm"><symbol>adjustable-array-p</symbol></ulink></member>
+<member><code>cl_object cl_adjustable_array_p(cl_object array)</code></member>
+
+<member><ulink url="&clhs;f_aref.htm"><symbol>aref</symbol></ulink></member>
+<member><code>cl_object cl_aref(cl_narg narg, cl_object array, ...)</code></member>
+
+<member><ulink url="&clhs;f_ar_dim.htm"><symbol>array-dimension</symbol></ulink></member>
+<member><code>cl_object cl_array_dimension(cl_object array, cl_object index)</code></member>
+
+<member><ulink url="&clhs;f_ar_d_1.htm"><symbol>array-dimensions</symbol></ulink></member>
+<member><code>cl_object cl_array_dimension(cl_object array)</code></member>
+
+<member><ulink url="&clhs;f_ar_ele.htm"><symbol>array-element-type</symbol></ulink></member>
+<member><code>cl_object cl_array_element_type(cl_object array)</code></member>
+
+<member><ulink url="&clhs;f_ar_has.htm"><symbol>array-has-fill-pointer-p</symbol></ulink></member>
+<member><code>cl_object cl_array_has_fill_pointer_p(cl_object array)</code></member>
+
+<member><ulink url="&clhs;f_ar_dis.htm"><symbol>array-displacement</symbol></ulink></member>
+<member><code>cl_object cl_array_displacement(cl_object array)</code></member>
+
+<member><ulink url="&clhs;f_ar_in_.htm"><symbol>array-in-bounds-p</symbol></ulink></member>
+<member><code>cl_object cl_array_in_bounds_p(cl_narg narg, cl_object array, ...)</code></member>
+
+<member><ulink url="&clhs;f_ar_ran.htm"><symbol>array-rank</symbol></ulink></member>
+<member><code>cl_object cl_array_rank(cl_object array)</code></member>
+
+<member><ulink url="&clhs;f_ar_row.htm"><symbol>array-row-major-index</symbol></ulink></member>
+<member><code>cl_object cl_array_row_major_index(cl_narg narg, cl_object array, ...)</code></member>
+
+<member><ulink url="&clhs;f_ar_tot.htm"><symbol>array-total-size</symbol></ulink></member>
+<member><code>cl_object cl_array_total_size(cl_object array)</code></member>
+
+<member><ulink url="&clhs;f_arrayp.htm"><symbol>arrayp</symbol></ulink></member>
+<member><code>cl_object cl_arrayp(cl_object array)</code></member>
+
+<member><ulink url="&clhs;f_fill_p.htm"><symbol>fill-pointer</symbol></ulink></member>
+<member><code>cl_object cl_fill_pointer(cl_object array)</code></member>
+
+<member><ulink url="&clhs;f_row_ma.htm"><symbol>row-major-aref</symbol></ulink></member>
+<member><code>cl_object cl_row_major_aref(cl_object array, cl_object index)</code></member>
+
+<member><ulink url="&clhs;f_upgr_1.htm"><symbol>upgraded-array-element-type</symbol></ulink></member>
+<member><code>cl_object cl_upgraded_array_element_type(cl_narg narg, cl_object typespec, ...) </code></member>
+
+<member><ulink url="&clhs;f_smp_ve.htm"><symbol>simple-vector-p</symbol></ulink></member>
+<member><code>cl_object cl_simple_vector_p(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_svref.htm"><symbol>svref</symbol></ulink></member>
+<member><code>cl_object cl_svref(cl_object simple_vector, cl_object index)</code></member>
+
+<member><ulink url="&clhs;f_vector.htm"><symbol>vector</symbol></ulink></member>
+<member><code>cl_object cl_vector(cl_narg narg, ...)</code></member>
+
+<member><ulink url="&clhs;f_vec_po.htm"><symbol>vector-pop</symbol></ulink></member>
+<member><code>cl_object cl_vector_pop(cl_object vector)</code></member>
+
+<member><ulink url="&clhs;f_vec_ps.htm"><symbol>vector-push</symbol></ulink></member>
+<member><code>cl_object cl_vector_push(cl_object new_element, cl_object vector)</code></member>
+
+<member><ulink url="&clhs;f_vec_ps.htm"><symbol>vector-push-extend</symbol></ulink></member>
+<member><code>cl_object cl_vector_push_extend(cl_narg narg, cl_object new_element, cl_object vector, ...)</code></member>
+
+<member><ulink url="&clhs;f_vecp.htm"><symbol>vectorp</symbol></ulink></member>
+<member><code>cl_object cl_vectorp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_bt_sb.htm"><symbol>bit</symbol></ulink></member>
+<member><code>cl_object cl_bit(cl_narg narg, cl_object bit_array, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_sb.htm"><symbol>sbit</symbol></ulink></member>
+<member><code>cl_object cl_sbit(cl_narg narg, cl_object bit_array, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-and</symbol></ulink></member>
+<member><code>cl_object cl_bit_and(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-andc1</symbol></ulink></member>
+<member><code>cl_object cl_bit_andc1(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-andc2</symbol></ulink></member>
+<member><code>cl_object cl_bit_andc2(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-eqv</symbol></ulink></member>
+<member><code>cl_object cl_bit_eqv(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-ior</symbol></ulink></member>
+<member><code>cl_object cl_bit_ior(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-nand</symbol></ulink></member>
+<member><code>cl_object cl_bit_nand(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-nor</symbol></ulink></member>
+<member><code>cl_object cl_bit_nor(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-orc1</symbol></ulink></member>
+<member><code>cl_object cl_bit_orc1(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-orc2</symbol></ulink></member>
+<member><code>cl_object cl_bit_orc1(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-xor</symbol></ulink></member>
+<member><code>cl_object cl_bit_xor(cl_narg narg, cl_object array1, cl_object array2, ...)</code></member>
+
+<member><ulink url="&clhs;f_bt_and.htm"><symbol>bit-not</symbol></ulink></member>
+<member><code>cl_object cl_bit_not(cl_narg narg, cl_object array, ...)</code></member>
+
+</simplelist>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para></para>
+    </refsect1>
+  </refentry>
 </section>
 </chapter>
 </book>

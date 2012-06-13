@@ -64,6 +64,86 @@ cl_object remainder = ecl_nth_value(env, 1);
 </programlisting>
     </refsect1>
   </refentry>
+
+  <refentry>
+    <refnamediv>
+      <refname>ANSI Dictionary</refname>
+      <refpurpose>Translation from lisp symbols to C functions</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+<simplelist columns="2" type="horiz">
+<member>Lisp symbol</member>
+<member>C function</member>
+
+<member><ulink url="&clhs;f_apply.htm"><symbol>apply</symbol></ulink></member>
+<member><code>cl_object cl_apply(cl_narg narg, cl_object function, ...)</code></member>
+
+<member><ulink url="&clhs;f_fdefin.htm"><symbol>fdefinition</symbol></ulink></member>
+<member><code>cl_object cl_fdefinition(cl_object function_name)</code></member>
+
+<member><ulink url="&clhs;f_fbound.htm"><symbol>fboundp</symbol></ulink></member>
+<member><code>cl_object cl_fboundp(cl_object function_name)</code></member>
+
+<member><ulink url="&clhs;f_fmakun.htm"><symbol>fmakunbound</symbol></ulink></member>
+<member><code>cl_object cl_fmakunbound(cl_object function_name)</code></member>
+
+<member><ulink url="&clhs;f_funcal.htm"><symbol>funcall</symbol></ulink></member>
+<member><code>cl_object cl_funcall(cl_narg narg, cl_object function, ...)</code></member>
+
+<member><ulink url="&clhs;f_fn_lam.htm"><symbol>function-lambda-expression</symbol></ulink></member>
+<member><code>cl_object cl_function_lambda_expression(cl_object function)</code></member>
+
+<member><ulink url="&clhs;f_fnp.htm"><symbol>functionp</symbol></ulink></member>
+<member><code>cl_object cl_functionp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_cmpd_f.htm"><symbol>compiled-function-p</symbol></ulink></member>
+<member><code>cl_object cl_compiled_function_p(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_not.htm"><symbol>not</symbol></ulink></member>
+<member><code>cl_object cl_not(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_eq.htm"><symbol>eq</symbol></ulink></member>
+<member><code>cl_object cl_eq(cl_object x, cl_object y)</code></member>
+
+<member><ulink url="&clhs;f_eql.htm"><symbol>eql</symbol></ulink></member>
+<member><code>cl_object cl_eql(cl_object x, cl_object y)</code></member>
+
+<member><ulink url="&clhs;f_equal.htm"><symbol>equal</symbol></ulink></member>
+<member><code>cl_object cl_equal(cl_object x, cl_object y)</code></member>
+
+<member><ulink url="&clhs;f_equalp.htm"><symbol>equalp</symbol></ulink></member>
+<member><code>cl_object cl_equalp(cl_object x, cl_object y)</code></member>
+
+<member><ulink url="&clhs;f_identi.htm"><symbol>identity</symbol></ulink></member>
+<member><code>cl_object cl_identity(cl_object x)</code></member>
+
+<member><ulink url="&clhs;f_comple.htm"><symbol>complement</symbol></ulink></member>
+<member><code>cl_object cl_complement(cl_object function)</code></member>
+
+<member><ulink url="&clhs;f_cons_1.htm"><symbol>constantly</symbol></ulink></member>
+<member><code>cl_object cl_constantly(cl_object value)</code></member>
+
+<member><ulink url="&clhs;f_every.htm"><symbol>every</symbol></ulink></member>
+<member><code>cl_object cl_every(cl_narg narg, cl_object predicate, ...)</code></member>
+
+<member><ulink url="&clhs;f_some.htm"><symbol>some</symbol></ulink></member>
+<member><code>cl_object cl_some(cl_narg narg, cl_object predicate, ...)</code></member>
+
+<member><ulink url="&clhs;f_notevery.htm"><symbol>notevery</symbol></ulink></member>
+<member><code>cl_object cl_notevery(cl_narg narg, cl_object predicate, ...)</code></member>
+
+<member><ulink url="&clhs;f_notany.htm"><symbol>notany</symbol></ulink></member>
+<member><code>cl_object cl_notany(cl_narg narg, cl_object predicate, ...)</code></member>
+
+<member><ulink url="&clhs;f_vals_l.htm"><symbol>values-list</symbol></ulink></member>
+<member><code>cl_object cl_values_list(cl_object list)</code></member>
+
+<member><ulink url="&clhs;f_get_se.htm"><symbol>get-setf-expansion</symbol></ulink></member>
+<member><code>cl_object cl_get_setf_expansion(cl_narg narg, cl_object place, ...)</code></member>
+</simplelist>
+    </refsynopsisdiv>
+  </refentry>
 </section>
 </chapter>
 </book>
