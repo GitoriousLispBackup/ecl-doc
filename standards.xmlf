@@ -190,6 +190,13 @@
 
 </chapter>
 
+<chapter xml:id="ansi.types-and-classes">
+ <title>Types and classes</title>
+
+ <xi:include href="ref_c_types_and_classes.xml" xpointer="ansi.types-and-classes.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+</chapter>
+
 <chapter xml:id="ansi.data-and-control">
  <title>Data and control flow</title>
 
@@ -577,6 +584,12 @@ F
  <xi:include href="ref_c_characters.xml" xpointer="ansi.characters.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
 
+<chapter xml:id="sec.ansi.conses">
+ <title>Conses</title>
+
+ <xi:include href="ref_c_conses.xml" xpointer="ansi.conses.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+
 <chapter xml:id="sec.ansi.arrays">
  <title>Arrays</title>
  <section xml:id="sec.ansi.array-limits">
@@ -765,16 +778,25 @@ F
 
 </chapter>
 
+<chapter xml:id="sec.ansi.sequences">
+ <title>Sequences</title>
+
+ <xi:include href="ref_c_sequences.xml" xpointer="ansi.sequences.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+
 <chapter xml:id="sec.ansi.hash-tables">
  <title>Hash tables</title>
 
  <para>...</para>
+
+ <xi:include href="ref_c_hash_tables.xml" xpointer="ansi.hash-tables.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
-<chapter xml:id="sec.ansi.pathnames">
- <title>Pathnames</title>
+<chapter xml:id="sec.ansi.filenames">
+ <title>Filenames</title>
 
- <section xml:id="sec.ansi.pathnames.syntax">
+ <section xml:id="sec.ansi.filenames.syntax">
   <title>Syntax</title>
   <para>A pathname in the file system of Common-Lisp consists of six
   elements: host, device, directory, name, type and version. Pathnames are
@@ -965,6 +987,9 @@ F
 
   <para>The matching rules in &CommonLisp; and &ECL; are simple but have some unintuitive consequences when compared to Unix/DOS rules. The most important one is that directories must always end with a trailing slash <literal>/</literal>, as in <literal>#p"/my/home/directory/"</literal>. Second to that, <symbol>NIL</symbol> values can only be matched by <symbol>NIL</symbol> and <symbol>:WILD</symbol>. Hence, <literal>"*"</literal> can only match files without file type. For some examples see <xref linkend="sec.ansi.files.directory"/>.</para>
   </section>
+
+ <xi:include href="ref_c_filenames.xml" xpointer="ansi.filenames.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
 <chapter xml:id="sec.ansi.files">
@@ -1014,6 +1039,8 @@ F
    </table>
   </section>
  </section>
+
+ <xi:include href="ref_c_files.xml" xpointer="ansi.files.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 </chapter>
 
@@ -1067,6 +1094,9 @@ F
   significant for the content. This information is stored as a single-byte
   header at the beginning of the file.</para>
  </section>
+
+ <xi:include href="ref_c_streams.xml" xpointer="ansi.streams.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
 <chapter xml:id="sec.ansi.printer">

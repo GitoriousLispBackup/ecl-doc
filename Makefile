@@ -12,6 +12,8 @@ XMLFILES= ecl.xml bibliography.xmlf clos.xmlf compiler.xmlf			\
 	mop.xmlf embed.xmlf ref_embed.xmlf signals.xmlf				\
 	ref_c_evaluation.xml ref_c_data_flow.xml ref_c_symbols.xml		\
 	ref_c_numbers.xml ref_c_characters.xml ref_c_strings.xml		\
+	ref_c_conses.xml ref_c_hash_tables.xml ref_c_sequences.xml		\
+	ref_c_filenames.xml							\
 	ref_signals.xmlf ref_c_arrays.xml $(GEN_XMLFILES)
 
 XSLFILES= xsl/lispfunc.xml xsl/customization.xml xsl/refentryintoc.xml
