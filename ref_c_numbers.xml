@@ -905,10 +905,10 @@
 <member><code>cl_object cl_floatp(cl_object object)</code></member>
 
 <member><ulink url="&clhs;f_arithm.htm"><symbol>arithmetic-error-operands</symbol></ulink></member>
-<member><code>[Only in Common Lisp]</code></member>
+<member><code>&OCL;</code></member>
 
 <member><ulink url="&clhs;f_arithm.htm"><symbol>arithmetic-error-operation</symbol></ulink></member>
-<member><code>[Only in Common Lisp]</code></member>
+<member><code>&OCL;</code></member>
 </simplelist>
     </refsynopsisdiv>
   </refentry>

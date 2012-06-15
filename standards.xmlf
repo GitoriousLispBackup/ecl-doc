@@ -7,41 +7,68 @@
 <chapter xml:id="ansi.overview">
  <title>Overview</title>
 
- <para>&ECL; supports all Common-Lisp data types exactly as defined in the
- &ANSI;. All functions and macros are expected to behave as described in that
- document and in the HyperSpec &HyperSpec; which is the online version of
- &ANSI;. This part of the book is simply a complement to those official documents and its role is to describes implementation dependent features, such as
- <itemizedlist>
-  <listitem><para>Platform dependent limits.</para></listitem>
-  <listitem><para>Behavior which is marked as <quote>implementation
-  specific</quote> in the standard.</para></listitem>
-  <listitem><para>Some corner cases which are not described in
-  &ANSI;.</para></listitem>
-  <listitem><para>The philosophy behind certain implementation
-  choices.</para></listitem>
- </itemizedlist>
- </para>
+ <section>
+  <title>This manual</title>
 
- <para>In addition to this, the document provides a reference for C programmers that want to create, manipulate and operate with Common Lisp objects. This material is contained in each of the "C Reference" sections below. Note that much of what is presented in those sections is redundant with the Common Lisp specification. In particular, there is a one-to-one mapping between types and functions which should be obvious given the rules explained in <xref linkend="ansi.overview.c-dict"/>.</para>
+  <para>&ECL; supports all Common-Lisp data types exactly as defined in the &ANSI;. All functions and macros are expected to behave as described in that document and in the HyperSpec &HyperSpec; which is the online version of &ANSI;. This part of the book is simply a complement to those official documents and its role is to describes implementation dependent features, such as
+  <itemizedlist>
+   <listitem><para>Platform dependent limits.</para></listitem>
+   <listitem><para>Behavior which is marked as <quote>implementation specific</quote> in the standard.</para></listitem>
+   <listitem><para>Some corner cases which are not described in &ANSI;.</para></listitem>
+   <listitem><para>The philosophy behind certain implementation choices.</para></listitem>
+  </itemizedlist>
+  </para>
 
- <para>The following sections are organized following the structure in the
- online version of the standard &HyperSpec;: each chapter complements the one
- with the same name in the standard.</para>
+  <para>In addition to this, the document provides a reference for C programmers that want to create, manipulate and operate with Common Lisp objects. This material is contained in each of the "C Reference" sections below. Note that much of what is presented in those sections is redundant with the Common Lisp specification. In particular, there is a one-to-one mapping between types and functions which should be obvious given the rules explained in <xref linkend="ansi.overview.c-dict"/>.</para>
+
+  <para>The following sections are organized following the structure in the online version of the standard &HyperSpec;: each chapter complements the one with the same name in the standard.</para>
+ </section>
 
  <section xml:id="ansi.overview.c-dict">
   <title>C Reference</title>
 
-  <para>As explained in the introduction, each of the chapters in the Common Lisp standard can also be implemented using C functions and types. The mapping between both languages is done using a small set of rules described below.</para>
-  <itemizedlist>
-   <listitem><para>Functions in the Common Lisp ("CL") package are prefixed with the characters "cl_".</para></listitem>
-   <listitem><para>Functions with the prefixes "si_" or "_ecl" should never be invoked by the user, as they are for internal use in &ECL; and may change in the future.</para></listitem>
-   <listitem><para>If a function takes only a fixed number of arguments, it is mapped to a C function with also a fixed number of arguments. For instance, <symbol>COS</symbol> maps to <code>cl_object cl_cos(cl_object)</code>, which takes a single Lisp object and returns a Lisp object of type <type>FLOAT</type>.</para></listitem>
-   <listitem><para>If the function takes a variable number of arguments, its signature consists on an integer with the number of arguments and zero or more of required arguments and then a C vararg. This is the case of <code>cl_object cl_list(cl_narg narg, ...)</code>, which can be invoked without arguments, as in <code>cl_list(0)</code>, with one, <code>cl_list(1, a)</code>, etc.</para></listitem>
-   <listitem><para>Functions return at least one value, which is either the first value output by the function, or <symbol>NIL</symbol>. The extra values may be retrieved immediately after the function call using the function <link linkend="ecl_nth_value"><function>ecl_nth_value</function></link>.</para></listitem>
-  </itemizedlist>
-  <para>The only exception to these rules are functions which are devoted only to C/C++ programming, with tasks such as coercion of objects to and from C types, optimized functions, inlined macroexpansions, etc. These functions and macros typically carry the prefix "ecl_" or "ECL_" and only return one value, if any.</para>
- </section>
+  <section>
+   <title>Naming conventions</title>
 
+   <para>As explained in the introduction, each of the chapters in the Common Lisp standard can also be implemented using C functions and types. The mapping between both languages is done using a small set of rules described below.</para>
+   <itemizedlist>
+    <listitem><para>Functions in the Common Lisp ("CL") package are prefixed with the characters "cl_", functions in the System ("SI") package are prefix with "si_", etc, etc.</para></listitem>
+    <listitem><para>If a function takes only a fixed number of arguments, it is mapped to a C function with also a fixed number of arguments. For instance, <symbol>COS</symbol> maps to <code>cl_object cl_cos(cl_object)</code>, which takes a single Lisp object and returns a Lisp object of type <type>FLOAT</type>.</para></listitem>
+    <listitem><para>If the function takes a variable number of arguments, its signature consists on an integer with the number of arguments and zero or more of required arguments and then a C vararg. This is the case of <code>cl_object cl_list(cl_narg narg, ...)</code>, which can be invoked without arguments, as in <code>cl_list(0)</code>, with one, <code>cl_list(1, a)</code>, etc.</para></listitem>
+    <listitem><para>Functions return at least one value, which is either the first value output by the function, or <symbol>NIL</symbol>. The extra values may be retrieved immediately after the function call using the function <link linkend="ecl_nth_value"><function>ecl_nth_value</function></link>.</para></listitem>
+   </itemizedlist>
+   <para>In addition to the Common Lisp core functions (cl_*), there exist functions which are devoted only to C/C++ programming, with tasks such as coercion of objects to and from C types, optimized functions, inlined macroexpansions, etc. These functions and macros typically carry the prefix "ecl_" or "ECL_" and only return one value, if any.</para>
+  </section>
+
+  <section xml:id="ansi.OCL">
+   <title>Only in Common Lisp</title>
+
+   <para>Some parts of the language are not available as C functions. They are either absent or marked in the Common Lisp dictionary using the tag &OCL;. This typically happens with non-translatable constructs such as</para>
+   <itemizedlist>
+    <listitem><para>Common Lisp macros such as <symbol>with-open-files</symbol>.</para></listitem>
+    <listitem><para>Common Lisp special forms, such as <symbol>cond</symbol></para></listitem>
+    <listitem><para>Common Lisp generic functions, which cannot be written in C because of their dynamical dispatch and automatic redefinition properties.</para></listitem>
+   </itemizedlist>
+
+   <para>In most of those cases there exist straightforward alternatives using the constructs and functions in &ECL;. For example, <symbol>unwind-protect</symbol> can be implemented using a C macro which is provided by &ECL;</para>
+<programlisting>
+cl_env_ptr env = ecl_process_env();
+CL_UNWIND_PROTECT_BEGIN(env) {
+    /* protected code goes here */
+} CL_UNWIND_PROTECT_EXIT {
+    /* exit code goes here */
+} CL_UNWIND_PROTECT_END;
+</programlisting>
+
+   <para>Common Lisp generic functions can be directly accessed using <symbol>funcall</symbol>, as in the code below</para>
+<programlisting>
+cl_object name = ecl_make_symbol("MY-FUNCTION","CL-USER");
+cl_object output = cl_funcall(2, name, argument);
+</programlisting>
+
+   <para>Identifying these alternatives requires some knowledge of Common Lisp, which is why it is recommended to approach the embeddable components in &ECL; only when there is some familiarity with the language.</para>
+  </section>
+ </section>
 </chapter>
 
 <chapter xml:id="ansi.evaluation-and-compilation">
@@ -311,7 +338,14 @@ F
 
 </chapter>
 
-<chapter xml:id="Symbols">
+<chapter xml:id="ansi.objects">
+ <title>Objects</title>
+
+ <xi:include href="ref_c_objects.xml" xpointer="ansi.objects.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+</chapter>
+
+<chapter xml:id="ansi.symbols">
  <title>Symbols</title>
  <para>There are no implementation-specific limits on the size or content of
  symbol names. It is however not allowed to write on the strings which have
@@ -321,7 +355,7 @@ F
 
 </chapter>
 
-<chapter xml:id="sec.ansi.packages">
+<chapter xml:id="ansi.packages">
  <title>Packages</title>
 
  <table xml:id="table.all-packages">
@@ -404,12 +438,14 @@ F
  <package>XLIB</package> package when configuring and loading the
  <package>CLX</package> library.</para>
 
+ <xi:include href="ref_c_packages.xml" xpointer="ansi.packages.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
-<chapter xml:id="sec.ansi.numbers">
+<chapter xml:id="ansi.numbers">
  <title>Numbers</title>
 
- <section xml:id="sec.ansi.number-types">
+ <section xml:id="ansi.number-types">
   <title>Numeric types</title>
 
   <para>&ECL; supports all of the &CommonLisp; numeric tower, which is shown
@@ -487,7 +523,7 @@ F
   slower.</para>
  </section>
 
- <section xml:id="sec.ansi.random-states">
+ <section xml:id="ansi.random-states">
   <title>Random-States</title>
 
   <para>&ECL; relies internally on a 32-bit or 64-bit Mersenne-Twister random number generator, using a relatively large buffer to precompute about 5000 pseud-random bytes. This implies also that random states can be printed readably and also read, using the <literal>#$</literal> macro. There is no provision to create random states from user arrays, though.</para>
@@ -497,7 +533,7 @@ F
 
 </chapter>
 
-<chapter xml:id="sec.ansi.characters">
+<chapter xml:id="ansi.characters">
  <title>Characters</title>
  <para>&ECL; is fully ANSI Common-Lisp compliant in all aspects of the character
  data type, with the following peculiarities.</para>
@@ -540,7 +576,7 @@ F
   </informaltable>
  </section>
 
- <section xml:id="sec.ansi.character-names">
+ <section xml:id="ansi.character-names">
   <title>Character names</title>
 
   <para>All characters have a name. For non-printing characters between 0 and 32, and for 127 we use the ordinary <acronym>ASCII</acronym> names. Characters above 127 are printed and read using hexadecimal Unicode notation, with a <literal>U</literal> followed by 24 bit hexadecimal number, as in <literal>U0126</literal>.</para>
@@ -584,15 +620,15 @@ F
  <xi:include href="ref_c_characters.xml" xpointer="ansi.characters.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
 
-<chapter xml:id="sec.ansi.conses">
+<chapter xml:id="ansi.conses">
  <title>Conses</title>
 
  <xi:include href="ref_c_conses.xml" xpointer="ansi.conses.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
 
-<chapter xml:id="sec.ansi.arrays">
+<chapter xml:id="ansi.arrays">
  <title>Arrays</title>
- <section xml:id="sec.ansi.array-limits">
+ <section xml:id="ansi.array-limits">
   <title>Array limits</title>
 
   <para>&ECL; arrays can have up to 64 dimensions.  Common-Lisp constants
@@ -623,7 +659,7 @@ F
   </informaltable>
  </section>
 
- <section xml:id="sec.ansi.array-spec">
+ <section xml:id="ansi.array-spec">
   <title>Specializations</title>
 
   <para>&ECL; provides specialized array types for several element kinds. In the following table we list those types, together with the machine type which is used to implement them, and the expected size.</para>
@@ -728,7 +764,7 @@ F
 
 </chapter>
 
-<chapter xml:id="sec.ansi.strings">
+<chapter xml:id="ansi.strings">
  <title>Strings</title>
 
  <para>The &ECL; implementation of strings is ANSI Common-Lisp
@@ -778,13 +814,13 @@ F
 
 </chapter>
 
-<chapter xml:id="sec.ansi.sequences">
+<chapter xml:id="ansi.sequences">
  <title>Sequences</title>
 
  <xi:include href="ref_c_sequences.xml" xpointer="ansi.sequences.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
 
-<chapter xml:id="sec.ansi.hash-tables">
+<chapter xml:id="ansi.hash-tables">
  <title>Hash tables</title>
 
  <para>...</para>
@@ -793,10 +829,10 @@ F
 
 </chapter>
 
-<chapter xml:id="sec.ansi.filenames">
+<chapter xml:id="ansi.filenames">
  <title>Filenames</title>
 
- <section xml:id="sec.ansi.filenames.syntax">
+ <section xml:id="ansi.filenames.syntax">
   <title>Syntax</title>
   <para>A pathname in the file system of Common-Lisp consists of six
   elements: host, device, directory, name, type and version. Pathnames are
@@ -955,7 +991,7 @@ F
   </table>
  </section>
 
- <section xml:id="sec.ansi.pathnames.wild">
+ <section xml:id="ansi.pathnames.wild">
   <title>Wild pathnames and matching</title>
 
   <para>&ECL; accepts four kind of wildcards in pathnames.</para>
@@ -985,26 +1021,26 @@ F
    </listitem>
   </itemizedlist>
 
-  <para>The matching rules in &CommonLisp; and &ECL; are simple but have some unintuitive consequences when compared to Unix/DOS rules. The most important one is that directories must always end with a trailing slash <literal>/</literal>, as in <literal>#p"/my/home/directory/"</literal>. Second to that, <symbol>NIL</symbol> values can only be matched by <symbol>NIL</symbol> and <symbol>:WILD</symbol>. Hence, <literal>"*"</literal> can only match files without file type. For some examples see <xref linkend="sec.ansi.files.directory"/>.</para>
+  <para>The matching rules in &CommonLisp; and &ECL; are simple but have some unintuitive consequences when compared to Unix/DOS rules. The most important one is that directories must always end with a trailing slash <literal>/</literal>, as in <literal>#p"/my/home/directory/"</literal>. Second to that, <symbol>NIL</symbol> values can only be matched by <symbol>NIL</symbol> and <symbol>:WILD</symbol>. Hence, <literal>"*"</literal> can only match files without file type. For some examples see <xref linkend="ansi.files.directory"/>.</para>
   </section>
 
  <xi:include href="ref_c_filenames.xml" xpointer="ansi.filenames.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 </chapter>
 
-<chapter xml:id="sec.ansi.files">
+<chapter xml:id="ansi.files">
  <title>Files</title>
 
- <section xml:id="sec.ansi.files.dict">
+ <section xml:id="ansi.files.dict">
   <title>Dictionary</title>
 
-  <section xml:id="sec.ansi.files.directory">
+  <section xml:id="ansi.files.directory">
    <title><function>DIRECTORY</function></title>
 
    <para>This function does not have any additional arguments other than the
    ones described in &ANSI;. To list files and directories, it follows the
    rules for matching pathnames described in <xref
-   linkend="sec.ansi.pathnames.wild"/>. In short, you have the following
+   linkend="ansi.pathnames.wild"/>. In short, you have the following
    practical examples:</para>
    <table>
     <title>Examples of using <function>DIRECTORY</function></title>
@@ -1044,10 +1080,10 @@ F
 
 </chapter>
 
-<chapter xml:id="sec.ansi.streams">
+<chapter xml:id="ansi.streams">
  <title>Streams</title>
 
- <section xml:id="sec.ansi.streams.types">
+ <section xml:id="ansi.streams.types">
   <title>Stream types</title>
 
   <para>&ECL; implements all stream types described in &ANSI;. Additionally,
@@ -1060,7 +1096,7 @@ F
 
  </section>
 
- <section xml:id="sec.ansi.streams.io">
+ <section xml:id="ansi.streams.io">
   <title>Input/Output model</title>
 
   <para>&ECL; distinguishes between two kinds of streams: character streams
@@ -1099,7 +1135,7 @@ F
 
 </chapter>
 
-<chapter xml:id="sec.ansi.printer">
+<chapter xml:id="ansi.printer">
  <title>Printer</title>
 
  <para>In all situations where the rules are well specified, &ECL; prints
@@ -1226,6 +1262,23 @@ F
    </tbody>
   </tgroup>
  </table>
+
+ <xi:include href="ref_c_printer.xml" xpointer="ansi.printer.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+</chapter>
+
+<chapter xml:id="ansi.reader">
+ <title>Printer</title>
+
+ <xi:include href="ref_c_reader.xml" xpointer="ansi.reader.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+</chapter>
+
+<chapter xml:id="ansi.system-construction">
+ <title>Printer</title>
+
+ <xi:include href="ref_c_system_construction.xml" xpointer="ansi.system-construction.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
 <chapter xml:id="ansi.environment">
@@ -1389,6 +1442,9 @@ F
    </refsect1>
   </refentry>
  </section>
+
+ <xi:include href="ref_c_environment.xml" xpointer="ansi.environment.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
 </chapter>
 
 </part></book>

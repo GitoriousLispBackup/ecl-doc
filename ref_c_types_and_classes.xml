@@ -32,10 +32,10 @@
 <member><code>cl_object cl_typep(cl_narg narg, cl_object object, cl_object type_specifier, ...)</code></member>
 
 <member><ulink url="&clhs;f_tp_err.htm"><symbol>type-error-datum</symbol></ulink></member>
-<member><code>[Only in Common Lisp]</code></member>
+<member><code>&OCL;</code></member>
 
 <member><ulink url="&clhs;f_tp_err.htm"><symbol>type-error-expected-type</symbol></ulink></member>
-<member><code>[Only in Common Lisp]</code></member>
+<member><code>&OCL;</code></member>
 </simplelist>
     </refsynopsisdiv>
   </refentry>

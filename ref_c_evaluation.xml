@@ -45,13 +45,13 @@
 <member>C function</member>
 
 <member><ulink url="&clhs;f_cmp.htm"><symbol>compile</symbol></ulink></member>
-<member><code>[only in Common Lisp]</code></member>
+<member><code>&OCL;</code></member>
 
 <member><ulink url="&clhs;f_eval.htm"><symbol>eval</symbol></ulink></member>
 <member><code>cl_object cl_eval(cl_object form)</code></member>
 
 <member><ulink url="&clhs;f_cmp_ma.htm"><symbol>compiler-macro-function</symbol></ulink></member>
-<member><code>[only in Common Lisp]</code></member>
+<member><code>&OCL;</code></member>
 
 <member><ulink url="&clhs;f_macro_.htm"><symbol>macro-function</symbol></ulink></member>
 <member><code>cl_object cl_macro_function(cl_narg narg, cl_object symbol, ...)</code></member>
@@ -63,7 +63,7 @@
 <member><code>cl_object cl_macroexpand_1(cl_narg narg, cl_object form, ...)</code></member>
 
 <member><ulink url="&clhs;f_procla.htm"><symbol>proclaim</symbol></ulink></member>
-<member><code>[only in Common Lisp]</code></member>
+<member><code>&OCL;</code></member>
 
 <member><ulink url="&clhs;f_specia.htm"><symbol>special-operator-p</symbol></ulink></member>
 <member><code>cl_object cl_special_operator_p(cl_object form)</code></member>
