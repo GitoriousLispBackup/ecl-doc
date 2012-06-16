@@ -495,50 +495,50 @@ F
     </thead>
     <tbody>
      <row>
-      <entry><type>FIXNUM</type></entry>
+      <entry><type>fixnum</type></entry>
       <entry>Signed integer with a number of bits given by
-      <varname>SI::FIXNUM-BITS</varname>, fit in a machine word.</entry>
+      <varname>ext:fixnum-bits</varname>, fit in a machine word.</entry>
      </row>
      <row>
-      <entry><type>BIGNUM</type></entry>
+      <entry><type>bignum</type></entry>
       <entry>Arbitrary size integers, only limited by amount of memory.</entry>
      </row>
      <row>
-      <entry><type>RATIO</type></entry>
+      <entry><type>ratio</type></entry>
       <entry>Arbitrary size rational number, made up of two integers.</entry>
      </row>
      <row>
-      <entry><type>SHORT-FLOAT</type></entry>
-      <entry>Equivalent to <type>SINGLE-FLOAT</type>.</entry>
+      <entry><type>short-float</type></entry>
+      <entry>Equivalent to <type>single-float</type>.</entry>
      </row>
      <row>
-      <entry><type>SINGLE-FLOAT</type></entry>
+      <entry><type>single-float</type></entry>
       <entry>32-bits IEEE floating point number.</entry>
      </row>
      <row>
-      <entry><type>DOUBLE-FLOAT</type></entry>
+      <entry><type>double-float</type></entry>
       <entry>64-bits IEEE floating point number.</entry>
      </row>
      <row>
-      <entry><type>LONG-FLOAT</type></entry>
-      <entry>Either equivalent to <type>DOUBLE-FLOAT</type>, or a 96/128 bits IEEE floating
+      <entry><type>long-float</type></entry>
+      <entry>Either equivalent to <type>double-float</type>, or a 96/128 bits IEEE floating
       point number (<type>long double</type> in C/C++).</entry>
      </row>
      <row>
-      <entry><type>RATIONAL</type></entry>
-      <entry>An alias for <type>(OR INTEGER RATIO)</type></entry>
+      <entry><type>rational</type></entry>
+      <entry>An alias for <type>(or integer ratio)</type></entry>
      </row>
      <row>
-      <entry><type>FLOAT</type></entry>
-      <entry>An alias for <type>(OR SINGLE-FLOAT DOUBLE-FLOAT SHORT-FLOAT
-      LONG-FLOAT)</type></entry>
+      <entry><type>float</type></entry>
+      <entry>An alias for <type>(or single-float double-float short-float
+      long-float)</type></entry>
      </row>
      <row>
-      <entry><type>REAL</type></entry>
-      <entry>An alias for <type>(OR REAL INTEGER FLOAT)</type></entry>
+      <entry><type>real</type></entry>
+      <entry>An alias for <type>(or real integer float)</type></entry>
      </row>
      <row>
-      <entry><type>COMPLEX</type></entry>
+      <entry><type>complex</type></entry>
       <entry>Complex number made of two real numbers of the above mentioned
       types.</entry>
      </row>
@@ -1480,11 +1480,6 @@ F
 
  <xi:include href="ref_c_environment.xml" xpointer="ansi.environment.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
-</chapter>
-
-<chapter>
-<title>Common Lisp symbol index</title>
-<index type="cl"/>
 </chapter>
 
 </part></book>
