@@ -57,19 +57,6 @@
 
 <member><ulink url="&clhs;f_set_sy.htm"><symbol>set-syntax-from-char</symbol></ulink></member>
 <member><code>cl_object cl_set_syntax_from_char(cl_narg narg, cl_object to_char, cl_object from_char, ...)</code></member>
-
-<member><ulink url="&clhs;"><symbol></symbol></ulink></member>
-<member><code>cl_object ()</code></member>
-
-<member><ulink url="&clhs;"><symbol></symbol></ulink></member>
-<member><code>cl_object ()</code></member>
-
-<member><ulink url="&clhs;"><symbol></symbol></ulink></member>
-<member><code>cl_object ()</code></member>
-
-<member><ulink url="&clhs;"><symbol></symbol></ulink></member>
-<member><code>cl_object ()</code></member>
-
 </simplelist>
     </refsynopsisdiv>
 
