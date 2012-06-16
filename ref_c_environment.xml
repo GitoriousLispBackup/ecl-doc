@@ -76,9 +76,6 @@
 <member><ulink url="&clhs;f_lisp_i.htm"><symbol>lisp-implementation-version</symbol></ulink></member>
 <member><code>cl_object cl_lisp_implementation_version(void)</code></member>
 
-<member><ulink url="&clhs;"><symbol></symbol></ulink></member>
-<member><code>cl_object ()</code></member>
-
 <member><ulink url="&clhs;f_short_.htm"><symbol>short-site-name</symbol></ulink></member>
 <member><code>cl_object cl_short_site_name()</code></member>
 
