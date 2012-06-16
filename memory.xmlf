@@ -171,7 +171,7 @@ Top level.
   <section xml:id="ext.memory.dict">
    <title>Memory Management Reference</title>
 
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="ref_memory.xmlf" xpointer="ext.memory.dict"/>
+   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="ref_memory.xmlf" xpointer="ext.memory.dict2"/>
 
   </section>
  </chapter>

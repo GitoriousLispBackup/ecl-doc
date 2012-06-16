@@ -3,7 +3,7 @@
 <!ENTITY % eclent SYSTEM "ecl.ent">
 %eclent;
 ]>
-<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="ext.memory.dict"><title>Finalization Reference</title>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="ext.memory.dict2"><title>Finalization Reference</title>
 
 <!-- ====================================================================== -->
 <!-- EXT:STACK-OVERFLOW                                                     -->
