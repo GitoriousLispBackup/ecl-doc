@@ -15,6 +15,8 @@
 <xsl:param name="refentry.generate.title" select="0"/>
 <xsl:param name="variablelist.as.table" select="1"/>
 <xsl:param name="chunk.separate.lots" select="1"/>
+<xsl:param name="generate.index" select="1"/>
+<xsl:param name="index.on.type" select="1"/>
 <xsl:param condition="html" name="generate.toc">
 appendix  toc
 article/appendix  nop

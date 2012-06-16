@@ -1,4 +1,5 @@
 XMLTO = xmlto
+XSLTPROC = xsltproc
 
 GEN_XMLFILES= tmp/COPYING.GFDL.xml
 XMLFILES= ecl.xml bibliography.xmlf clos.xmlf compiler.xmlf			\
@@ -18,13 +19,16 @@ XMLFILES= ecl.xml bibliography.xmlf clos.xmlf compiler.xmlf			\
 	ref_c_objects.xml ref_c_conditions.xml ref_c_structures.xml		\
 	ref_signals.xmlf ref_c_arrays.xml $(GEN_XMLFILES)
 
-XSLFILES= xsl/customization.xml xsl/lispfunc.xml xsl/indexing.xml xsl/refentryintoc.xml
+XSLFILES= xsl/customization.xml xsl/lispfunc.xml xsl/refentryintoc.xml
 
 all: html/ecl.css
 
-html/index.html: $(XMLFILES) $(XSLFILES)
+html/index.html: $(XMLFILES) $(XSLFILES) xsl/add_indexterm.xml
 	@test -d html || mkdir html
-	$(XMLTO) -vv --skip-validation $(subst xsl, -m xsl,$(XSLFILES)) -o html html ecl.xml
+	$(XSLTPROC) --xinclude xsl/add_indexterm.xml ecl.xml | \
+	sed 's, xmlns="",,g' > html/ecl2.xml
+	$(XMLTO) -vv --skip-validation $(subst xsl, -m xsl,$(XSLFILES)) -o html html html/ecl2.xml
+	rm html/ecl2.xml
 	cp ecl.css html/
 html/ecl.css: ecl.css html/index.html
 	cp ecl.css html/

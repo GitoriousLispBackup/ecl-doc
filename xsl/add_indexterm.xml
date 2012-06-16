@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		xmlns:a="http://docbook.org/ns/docbook"
+		exclude-result-prefixes="a"
+		version="1.0">
+
+<!-- By default copy the whole document -->
+<xsl:template match="node()|@*">
+  <xsl:copy>
+    <xsl:apply-templates select="node()|@*"/>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="a:symbol">
+  <!-- Copy original element -->
+  <xsl:copy-of select="."/>
+  <!-- Create new index entries -->
+  <indexterm type="cl">
+    <primary><xsl:value-of select="."/></primary>
+  </indexterm>
+</xsl:template>
+
+<xsl:template match="a:function">
+  <!-- Copy original element -->
+  <xsl:copy-of select="."/>
+  <!-- Create new index entries -->
+  <indexterm type="c">
+    <primary><xsl:value-of select="."/></primary>
+  </indexterm>
+</xsl:template>
+
+<xsl:template match="a:variable">
+  <!-- Copy original element -->
+  <xsl:copy-of select="."/>
+  <!-- Create new index entries -->
+  <indexterm type="c">
+    <primary><xsl:value-of select="."/></primary>
+  </indexterm>
+</xsl:template>
+
+<xsl:template match="a:type">
+  <!-- Copy original element -->
+  <xsl:copy-of select="."/>
+  <!-- Create new index entries -->
+  <indexterm type="c">
+    <primary><xsl:value-of select="."/></primary>
+  </indexterm>
+</xsl:template>
+
+</xsl:stylesheet>
