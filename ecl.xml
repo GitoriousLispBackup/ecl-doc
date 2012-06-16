@@ -39,6 +39,14 @@
  <xi:include href="uffi/ref_func_libr.xml" xpointer="uffi.func_libr" xmlns:xi="http://www.w3.org/2001/XInclude"/>
  </part>
 
+ <index type="cl">
+ <title>Common Lisp symbols</title>
+ </index>
+
+ <index type="c">
+ <title>C/C++ index</title>
+ </index>
+
  <xi:include href="bibliography.xmlf" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 </book>
