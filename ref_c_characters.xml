@@ -8,7 +8,6 @@
 <title>Characters</title>
 <section xml:id="ansi.characters.c-dict">
 <title>C Reference</title>
-<toc/>
   <refentry xml:id="ansi.characters.c-types">
     <refnamediv>
       <refname>C types</refname>
@@ -207,7 +206,7 @@
   <refentry>
     <refnamediv>
       <refname>ANSI Dictionary</refname>
-      <refpurpose>Translation from lisp symbols to C functions</refpurpose>
+      <refpurpose>&ANSI-C-Dict;</refpurpose>
     </refnamediv>
 
     <refsynopsisdiv>

@@ -40,3 +40,4 @@
 <!ENTITY cygwin "<ulink url='http://www.cygwin.com/'><application>Cygwin</application></ulink>">
 <!ENTITY mingw "<ulink url='http://mingw.sourceforge.net/'><application>Mingw</application></ulink>">
 <!ENTITY OCL "<link linkend='ansi.OCL'>[Only in Common Lisp]</link>">
+<!ENTITY ANSI-C-Dict "Common Lisp and C equivalence">

@@ -36,7 +36,7 @@
   <refentry>
     <refnamediv>
       <refname>ANSI Dictionary</refname>
-      <refpurpose>Translation from lisp symbols to C functions</refpurpose>
+      <refpurpose>&ANSI-C-Dict;</refpurpose>
     </refnamediv>
 
     <refsynopsisdiv>

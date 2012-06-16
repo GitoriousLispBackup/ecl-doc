@@ -27,6 +27,27 @@
  <section xml:id="ansi.overview.c-dict">
   <title>C Reference</title>
 
+  <section xml:id="cl_object">
+   <title>One type for everything: <type>cl_object</type></title>
+
+   <para>&ECL; is designed around the basic principle that Common Lisp already provides everything that a programmer could need, orienting itself around the creation and manipulation of Common Lisp objects: conses, arrays, strings, characters, ... When embedding &ECL; there should be no need to use other C/C++ types, except when interfacing data to and from those other languages.</para>
+
+   <para>All Common Lisp objects are represented internally through the same C type, <type>cl_object</type>, which is either a pointer to a union type or an integer, depending on the situation. While the inner guts of this type are exposed through various headers, the user should never rely on these details but rather use the macros and functions that are listed in this manual</para>
+
+   <para>There are two types of Common Lisp objects: immediate and memory allocated ones. Immediate types fit in the bits of the <type>cl_object</type> word, and do not require the garbage collector to be created. The list of such types may depend on the platform, but it includes at least the <type>fixnum</type> and <type>character</type> types.</para>
+
+   <para>Memory allocated types on the other hand require the use of the garbage collector to be created. &ECL; abstracts this from the user providing enough constructors, either in the form of Common Lisp functions (<function>cl_make_array()</function>, <function>cl_complex()</function>,...), or in the form of C/C++ constructors (<function>ecl_make_symbol()</function>, etc).</para>
+
+   <para>Memory allocated types must always be kept alive so that the garbage collector does not reclaim them. This involves referencing the object from one of the places that the collector scans:
+   <itemizedlist>
+    <listitem><para>The fields of an object (array, structure, etc) whic is itself alive.</para></listitem>
+    <listitem><para>A special variable or a constant.</para></listitem>
+    <listitem><para>The C stack (i.e. automatic variables in a function).</para></listitem>
+    <listitem><para>Global variables or pointers that have been registered with the garbage collector.</para></listitem>
+   </itemizedlist>
+   Further details will be provided in the section on <link linkend="ext.memory">Memory Management</link>.</para>
+  </section>
+
   <section>
    <title>Naming conventions</title>
 
@@ -43,7 +64,7 @@
   <section xml:id="ansi.OCL">
    <title>Only in Common Lisp</title>
 
-   <para>Some parts of the language are not available as C functions. They are either absent or marked in the Common Lisp dictionary using the tag &OCL;. This typically happens with non-translatable constructs such as</para>
+   <para>Some parts of the language are not available as C functions, even though they can be used in Common Lisp programs. These parts are either marked in the "ANSI Dictionary" sections using the tag &OCL;, or they are simply not mentioned (macros and special constructs). This typically happens with non-translatable constructs such as</para>
    <itemizedlist>
     <listitem><para>Common Lisp macros such as <symbol>with-open-files</symbol>.</para></listitem>
     <listitem><para>Common Lisp special forms, such as <symbol>cond</symbol></para></listitem>
@@ -60,9 +81,9 @@ CL_UNWIND_PROTECT_BEGIN(env) {
 } CL_UNWIND_PROTECT_END;
 </programlisting>
 
-   <para>Common Lisp generic functions can be directly accessed using <symbol>funcall</symbol>, as in the code below</para>
+   <para>Common Lisp generic functions can be directly accessed using <symbol>funcall</symbol> or <symbol>apply</symbol> and the function name, as shown in the code below</para>
 <programlisting>
-cl_object name = ecl_make_symbol("MY-FUNCTION","CL-USER");
+cl_object name = ecl_make_symbol("MY-GENERIC-FUNCTION","CL-USER");
 cl_object output = cl_funcall(2, name, argument);
 </programlisting>
 
@@ -335,6 +356,20 @@ F
  </section>
 
  <xi:include href="ref_c_data_flow.xml" xpointer="ansi.data-and-control.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+</chapter>
+
+<chapter xml:id="ansi.conditions">
+ <title>Conditions</title>
+
+ <xi:include href="ref_c_conditions.xml" xpointer="ansi.conditions.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+</chapter>
+
+<chapter xml:id="ansi.structures">
+ <title>Structures</title>
+
+ <xi:include href="ref_c_structures.xml" xpointer="ansi.structures.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 </chapter>
 
@@ -1268,14 +1303,14 @@ F
 </chapter>
 
 <chapter xml:id="ansi.reader">
- <title>Printer</title>
+ <title>Reader</title>
 
  <xi:include href="ref_c_reader.xml" xpointer="ansi.reader.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 </chapter>
 
 <chapter xml:id="ansi.system-construction">
- <title>Printer</title>
+ <title>System Construction</title>
 
  <xi:include href="ref_c_system_construction.xml" xpointer="ansi.system-construction.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
@@ -1445,6 +1480,11 @@ F
 
  <xi:include href="ref_c_environment.xml" xpointer="ansi.environment.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
+</chapter>
+
+<chapter>
+<title>Common Lisp symbol index</title>
+<index type="cl"/>
 </chapter>
 
 </part></book>

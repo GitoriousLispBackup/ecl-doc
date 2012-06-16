@@ -68,7 +68,7 @@ cl_object remainder = ecl_nth_value(env, 1);
   <refentry>
     <refnamediv>
       <refname>ANSI Dictionary</refname>
-      <refpurpose>Translation from lisp symbols to C functions</refpurpose>
+      <refpurpose>&ANSI-C-Dict;</refpurpose>
     </refnamediv>
 
     <refsynopsisdiv>

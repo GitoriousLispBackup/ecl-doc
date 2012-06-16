@@ -15,23 +15,23 @@ XMLFILES= ecl.xml bibliography.xmlf clos.xmlf compiler.xmlf			\
 	ref_c_conses.xml ref_c_hash_tables.xml ref_c_sequences.xml		\
 	ref_c_filenames.xml ref_c_packages.xml ref_c_printer.xml		\
 	ref_c_system_construction.xml ref_c_environment.xml			\
-	ref_c_objects.xml							\
+	ref_c_objects.xml ref_c_conditions.xml ref_c_structures.xml		\
 	ref_signals.xmlf ref_c_arrays.xml $(GEN_XMLFILES)
 
-XSLFILES= xsl/lispfunc.xml xsl/customization.xml xsl/refentryintoc.xml
+XSLFILES= xsl/customization.xml xsl/lispfunc.xml xsl/indexing.xml xsl/refentryintoc.xml
 
 all: html/ecl.css
 
-html/index.html: $(XMLFILES)
+html/index.html: $(XMLFILES) $(XSLFILES)
 	@test -d html || mkdir html
-	$(XMLTO) --skip-validation $(subst xsl, -m xsl,$(XSLFILES)) -o html html ecl.xml
+	$(XMLTO) -vv --skip-validation $(subst xsl, -m xsl,$(XSLFILES)) -o html html ecl.xml
 	cp ecl.css html/
 html/ecl.css: ecl.css html/index.html
 	cp ecl.css html/
 	@test -d html/figures || mkdir html/figures
 	cp figures/*.png html/figures/
 
-ecl.pdf: $(XMLFILES)
+ecl.pdf: $(XMLFILES) $(XSLFILES)
 	$(XMLTO) -o $@ pdf ecl.xml
 
 tmp/ecl.ent: ecl.ent

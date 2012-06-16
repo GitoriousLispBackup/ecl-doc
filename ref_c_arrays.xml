@@ -335,7 +335,7 @@ cl_object a = si_make_array(dims, type, Cnil, /* adjustable */
   <refentry>
     <refnamediv>
       <refname>ANSI Dictionary</refname>
-      <refpurpose>Translation from lisp symbols to C functions</refpurpose>
+      <refpurpose>&ANSI-C-Dict;</refpurpose>
     </refnamediv>
 
     <refsynopsisdiv>
