@@ -6,11 +6,19 @@ XMLFILES= ecl.xml bibliography.xmlf clos.xmlf compiler.xmlf			\
 	declarations.xmlf ecldev.xmlf						\
 	internals.xmlf interpreter.xmlf preface.xmlf				\
 	io.xmlf mp.xmlf asdf.xmlf os.xmlf pde.xmlf				\
-	standards.xmlf copyright.xmlf ffi.xmlf ref_os.xmlf			\
+	copyright.xmlf ffi.xmlf ref_os.xmlf					\
 	uffi/ref_primitive.xml uffi/ref_aggregate.xml uffi/ref_object.xml	\
 	uffi/ref_string.xml uffi/ref_func_libr.xml				\
 	mp.xmlf ref_mp.xmlf memory.xmlf ref_memory.xmlf				\
 	mop.xmlf embed.xmlf ref_embed.xmlf signals.xmlf				\
+	ansi_arrays.xml ansi_overview.xml					\
+	ansi_characters.xml ansi_packages.xml ansi_conses.xml			\
+	ansi_printer.xml ansi_data_flow.xml ansi_reader.xml			\
+	ansi_environment.xml ansi_sequences.xml	ansi_evaluation.xml		\
+	ansi_streams.xml ansi_filenames.xml ansi_strings.xml			\
+	ansi_files.xml ansi_structures.xml ansi_hash_tables.xml			\
+	ansi_symbols.xml ansi_numbers.xml ansi_system_construction.xml		\
+	ansi_objects.xml ansi_types.xml						\
 	ref_c_evaluation.xml ref_c_data_flow.xml ref_c_symbols.xml		\
 	ref_c_numbers.xml ref_c_characters.xml ref_c_strings.xml		\
 	ref_c_conses.xml ref_c_hash_tables.xml ref_c_sequences.xml		\

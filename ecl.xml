@@ -14,7 +14,28 @@
 
  <xi:include href="preface.xmlf" xpointer="preface" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
- <xi:include href="standards.xmlf" xpointer="part.standards" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <part xml:id="part.standards"><title>Standards</title>
+ <xi:include href="ansi_overview.xml" xpointer="ansi.overview" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_evaluation.xml" xpointer="ansi.evaluation-and-compilation" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_types.xml" xpointer="ansi.types-and-classes" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_data_flow.xml" xpointer="ansi.data-and-control" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_structures.xml" xpointer="ansi.structures" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_objects.xml" xpointer="ansi.objects" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_symbols.xml" xpointer="ansi.symbols" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_packages.xml" xpointer="ansi.packages" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_numbers.xml" xpointer="ansi.numbers" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_characters.xml" xpointer="ansi.characters" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_conses.xml" xpointer="ansi.conses" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_arrays.xml" xpointer="ansi.arrays" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_strings.xml" xpointer="ansi.strings" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_sequences.xml" xpointer="ansi.sequences" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_hash_tables.xml" xpointer="ansi.hash-tables" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_filenames.xml" xpointer="ansi.filenames" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_printer.xml" xpointer="ansi.printer" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_reader.xml" xpointer="ansi.reader" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_system_construction.xml" xpointer="ansi.system-construction" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_environment.xml" xpointer="ansi.environment" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ </part>
 
  <part xml:id="part.extensions">
  <title>Extensions and Libraries</title>

@@ -41,3 +41,5 @@
 <!ENTITY mingw "<ulink url='http://mingw.sourceforge.net/'><application>Mingw</application></ulink>">
 <!ENTITY OCL "<link linkend='ansi.OCL'>[Only in Common Lisp]</link>">
 <!ENTITY ANSI-C-Dict "Common Lisp and C equivalence">
+<!ENTITY nil "<symbol>nil</symbol>">
+<!ENTITY t "<symbol>t</symbol>">

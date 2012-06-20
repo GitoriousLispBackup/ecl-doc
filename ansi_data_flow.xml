@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+<!ENTITY % eclent SYSTEM "ecl.ent">
+%eclent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter xml:id="ansi.data-and-control">
+ <title>Data and control flow</title>
+
+ <section xml:id="ansi.minimal-compilation">
+  <title>Minimal compilation</title>
+
+  <para>Former versions of &ECL;, as well as many other lisps, used linked
+  lists to represent code. Executing code thus meant traversing these lists
+  and performing code transformations, such as macro expansion, every time
+  that a statement was to be executed. The result was a slow and memory
+  hungry interpreter.</para>
+
+  <para>Beginning with version 0.3, &ECL; was shipped with a bytecodes
+  compiler and interpreter which circumvent the limitations of linked
+  lists. When you enter code at the lisp prompt, or when you load a source
+  file, &ECL; begins a process known as minimal compilation. Barely this
+  process consists on parsing each form, macroexpanding it and translating it
+  into an intermediate language made of
+  <emphasis>bytecodes</emphasis>.</para>
+
+  <para>The bytecodes compiler is implemented in
+  <filename>src/c/compiler.d</filename>. The main entry point is the lisp
+  function <function>si::make-lambda</function>, which takes a name for the
+  function and the body of the lambda lists, and produces a lisp object that
+  can be invoked. For instance,
+  <screen>&gt; (defvar fun (si::make-lambda 'f '((x) (1+ x))))
+*FUN*
+&gt; (funcall fun 2)
+3</screen></para>
+
+  <para>&ECL; can only execute bytecodes. When a list is passed to
+  <literal>EVAL</literal> it must be first compiled to bytecodes and, if the
+  process succeeds, the resulting bytecodes are passed to the
+  interpreter. Similarly, every time a function object is created, such as in
+  <function>DEFUN</function> or <function>DEFMACRO</function>, the compiler
+  processes the lambda form to produce a suitable bytecodes object.</para>
+
+  <para>The fact that &ECL; performs this eager compilation means that
+  changes on a macro are not immediately seen in code which was already
+  compiled. This has subtle implications. Take the following code:</para>
+  <screen>&gt; (defmacro f (a b) `(+ ,a ,b))
+F
+&gt; (defun g (x y) (f x y))
+G
+&gt; (g 1 2)
+3
+&gt; (defmacro f (a b) `(- ,a ,b))
+F
+&gt; (g 1 2)
+3</screen>
+
+  <para>The last statement always outputs <literal>3</literal> while in former
+  implementations based on simple list traversal it would produce
+  <literal>-1</literal>.</para>
+ </section>
+
+ <section xml:id="ansi.functions">
+  <title>Functions</title>
+
+  <para>Functions in &ECL; can be of two types: they are either compiled to
+  bytecodes or they have been compiled to machine code using a lisp to C
+  translator and a C compiler. To the first category belong function loaded
+  from lisp source files or entered at the toplevel. To the second category
+  belong all functions in the &ECL; core environment and functions in files
+  processed by <function>compile</function> or
+  <function>compile-file</function>.</para>
+
+  <para>The output of <code>(symbol-function
+  <replaceable>fun</replaceable>)</code> is a list, is either a function
+  object if <literal>'fun</literal> is has a function definition,
+  <literal>(macro . function-object)</literal> if <literal>'fun</literal> is
+  a macro, and <literal>'special</literal> if <literal>'fun</literal> is a
+  special form.</para>
+
+  <para>&ECL; usually drops the source code of a function unless the global
+  variable <varname>si:*keep-definitions*</varname> was true when the
+  function was translated into bytecodes. Therefore, if you wish to use
+  <function>compile</function> and <function>disassemble</function> on
+  defined functions, you should issue <code>(setq si:*keep-definitions*
+  t)</code> at the beginning of your session.</para>
+
+  <para>In <xref linkend="table.function.constants"/> we list all
+  &CommonLisp; values related to the limits of functions.</para>
+
+  <table xml:id="table.function.constants">
+   <title>Function related constants</title>
+   <tgroup cols="2">
+    <tbody>
+     <row>
+      <entry><constant>call-arguments-limit</constant></entry>
+      <entry>65536</entry>
+     </row>
+     <row>
+      <entry><constant>lambda-parameters-limit</constant></entry>
+      <entry>call-arguments-limit</entry>
+     </row>
+     <row>
+      <entry><constant>multiple-values-limit</constant></entry>
+      <entry>64</entry>
+     </row>
+     <row>
+      <entry><constant>lambda-list-keywords</constant></entry>
+      <entry><literal>(&optional; &rest; &key; &allow-other-keys; &aux;
+      &whole; &environment; &body;)</literal></entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+ </section>
+
+ <xi:include href="ref_c_data_flow.xml" xpointer="ansi.data-and-control.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+</chapter>
+</book>
