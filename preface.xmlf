@@ -452,10 +452,7 @@
    <section xml:id="preface.bsd">
     <title>OpenBSD and NetBSD</title>
 
-    <para>Before following the instructions in <xref
-    linkend="preface.autoconf"/> you should install the following packages:
-    <application>boehm-gc</application> and <application>gmp-4.1</application>
-    or better.</para>
+    <para>Before following the instructions in <xref linkend="preface.autoconf"/> you should install the following packages: <application>boehm-gc</application> and <application>gmp-4.1</application> or better. Another component, <application>libffi</application> will be needed if you want to use the <link linkend="ext.ffi">dynamic foreign interface</link>.</para>
    </section>
 
   </section>
