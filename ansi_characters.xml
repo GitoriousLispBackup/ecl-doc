@@ -9,6 +9,15 @@
  <para>&ECL; is fully ANSI Common-Lisp compliant in all aspects of the character
  data type, with the following peculiarities.</para>
 
+ <section xml:id="ansi.characeer.unicode">
+   <title>Unicode vs. POSIX locale</title>
+
+   <para>There are two ways of building &ECL;: with C or with Unicode character codes. These build modes are accessed using the <code>--disable-unicode</code> and <code>--enable-unicode</code> configuration options, the last one being the default.</para>
+
+   <para>When using C characters we are actually relying on the <type>char</type> type of the C language, using the C library functions for tasks such as character conversions, comparison, etc. In this case characters are typically 8 bit wide and the character order and collation are determines by the current POSIX or C locale. This is not very accurate, leaves out many languages and character encodings but it is sufficient for small applications that do not need multilingual support.</para>
+
+   <para>When no option is specified &ECL; builds with support for a larger character set, the Unicode 6.0 standard. This uses 24 bit large character codes, also known as <emphasis>codepoints</emphasis>, with a large database of character properties which include their nature (alphanumeric, numeric, etc), their case, their collation properties, whether they are standalone or composing characters, etc.</para>
+
  <section xml:id="ansi.character-types">
   <title>Character types</title>
 
@@ -80,6 +89,7 @@
   <para>Note that <literal>#\Linefeed</literal> is synonymous with
   <literal>#\Newline</literal> and thus is a member of
   <type>standard-char</type>.</para>
+ </section>
  </section>
 
  <section>

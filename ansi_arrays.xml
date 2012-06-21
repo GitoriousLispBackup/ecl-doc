@@ -40,7 +40,7 @@
  <section xml:id="ansi.array-spec">
   <title>Specializations</title>
 
-  <para>&ECL; provides specialized array types for several element kinds. In the following table we list those types, together with the machine type which is used to implement them, and the expected size.</para>
+  <para>When the elements of an array are declared to have some precise type, such as a small or large integer, a character or a floating point number, &ECL; has means to store those elements in a more compact form, known as a <emphasis>specialized array</emphasis>. The list of types for which &ECL; specializes arrays is platform dependent, but is summarized in the following table, together with the C type which is used internally and the expected size.</para>
   <informaltable>
    <tgroup cols="3">
     <thead>
@@ -135,7 +135,7 @@
    </tgroup>
   </informaltable>
 
-  <para>Some of these specialized types might not exist in your platform. This is detected using conditional reading and features (See <xref linkend="ansi.numbers.c-types"/>).</para>
+  <para>Let us remark that some of these specialized types might not exist in your platform. This is detected using conditional reading and features (See <xref linkend="ansi.numbers.c-types"/>).</para>
  </section>
 
  <xi:include href="ref_c_arrays.xml" xpointer="ansi.arrays.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>

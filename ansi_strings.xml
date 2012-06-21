@@ -7,12 +7,11 @@
 <chapter xml:id="ansi.strings">
  <title>Strings</title>
 
- <para>The &ECL; implementation of strings is ANSI Common-Lisp
- compliant. There are basically four string types as shown in <xref
- linkend="table.ansi.strings"/>. If Unicode support is
- disabled, <type>character</type> and <type>base-character</type> are the
- same type and the last two string types are equivalent to the first
- two.</para>
+ <section xml:id="ansi.strings.types">
+
+ <title>String types &amp; Unicode</title>
+
+ <para>The &ECL; implementation of strings is ANSI Common-Lisp compliant. There are basically four string types as shown in <xref linkend="table.ansi.strings"/>. As explained in <xref linkend="ansi.characters"/>, when Unicode support is disabled, <type>character</type> and <type>base-character</type> are the same type and the last two string types are equivalent to the first two.</para>
  <table xml:id="table.ansi.strings">
   <title>&CommonLisp; string types</title>
   <tgroup cols="2">
@@ -48,9 +47,11 @@
   </tgroup>
  </table>
 
- <para>It is important to remember that strings with unicode characters can only be printed readably when the external format supports those characters. If this is not the case, &ECL; will signal a <type>serious-condition</type>, aborting your program.</para>
+ <para>It is important to remember that strings with unicode characters can only be printed readably when the external format supports those characters. If this is not the case, &ECL; will signal a <type>serious-condition</type>. This condition will abort your program if not properly handled.</para>
 
- <xi:include href="ref_c_strings.xml" xpointer="ansi.strings.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ </section>
+
+<xi:include href="ref_c_strings.xml" xpointer="ansi.strings.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 </chapter>
 </book>

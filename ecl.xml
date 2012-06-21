@@ -31,6 +31,8 @@
  <xi:include href="ansi_sequences.xml" xpointer="ansi.sequences" xmlns:xi="http://www.w3.org/2001/XInclude"/>
  <xi:include href="ansi_hash_tables.xml" xpointer="ansi.hash-tables" xmlns:xi="http://www.w3.org/2001/XInclude"/>
  <xi:include href="ansi_filenames.xml" xpointer="ansi.filenames" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_files.xml" xpointer="ansi.files" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="ansi_streams.xml" xpointer="ansi.streams" xmlns:xi="http://www.w3.org/2001/XInclude"/>
  <xi:include href="ansi_printer.xml" xpointer="ansi.printer" xmlns:xi="http://www.w3.org/2001/XInclude"/>
  <xi:include href="ansi_reader.xml" xpointer="ansi.reader" xmlns:xi="http://www.w3.org/2001/XInclude"/>
  <xi:include href="ansi_system_construction.xml" xpointer="ansi.system-construction" xmlns:xi="http://www.w3.org/2001/XInclude"/>
