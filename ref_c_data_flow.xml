@@ -7,8 +7,76 @@
 <chapter>
 <title>Data and control flow</title>
 <section xml:id="ansi.data-and-control.c-dict">
-<title>C Reference</title>
-<toc/>
+  <title>C Reference</title>
+
+  <refentry xml:id="ref.cl_va_arg">
+    <refnamediv>
+      <refname><function>cl_va_arg</function></refname>
+      <refpurpose>Accepting a variable number of arguments</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Macros</title>
+
+      <synopsis><type>typedef struct { ... } ecl_va_list[1];</type></synopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef><function>ecl_va_start</function></funcdef>
+	  <paramdef>ecl_va_list <parameter>arglist</parameter></paramdef>
+	  <paramdef><parameter>last_argument</parameter></paramdef>
+	  <paramdef><parameter>narg</parameter></paramdef>
+	  <paramdef><parameter>n_ordinary</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_va_arg</function></funcdef>
+	  <paramdef>ecl_va_list <parameter>arglist</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef>cl_object <function>ecl_va_end</function></funcdef>
+	  <paramdef>ecl_va_list <parameter>arglist</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>The macros above are used to code a function that accepts an arbitrary number of arguments. We will describe them in a practical example</para>
+      <programlisting>
+cl_object my_plus(cl_narg narg, cl_object required1, ...)
+{
+    cl_env_ptr env = ecl_process_env();
+    cl_object other_value;
+    ecl_va_list varargs;
+    ecl_va_start(varargs, required1, narg, 1);
+    while (narg > 1) {
+        cl_object other_value = ecl_va_arg(varargs);
+	required1 = ecl_plus(required1, other_value);
+    }
+    ecl_va_end(varargs);
+    ecl_return1(env, required1);
+}
+      </programlisting>
+
+      <para>The first thing to do is to declare the variable that will hold the arguments. This is <replaceable>varargs</replaceable> in our example and it has the type <type>ecl_va_list</type>.</para>
+
+      <para>This arguments list is initialized with the <function>ecl_va_start</function> macro, based on the supplied number of arguments, <replaceable>narg</replaceable>, the number of required arguments which are passed as ordinary C arguments (1 in this case), the last such ordinary arguments, <replaceable>required</replaceable>, and the buffer for the argument list, <replaceable>varargs</replaceable>.</para>
+
+      <para>Once <replaceable>varargs</replaceable> has been initialized, we can retrieve these values one by one using <function>ecl_va_arg</function>. Note that the returned value always has the type <type>cl_object</type>, for it is always a Common Lisp object.</para>
+
+      <para>The last statement before returning the output of the function is <function>ecl_va_end</function>. This macro performs any required cleanup and should never be omitted.</para>
+    </refsect1>
+  </refentry>
   <refentry>
     <refnamediv>
       <refname><function>ecl_nth_value</function>, <function>ecl_nvalues</function></refname>
@@ -74,7 +142,16 @@ cl_object remainder = ecl_nth_value(env, 1);
     <refsynopsisdiv>
 <simplelist columns="2" type="horiz">
 <member>Lisp symbol</member>
-<member>C function</member>
+<member>C function or constant</member>
+
+<member><ulink url="&clhs;v_call_a.htm"><symbol>call-arguments-limit</symbol></ulink></member>
+<member><constant>ECL_CALL_ARGUMENTS_LIMIT</constant></member>
+
+<member><ulink url="&clhs;v_lamb_1.htm"><symbol>lambda-parameters-limit</symbol></ulink></member>
+<member><constant>ECL_LAMBDA_PARAMETERS_LIMIT</constant></member>
+
+<member><ulink url="&clhs;v_multip.htm"><symbol>multiple-values-limit</symbol></ulink></member>
+<member><constant>ECL_MULTIPLE_VALUES_LIMIT</constant></member>
 
 <member><ulink url="&clhs;f_apply.htm"><symbol>apply</symbol></ulink></member>
 <member><code>cl_object cl_apply(cl_narg narg, cl_object function, ...)</code></member>
@@ -143,6 +220,11 @@ cl_object remainder = ecl_nth_value(env, 1);
 <member><code>cl_object cl_get_setf_expansion(cl_narg narg, cl_object place, ...)</code></member>
 </simplelist>
     </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para></para>
+    </refsect1>
   </refentry>
 </section>
 </chapter>
