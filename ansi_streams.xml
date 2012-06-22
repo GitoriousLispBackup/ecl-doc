@@ -31,7 +31,7 @@
   <para>ANSI Common Lisp also supports binary streams. Here input and output is performed in chunks of bits. Binary streams are created with the function <function>open</function> passing as argument a subtype of <type>integer</type> and the implementation is free to round up that integer type to the closest size it supports. In particular &ECL; rounds up the size to a multiple of a byte. For example, the form <code>(open "foo.bin" :direction :output :element-type '(unsigned-byte 13))</code>, will open the file <filename>foo.bin</filename> for writing, using 16-bit words as the element type.</para>
  </section>
 
- <section xml:id="ansi.streams.external-formats">
+ <section xml:id="ansi.streams.formats">
    <title>External formats</title>
 
    <para>An <emphasis>external format</emphasis> is an encoding for characters that maps character codes to a sequence of bytes, in a one-to-one or one-to-many fashion. External formats are also known as "character encodings" in the programming world and are an essential ingredient to be able to read and write text in different languages and alphabets.</para>
