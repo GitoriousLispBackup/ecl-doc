@@ -93,9 +93,9 @@
  </section>
 
  <section>
-  <title>Line Divisions</title>
+  <title><code>#\Newline</code> characters</title>
 
-  <para>Internally, &ECL; represents the <literal>#\Newline</literal> character by a single code. However, when using external formats, &ECL; may parse character pairs as a single <literal>#\Newline</literal>, and viceversa, use multiple characters to represent a single <literal>#\Newline</literal>.</para>
+  <para>Internally, &ECL; represents the <literal>#\Newline</literal> character by a single code. However, when using external formats, &ECL; may parse character pairs as a single <literal>#\Newline</literal>, and viceversa, use multiple characters to represent a single <literal>#\Newline</literal>. See <xref linkend="ansi.streams.external-formats"/>.</para>
  </section>
 
  <xi:include href="ref_c_characters.xml" xpointer="ansi.characters.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>

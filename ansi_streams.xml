@@ -7,8 +7,11 @@
 <chapter xml:id="ansi.streams">
  <title>Streams</title>
 
+ <section xml:id="ansi.streams.ansi">
+ <title>ANSI Streams</title>
+
  <section xml:id="ansi.streams.types">
-  <title>Stream types</title>
+  <title>Supported types</title>
 
   <para>&ECL; implements all stream types described in &ANSI;. Additionally,
   when configured with option <option>--enable-clos-streams</option>, &ECL;
@@ -21,44 +24,28 @@
  </section>
 
  <section xml:id="ansi.streams.io">
-  <title>Stream element types</title>
+  <title>Element types</title>
 
-  <para>&ECL; distinguishes between two kinds of streams: character streams and byte streams. <emphasis>Character streams</emphasis> only accept and produce characters, either written or read individually, with <function>write-char</function> or <function>read-char</function>, or in chunks, with <function>write-sequence</function> or any of the Lisp printer functions. Character operations are conditioned by the external format, as described in <xref linkend="ansi.streams.formats"/></para>
+  <para>&ECL; distinguishes between two kinds of streams: character streams and byte streams. <emphasis>Character streams</emphasis> only accept and produce characters, written or read one by one, with <function>write-char</function> or <function>read-char</function>, or in chunks, with <function>write-sequence</function> or any of the Lisp printer functions. Character operations are conditioned by the external format, as described in <xref linkend="ansi.streams.formats"/></para>
 
-  <para>The other kind are binary streams. Here input and output is performed
-  in chunks of bits. Binary streams are created with the function
-  <function>open</function> passing as argument a subtype of
-  <type>integer</type>. We distinguish two cases
-  <itemizedlist>
-   <listitem><para>The word size is a multiple of 8 bits: element types
-   <type>(byte 8)</type>, <type>(signed-byte 32)</type>,
-   etc.</para></listitem>
-   <listitem><para>The word size is not a multiple of 8 bits: element types
-   <type>(unsigned-byte 3)</type>, <type>(signed-byte 15)</type>,
-   etc.</para></listitem>
-  </itemizedlist>
-  In the first case the length of the file can be deduced from the number of
-  octets which are used in the filesystem. In the second case, however, one
-  needs some extra information which tells how many bits in the last byte are
-  significant for the content. This information is stored as a single-byte
-  header at the beginning of the file.</para>
+  <para>ANSI Common Lisp also supports binary streams. Here input and output is performed in chunks of bits. Binary streams are created with the function <function>open</function> passing as argument a subtype of <type>integer</type> and the implementation is free to round up that integer type to the closest size it supports. In particular &ECL; rounds up the size to a multiple of a byte. For example, the form <code>(open "foo.bin" :direction :output :element-type '(unsigned-byte 13))</code>, will open the file <filename>foo.bin</filename> for writing, using 16-bit words as the element type.</para>
  </section>
 
- <section xml:id="ansi.streams.formats">
-   <title>Stream external formats</title>
+ <section xml:id="ansi.streams.external-formats">
+   <title>External formats</title>
 
    <para>An <emphasis>external format</emphasis> is an encoding for characters that maps character codes to a sequence of bytes, in a one-to-one or one-to-many fashion. External formats are also known as "character encodings" in the programming world and are an essential ingredient to be able to read and write text in different languages and alphabets.</para>
 
    <para>&ECL; has one of the most complete supports for <emphasis>external formats</emphasis>, covering all of the usual codepages from the Windows and Unix world, up to the more recent <acronym>UTF-8</acronym>, <acronym>UCS-2</acronym> and <acronym>UCS-4</acronym> formats, all of them with big and small endian variants, and considering different encodings for the newline character.</para>
 
-   <para>However, the set of supporte external formats depends on the size of the space of character codes. When &ECL; is built with Unicode support (the default option), it can represent all known characters from all known codepages, and thus all external formats are supported. However, when &ECL; is built with the restricted character set, it can only use one codepage (the one provided by the C library), with a few variants for the representation of end-of-line characters.</para>
+   <para>However, the set of supported external formats depends on the size of the space of character codes. When &ECL; is built with Unicode support (the default option), it can represent all known characters from all known codepages, and thus all external formats are supported. However, when &ECL; is built with the restricted character set, it can only use one codepage (the one provided by the C library), with a few variants for the representation of end-of-line characters.</para>
 
-   <para>In &ECL;, an external format designator is defined recursively as either a symbol or a list of external format designators. The grammar is as follows
+   <para>In &ECL;, an external format designator is defined recursively as either a symbol or a list of symbols. The grammar is as follows
 <screen>external-format-designator := 
    symbol |
-   ( {external-format-designator}+ )
+   ( {symbol}+ )
 </screen>
-and the table of known symbols is shown below</para>
+and the table of known symbols is shown below. Note how some symbols (<code>:cr</code>, <code>:little-endian</code>, etc) just modify other external formats.</para>
 
 <table xml:id="table.external-formats">
   <title>Stream external formats</title>
@@ -73,19 +60,19 @@ and the table of known symbols is shown below</para>
     <tbody>
       <row>
 	<entry><symbol>:cr</symbol></entry>
-	<entry><code>#\NewlineUnicode</code> is Carriage Return</entry>
+	<entry><code>#\Newline</code> is Carriage Return</entry>
 	<entry>No</entry>
       </row>
 
       <row>
 	<entry><symbol>:crlf</symbol></entry>
-	<entry><code>#\NewlineUnicode</code> is Carriage Return followed by Linefeed</entry>
+	<entry><code>#\Newline</code> is Carriage Return followed by Linefeed</entry>
 	<entry>No</entry>
       </row>
 
       <row>
 	<entry><symbol>:lf</symbol></entry>
-	<entry><code>#\NewlineUnicode</code> is Linefeed</entry>
+	<entry><code>#\Newline</code> is Linefeed</entry>
 	<entry>No</entry>
       </row>
 
@@ -342,6 +329,7 @@ and the table of known symbols is shown below</para>
   </tgroup>
 </table>
 
+ </section>
  </section>
 
  <xi:include href="ref_c_streams.xml" xpointer="ansi.streams.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
