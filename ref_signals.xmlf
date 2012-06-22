@@ -3,7 +3,11 @@
 <!ENTITY % eclent SYSTEM "ecl.ent">
 %eclent;
 ]>
-<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="signals.dict"><title>Multithreading Reference</title>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter>
+<title>Signals</title>
+<section xml:id="ext.signals.dict">
+<title>Signals Reference</title>
 
 <!-- ====================================================================== -->
 <!-- EXT:WITH-INTERRUPTS                                                    -->
@@ -118,8 +122,9 @@
 </programlisting>
   </refsect1>
 </refentry>
-
-</reference></book>
+</section>
+</chapter>
+</book>
 <!-- Keep this comment at the end of the file
       Local variables:
       mode: nxml

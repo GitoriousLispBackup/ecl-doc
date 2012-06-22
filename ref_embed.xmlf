@@ -3,7 +3,11 @@
 <!ENTITY % eclent SYSTEM "ecl.ent">
 %eclent;
 ]>
-<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="embed.dict"><title>Embedding Reference</title>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter>
+<title>Embedding</title>
+<section xml:id="ext.embed.dict">
+<title>Embedding Reference</title>
 
 <!-- ====================================================================== -->
 <!-- CL_CATCH_ALL                                                           -->
@@ -529,7 +533,9 @@
   </para>
  </refsect1>
 </refentry>
-</reference></book>
+</section>
+</chapter>
+</book>
 <!-- Keep this comment at the end of the file
       Local variables:
       mode: nxml

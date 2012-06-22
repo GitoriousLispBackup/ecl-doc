@@ -43,12 +43,8 @@
 
   </section>
 
-  <section xml:id="ext.mp.dict">
-   <title>MP Reference</title>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="ref_mp.xmlf" xpointer="ext.mp.dict"/>
 
-   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="ref_mp.xmlf" xpointer="mp.dict"/>
-
-  </section>
  </chapter>
 </book>
 <!-- Keep this comment at the end of the file

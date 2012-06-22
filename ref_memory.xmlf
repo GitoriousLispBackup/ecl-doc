@@ -3,7 +3,11 @@
 <!ENTITY % eclent SYSTEM "ecl.ent">
 %eclent;
 ]>
-<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"><reference xml:id="ext.memory.dict2"><title>Finalization Reference</title>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<chapter>
+<title>Memory Management</title>
+<section xml:id="ext.memory.dict">
+<title>Memory Management Reference</title>
 
 <!-- ====================================================================== -->
 <!-- EXT:STACK-OVERFLOW                                                     -->
@@ -346,8 +350,9 @@
  </refsect1>
 
 </refentry>
-
-</reference></book>
+</section>
+</chapter>
+</book>
 <!-- Keep this comment at the end of the file
       Local variables:
       mode: nxml
