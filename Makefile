@@ -55,7 +55,7 @@ tmp/COPYING.GFDL.xml: COPYING.GFDL Makefile
 	echo ']]>' >> $@
 
 jing:
-	java -jar ~/Downloads/jing-20081028/bin/jing.jar -t -i /usr/local/Cellar/docbook/5.0/docbook/xml/5.0/rng/docbookxi.rng ecl.xml
+	jing -t -i /usr/local/Cellar/docbook/5.0/docbook/xml/5.0/rng/docbookxi.rng ecl.xml
 
 clean:
 	rm -f tmp/ecl.ent $(GEN_XMLFILES) html/*.html
