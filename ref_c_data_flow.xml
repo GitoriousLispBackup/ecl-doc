@@ -9,9 +9,176 @@
 <section xml:id="ansi.data-and-control.c-dict">
   <title>C Reference</title>
 
-  <refentry xml:id="ref.cl_va_arg">
+  <refentry xml:id="ecl_bds_bind">
     <refnamediv>
-      <refname><function>cl_va_arg</function></refname>
+      <refname><function>ecl_bds_bind</function></refname>
+      <refpurpose>Bind a special variable</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Functions</title>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef><function>ecl_bds_bind</function></funcdef>
+	  <paramdef>cl_env_ptr <parameter>cl_env</parameter></paramdef>
+	  <paramdef>cl_object <parameter>var</parameter></paramdef>
+	  <paramdef>cl_object <parameter>value</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef><function>ecl_bds_push</function></funcdef>
+	  <paramdef>cl_env_ptr <parameter>cl_env</parameter></paramdef>
+	  <paramdef>cl_object <parameter>var</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>Establishes a variable binding for the symbol <replaceable>var</replaceable> in the Common Lisp environment <replaceable>env</replaceable>, assigning it <replaceable>value</replaceable>.</para>
+
+      <para>This macro or function is the equivalent of <ulink url="&clhs;s_let_l.htm"><symbol>LET*</symbol></ulink> and <ulink url="&clhs;s_let_l.htm"><symbol>LET</symbol></ulink>.</para>
+
+      <para><function>ecl_bds_push</function> does a similar thing, but reuses the old value of the same variable. It is thus the equivalent of <code>(LET ((VAR VAR)) ...)</code></para>
+
+      <para>Every variable binding must undone when no longer needed. It is best practice to match each call to <function>ecl_bds_bind</function> by another call to <link linkend="ecl_bds_unwind"><function>ecl_bds_unwind</function></link> in the same function.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry xml:id="ecl_bds_unwind">
+    <refnamediv>
+      <refname><function>ecl_bds_unwind</function></refname>
+      <refpurpose>Undo one variable binding</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Function</title>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef><function>ecl_bds_unwind1</function></funcdef>
+	  <paramdef>cl_env_ptr <parameter>cl_env</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef><function>ecl_bds_unwind_n</function></funcdef>
+	  <paramdef>cl_env_ptr <parameter>cl_env</parameter></paramdef>
+	  <paramdef>int <parameter>n</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para><function>ecl_bds_unwind1</function> undoes the outermost variable binding, restoring the original value of the symbol in the process.</para>
+
+      <para><function>ecl_bds_unwind_n</function> does the same, but for the <replaceable>n</replaceable> last variables.</para>
+
+      <para>Every variable binding must undone when no longer needed. It is best practice to match each call to <function>ecl_bds_bind</function> by another call to <link linkend="ecl_bds_unwind"><function>ecl_bds_unwind</function></link> in the same function.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry xml:id="ECL_SET">
+    <refnamediv>
+      <refname><function>ECL_SET</function></refname>
+      <refpurpose>C equivalent of <ulink url="&clhs;f_set.htm"><symbol>set</symbol></ulink></refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Macro</title>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef><function>ECL_SET</function></funcdef>
+	  <paramdef>cl_object <parameter>var</parameter></paramdef>
+	  <paramdef>cl_object <parameter>value</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>Assigns a global <replaceable>value</replaceable> to the symbol <replaceable>var</replaceable>. Note that this global value might be overriden by special variable bindings, including the ones that are active when <function>ECL_SET</function> is used</para>
+
+      <para>This macro is of <ulink url="&clhs;f_set.htm"><symbol>set</symbol></ulink>.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry xml:id="ECL_SETQ">
+    <refnamediv>
+      <refname><function>ECL_SETQ</function></refname>
+      <refpurpose>C equivalent of <ulink url="&clhs;s_setq.htm"><symbol>setq</symbol></ulink></refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Macro</title>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef><function>ECL_SETQ</function></funcdef>
+	  <paramdef>cl_env_ptr <parameter>cl_env</parameter></paramdef>
+	  <paramdef>cl_object <parameter>var</parameter></paramdef>
+	  <paramdef>cl_object <parameter>value</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>Assigns <replaceable>value</replaceable> to the special variable denoted by the symbol <replaceable>var</replaceable>, in the Common Lisp environment <replaceable>cl_env</replaceable>.</para>
+
+      <para>This macro implements a variable assignment, not a variable binding. It is thus the equivalent of <ulink url="&clhs;s_setq.htm"><symbol>setq</symbol></ulink>.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry xml:id="ECL_SYM_VAL">
+    <refnamediv>
+      <refname><function>ECL_SYM_VAL</function></refname>
+      <refpurpose>C equivalent of <ulink url="&clhs;f_symb_5.htm"><symbol>symbol-value</symbol></ulink></refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <title>Macro</title>
+
+      <funcsynopsis>
+	<funcprototype>
+	  <?dbhtml funcsynopsis-style='ansi'?>
+	  <funcdef><function>ECL_SYM_VAL</function></funcdef>
+	  <paramdef>cl_env_ptr <parameter>cl_env</parameter></paramdef>
+	  <paramdef>cl_object <parameter>var</parameter></paramdef>
+	</funcprototype>
+      </funcsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para>Retrieves the value of the special variable or constant denoted by the symbol <replaceable>var</replaceable>, in the Common Lisp environment <replaceable>cl_env</replaceable>.</para>
+
+      <para>This macro implements the equivalent of <ulink url="&clhs;f_symb_5.htm"><symbol>symbol-value</symbol></ulink> and works both on special variables and constants.</para>
+
+      <para>If the symbol is not bound, an error is signaled.</para>
+    </refsect1>
+  </refentry>
+
+  <refentry xml:id="ref.ecl_va_arg">
+    <refnamediv>
+      <refname><function>ecl_va_arg</function></refname>
       <refpurpose>Accepting a variable number of arguments</refpurpose>
     </refnamediv>
 
@@ -265,41 +432,23 @@ cl_object remainder = ecl_nth_value(env, 1);
 <member>Lisp symbol</member>
 <member>C function or constant</member>
 
-<member><ulink url="&clhs;v_call_a.htm"><symbol>call-arguments-limit</symbol></ulink></member>
-<member><constant>ECL_CALL_ARGUMENTS_LIMIT</constant></member>
-
-<member><ulink url="&clhs;v_lamb_1.htm"><symbol>lambda-parameters-limit</symbol></ulink></member>
-<member><constant>ECL_LAMBDA_PARAMETERS_LIMIT</constant></member>
-
-<member><ulink url="&clhs;v_multip.htm"><symbol>multiple-values-limit</symbol></ulink></member>
-<member><constant>ECL_MULTIPLE_VALUES_LIMIT</constant></member>
-
 <member><ulink url="&clhs;f_apply.htm"><symbol>apply</symbol></ulink></member>
 <member><code>cl_object cl_apply(cl_narg narg, cl_object function, ...)</code></member>
 
-<member><ulink url="&clhs;f_fdefin.htm"><symbol>fdefinition</symbol></ulink></member>
-<member><code>cl_object cl_fdefinition(cl_object function_name)</code></member>
-
-<member><ulink url="&clhs;f_fbound.htm"><symbol>fboundp</symbol></ulink></member>
-<member><code>cl_object cl_fboundp(cl_object function_name)</code></member>
-
-<member><ulink url="&clhs;f_fmakun.htm"><symbol>fmakunbound</symbol></ulink></member>
-<member><code>cl_object cl_fmakunbound(cl_object function_name)</code></member>
-
-<member><ulink url="&clhs;f_funcal.htm"><symbol>funcall</symbol></ulink></member>
-<member><code>cl_object cl_funcall(cl_narg narg, cl_object function, ...)</code></member>
-
-<member><ulink url="&clhs;f_fn_lam.htm"><symbol>function-lambda-expression</symbol></ulink></member>
-<member><code>cl_object cl_function_lambda_expression(cl_object function)</code></member>
-
-<member><ulink url="&clhs;f_fnp.htm"><symbol>functionp</symbol></ulink></member>
-<member><code>cl_object cl_functionp(cl_object object)</code></member>
+<member><ulink url="&clhs;v_call_a.htm"><symbol>call-arguments-limit</symbol></ulink></member>
+<member><constant>ECL_CALL_ARGUMENTS_LIMIT</constant></member>
 
 <member><ulink url="&clhs;f_cmpd_f.htm"><symbol>compiled-function-p</symbol></ulink></member>
 <member><code>cl_object cl_compiled_function_p(cl_object object)</code></member>
 
-<member><ulink url="&clhs;f_not.htm"><symbol>not</symbol></ulink></member>
-<member><code>cl_object cl_not(cl_object object)</code></member>
+<member><ulink url="&clhs;f_comple.htm"><symbol>complement</symbol></ulink></member>
+<member><code>cl_object cl_complement(cl_object function)</code></member>
+
+<member><ulink url="&clhs;f_cons_1.htm"><symbol>constantly</symbol></ulink></member>
+<member><code>cl_object cl_constantly(cl_object value)</code></member>
+
+<member><ulink url="&clhs;f_every.htm"><symbol>every</symbol></ulink></member>
+<member><code>cl_object cl_every(cl_narg narg, cl_object predicate, ...)</code></member>
 
 <member><ulink url="&clhs;f_eq.htm"><symbol>eq</symbol></ulink></member>
 <member><code>cl_object cl_eq(cl_object x, cl_object y)</code></member>
@@ -313,20 +462,41 @@ cl_object remainder = ecl_nth_value(env, 1);
 <member><ulink url="&clhs;f_equalp.htm"><symbol>equalp</symbol></ulink></member>
 <member><code>cl_object cl_equalp(cl_object x, cl_object y)</code></member>
 
+<member><ulink url="&clhs;f_fbound.htm"><symbol>fboundp</symbol></ulink></member>
+<member><code>cl_object cl_fboundp(cl_object function_name)</code></member>
+
+<member><ulink url="&clhs;f_fdefin.htm"><symbol>fdefinition</symbol></ulink></member>
+<member><code>cl_object cl_fdefinition(cl_object function_name)</code></member>
+
+<member><ulink url="&clhs;f_fmakun.htm"><symbol>fmakunbound</symbol></ulink></member>
+<member><code>cl_object cl_fmakunbound(cl_object function_name)</code></member>
+
+<member><ulink url="&clhs;f_funcal.htm"><symbol>funcall</symbol></ulink></member>
+<member><code>cl_object cl_funcall(cl_narg narg, cl_object function, ...)</code></member>
+
+<member><ulink url="&clhs;f_fn_lam.htm"><symbol>function-lambda-expression</symbol></ulink></member>
+<member><code>cl_object cl_function_lambda_expression(cl_object function)</code></member>
+
+<member><ulink url="&clhs;f_fnp.htm"><symbol>functionp</symbol></ulink></member>
+<member><code>cl_object cl_functionp(cl_object object)</code></member>
+
+<member><ulink url="&clhs;f_get_se.htm"><symbol>get-setf-expansion</symbol></ulink></member>
+<member><code>cl_object cl_get_setf_expansion(cl_narg narg, cl_object place, ...)</code></member>
+
 <member><ulink url="&clhs;f_identi.htm"><symbol>identity</symbol></ulink></member>
 <member><code>cl_object cl_identity(cl_object x)</code></member>
 
-<member><ulink url="&clhs;f_comple.htm"><symbol>complement</symbol></ulink></member>
-<member><code>cl_object cl_complement(cl_object function)</code></member>
+<member><ulink url="&clhs;s_let_l.htm"><symbol>LET</symbol>, <symbol>LET*</symbol></ulink></member>
+<member><code>cl_object <link linkend="ecl_bds_bind">ecl_bds_bind</link>(cl_env_ptr env, cl_object symbol, cl_object value)</code></member>
 
-<member><ulink url="&clhs;f_cons_1.htm"><symbol>constantly</symbol></ulink></member>
-<member><code>cl_object cl_constantly(cl_object value)</code></member>
+<member><ulink url="&clhs;v_lamb_1.htm"><symbol>lambda-parameters-limit</symbol></ulink></member>
+<member><constant>ECL_LAMBDA_PARAMETERS_LIMIT</constant></member>
 
-<member><ulink url="&clhs;f_every.htm"><symbol>every</symbol></ulink></member>
-<member><code>cl_object cl_every(cl_narg narg, cl_object predicate, ...)</code></member>
+<member><ulink url="&clhs;v_multip.htm"><symbol>multiple-values-limit</symbol></ulink></member>
+<member><constant>ECL_MULTIPLE_VALUES_LIMIT</constant></member>
 
-<member><ulink url="&clhs;f_some.htm"><symbol>some</symbol></ulink></member>
-<member><code>cl_object cl_some(cl_narg narg, cl_object predicate, ...)</code></member>
+<member><ulink url="&clhs;f_not.htm"><symbol>not</symbol></ulink></member>
+<member><code>cl_object cl_not(cl_object object)</code></member>
 
 <member><ulink url="&clhs;f_notevery.htm"><symbol>notevery</symbol></ulink></member>
 <member><code>cl_object cl_notevery(cl_narg narg, cl_object predicate, ...)</code></member>
@@ -334,11 +504,20 @@ cl_object remainder = ecl_nth_value(env, 1);
 <member><ulink url="&clhs;f_notany.htm"><symbol>notany</symbol></ulink></member>
 <member><code>cl_object cl_notany(cl_narg narg, cl_object predicate, ...)</code></member>
 
+<member><ulink url="&clhs;f_set.htm"><symbol>set</symbol></ulink></member>
+<member><code>cl_object <link linkend="ECL_SET">ECL_SET</link>(cl_object symbol, cl_object value)</code></member>
+
+<member><ulink url="&clhs;s_setq.htm"><symbol>setq</symbol></ulink></member>
+<member><code>cl_object <link linkend="ECL_SETQ">ECL_SETQ</link>(cl_env_ptr env, cl_object symbol, cl_object value)</code></member>
+
+<member><ulink url="&clhs;f_symb_5.htm"><symbol>symbol-value</symbol></ulink></member>
+<member><code>cl_object <link linkend="ECL_SETQ">ECL_SYM_VAL</link>(cl_env_ptr env, cl_object symbol)</code></member>
+
+<member><ulink url="&clhs;f_some.htm"><symbol>some</symbol></ulink></member>
+<member><code>cl_object cl_some(cl_narg narg, cl_object predicate, ...)</code></member>
+
 <member><ulink url="&clhs;f_vals_l.htm"><symbol>values-list</symbol></ulink></member>
 <member><code>cl_object cl_values_list(cl_object list)</code></member>
-
-<member><ulink url="&clhs;f_get_se.htm"><symbol>get-setf-expansion</symbol></ulink></member>
-<member><code>cl_object cl_get_setf_expansion(cl_narg narg, cl_object place, ...)</code></member>
 </simplelist>
     </refsynopsisdiv>
 
