@@ -146,19 +146,19 @@
     </refsect1>
   </refentry>
 
-  <refentry xml:id="ECL_SYM_VAL">
+  <refentry xml:id="ecl_symbol_value">
     <refnamediv>
-      <refname><function>ECL_SYM_VAL</function></refname>
+      <refname><function>ecl_symbol_value</function></refname>
       <refpurpose>C equivalent of <ulink url="&clhs;f_symb_5.htm"><symbol>symbol-value</symbol></ulink></refpurpose>
     </refnamediv>
 
     <refsynopsisdiv>
-      <title>Macro</title>
+      <title>Funciton</title>
 
       <funcsynopsis>
 	<funcprototype>
 	  <?dbhtml funcsynopsis-style='ansi'?>
-	  <funcdef><function>ECL_SYM_VAL</function></funcdef>
+	  <funcdef><function>ecl_symbol_value</function></funcdef>
 	  <paramdef>cl_env_ptr <parameter>cl_env</parameter></paramdef>
 	  <paramdef>cl_object <parameter>var</parameter></paramdef>
 	</funcprototype>
@@ -170,7 +170,7 @@
 
       <para>Retrieves the value of the special variable or constant denoted by the symbol <replaceable>var</replaceable>, in the Common Lisp environment <replaceable>cl_env</replaceable>.</para>
 
-      <para>This macro implements the equivalent of <ulink url="&clhs;f_symb_5.htm"><symbol>symbol-value</symbol></ulink> and works both on special variables and constants.</para>
+      <para>This function implements the equivalent of <ulink url="&clhs;f_symb_5.htm"><symbol>symbol-value</symbol></ulink> and works both on special variables and constants.</para>
 
       <para>If the symbol is not bound, an error is signaled.</para>
     </refsect1>
@@ -511,7 +511,7 @@ cl_object remainder = ecl_nth_value(env, 1);
 <member><code>cl_object <link linkend="ECL_SETQ">ECL_SETQ</link>(cl_env_ptr env, cl_object symbol, cl_object value)</code></member>
 
 <member><ulink url="&clhs;f_symb_5.htm"><symbol>symbol-value</symbol></ulink></member>
-<member><code>cl_object <link linkend="ECL_SETQ">ECL_SYM_VAL</link>(cl_env_ptr env, cl_object symbol)</code></member>
+<member><code>cl_object <link linkend="ECL_SETQ">ecl_symbol_value</link>(cl_env_ptr env, cl_object symbol)</code></member>
 
 <member><ulink url="&clhs;f_some.htm"><symbol>some</symbol></ulink></member>
 <member><code>cl_object cl_some(cl_narg narg, cl_object predicate, ...)</code></member>
