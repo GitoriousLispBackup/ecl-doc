@@ -68,7 +68,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>Accessors</refname>
+      <refname>String accessors</refname>
       <refpurpose>Reading and writing characters into a string</refpurpose>
     </refnamediv>
 
@@ -107,7 +107,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>ANSI Dictionary</refname>
+      <refname>Strings C dictionary</refname>
       <refpurpose>&ANSI-C-Dict;</refpurpose>
     </refnamediv>
 

@@ -11,7 +11,7 @@
 
   <refentry xml:id="ansi.numbers.c-types">
     <refnamediv>
-      <refname>C types</refname>
+      <refname>Number C types</refname>
       <refpurpose>Numeric C types understood by ECL</refpurpose>
     </refnamediv>
 
@@ -142,7 +142,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>Constructors</refname>
+      <refname>Number constructors</refname>
       <refpurpose>Creating Lisp types from C numbers</refpurpose>
     </refnamediv>
 
@@ -342,7 +342,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>Accessors</refname>
+      <refname>Number accessors</refname>
       <refpurpose>Unchecked conversion from Lisp types to C numbers</refpurpose>
     </refnamediv>
 
@@ -390,7 +390,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>Coercion</refname>
+      <refname>Number coercion</refname>
       <refpurpose>Checked conversion from Lisp types to C numbers</refpurpose>
     </refnamediv>
 
@@ -583,7 +583,7 @@
 
   <refentry>
     <refnamediv>
-      <refname>ANSI Dictionary</refname>
+      <refname>Numbers C dictionary</refname>
       <refpurpose>&ANSI-C-Dict;</refpurpose>
     </refnamediv>
 
