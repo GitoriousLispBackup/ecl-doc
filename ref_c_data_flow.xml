@@ -89,37 +89,9 @@
     </refsect1>
   </refentry>
 
-  <refentry xml:id="ECL_SET">
+  <refentry xml:id="ecl_setq">
     <refnamediv>
-      <refname><function>ECL_SET</function></refname>
-      <refpurpose>C equivalent of <ulink url="&clhs;f_set.htm"><symbol>set</symbol></ulink></refpurpose>
-    </refnamediv>
-
-    <refsynopsisdiv>
-      <title>Macro</title>
-
-      <funcsynopsis>
-	<funcprototype>
-	  <?dbhtml funcsynopsis-style='ansi'?>
-	  <funcdef><function>ECL_SET</function></funcdef>
-	  <paramdef>cl_object <parameter>var</parameter></paramdef>
-	  <paramdef>cl_object <parameter>value</parameter></paramdef>
-	</funcprototype>
-      </funcsynopsis>
-    </refsynopsisdiv>
-
-    <refsect1>
-      <title>Description</title>
-
-      <para>Assigns a global <replaceable>value</replaceable> to the symbol <replaceable>var</replaceable>. Note that this global value might be overriden by special variable bindings, including the ones that are active when <function>ECL_SET</function> is used</para>
-
-      <para>This macro is of <ulink url="&clhs;f_set.htm"><symbol>set</symbol></ulink>.</para>
-    </refsect1>
-  </refentry>
-
-  <refentry xml:id="ECL_SETQ">
-    <refnamediv>
-      <refname><function>ECL_SETQ</function></refname>
+      <refname><function>ecl_setq</function></refname>
       <refpurpose>C equivalent of <ulink url="&clhs;s_setq.htm"><symbol>setq</symbol></ulink></refpurpose>
     </refnamediv>
 
@@ -129,7 +101,7 @@
       <funcsynopsis>
 	<funcprototype>
 	  <?dbhtml funcsynopsis-style='ansi'?>
-	  <funcdef><function>ECL_SETQ</function></funcdef>
+	  <funcdef><function>ecl_setq</function></funcdef>
 	  <paramdef>cl_env_ptr <parameter>cl_env</parameter></paramdef>
 	  <paramdef>cl_object <parameter>var</parameter></paramdef>
 	  <paramdef>cl_object <parameter>value</parameter></paramdef>
@@ -142,7 +114,7 @@
 
       <para>Assigns <replaceable>value</replaceable> to the special variable denoted by the symbol <replaceable>var</replaceable>, in the Common Lisp environment <replaceable>cl_env</replaceable>.</para>
 
-      <para>This macro implements a variable assignment, not a variable binding. It is thus the equivalent of <ulink url="&clhs;s_setq.htm"><symbol>setq</symbol></ulink>.</para>
+      <para>This function implements a variable assignment, not a variable binding. It is thus the equivalent of <ulink url="&clhs;s_setq.htm"><symbol>setq</symbol></ulink>.</para>
     </refsect1>
   </refentry>
 
@@ -505,10 +477,10 @@ cl_object remainder = ecl_nth_value(env, 1);
 <member><code>cl_object cl_notany(cl_narg narg, cl_object predicate, ...)</code></member>
 
 <member><ulink url="&clhs;f_set.htm"><symbol>set</symbol></ulink></member>
-<member><code>cl_object <link linkend="ECL_SET">ECL_SET</link>(cl_object symbol, cl_object value)</code></member>
+<member><code>cl_object cl_set(cl_object symbol, cl_object value)</code></member>
 
 <member><ulink url="&clhs;s_setq.htm"><symbol>setq</symbol></ulink></member>
-<member><code>cl_object <link linkend="ECL_SETQ">ECL_SETQ</link>(cl_env_ptr env, cl_object symbol, cl_object value)</code></member>
+<member><code>cl_object <link linkend="ecl_setq">ecl_setq</link>(cl_env_ptr env, cl_object symbol, cl_object value)</code></member>
 
 <member><ulink url="&clhs;f_symb_5.htm"><symbol>symbol-value</symbol></ulink></member>
 <member><code>cl_object <link linkend="ECL_SETQ">ecl_symbol_value</link>(cl_env_ptr env, cl_object symbol)</code></member>
