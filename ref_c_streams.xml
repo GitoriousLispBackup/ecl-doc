@@ -10,7 +10,7 @@
 <title>C Reference</title>
   <refentry>
     <refnamediv>
-      <refname>ANSI Dictionary</refname>
+      <refname>Streams C dictionary</refname>
       <refpurpose>&ANSI-C-Dict;</refpurpose>
     </refnamediv>
 
