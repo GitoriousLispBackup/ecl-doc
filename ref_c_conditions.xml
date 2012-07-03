@@ -8,6 +8,40 @@
 <title>Conditions</title>
 <section xml:id="ansi.conditions.c-dict">
 <title>C Reference</title>
+  <refentry xml:id="ECL_HANDLER_CASE">
+    <refnamediv>
+      <refname><function>ECL_HANDLER_CASE</function></refname>
+      <refpurpose>C macro for <ulink url="&clhs;m_hand_1.htm"><symbol>handler-case</symbol></ulink></refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <synopsis><code><function>ECL_HANDLER_CASE_BEGIN</function>(env,names) {</code></synopsis>
+      <synopsis><code>} <function>ECL_HANDLER_CASE(n,condition) {</function> {</code></synopsis>
+      <synopsis><code>} <function>ECL_HANDLER_CASE_END</function>;</code></synopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+
+      <para><function>ECL_HANDLER_CASE_BEGIN</function> runs a block of C code with a set of error handlers bound to the names given by the list <replaceable>names</replaceable>. The subsequent <function>ECL_HANDLER_CASE</function> statements specify what to do when the <replaceable>n</replaceable>-th type of conditions is found, where <replaceable>n</replaceable> is an integer denoting the position of the name in the list <replaceable>names</replaceable>.</para>
+
+      <para>When a condition is signaled, &ECL; scans the list of signal handlers, looking for matches based on <symbol>typep</symbol>. If the match with the highest precedence belongs to the list <replaceable>names</replaceable>, &ECL; will perform a non-local transfer of control to the appropriate <function>ECL_HANDLER_CASE</function>, passing it a <replaceable>condition</replaceable> object as unique argument.</para>
+
+      <para>The following example shows how to establish a handler for <symbol>ERROR</symbol> conditions. Note how the first value to <function>ECL_HANDLER_CASE</function> matches the position of the restart name in the list:</para>
+      <programlisting>
+cl_object error = ecl_make_symbol("ERROR","CL");
+ECL_RESTART_BEGIN(the_env, ecl_list1(error)) {
+   /* This form is evaluated with bound handlers */
+   output = cl_eval(1, form);
+} ECL_HANDLER_CASE(1, condition) {
+   /* This code is executed when an error happens */
+   /* We just return the error that took place */
+   output = condition;
+} ECL_RESTART_END;
+      </programlisting>
+    </refsect1>
+  </refentry>
+
   <refentry xml:id="ECL_RESTART_CASE">
     <refnamediv>
       <refname><function>ECL_RESTART_CASE</function></refname>
@@ -79,6 +113,9 @@ ECL_RESTART_BEGIN(the_env, cl_list(2, abort, use_value)) {
 
 <member><ulink url="&clhs;f_find_r.htm"><symbol>find-restart</symbol></ulink></member>
 <member><code>cl_object cl_find_restart(cl_narg narg, cl_object identifier, ...)</code></member>
+
+<member><ulink url="&clhs;m_hand_1.htm"><symbol>handler-case</symbol></ulink></member>
+<member><link linkend="ECL_HANDLER_CASE"><function>ECL_HANDLER_CASE</function></link> macro</member>
 
 <member><ulink url="&clhs;f_invali.htm"><symbol>invalid-method-error</symbol></ulink></member>
 <member><code>&OCL;</code></member>
