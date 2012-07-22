@@ -581,7 +581,7 @@
 
   </refentry>
 
-  <refentry>
+  <refentry xml:id="ansi.numbers.c-dict.ref">
     <refnamediv>
       <refname>Numbers C dictionary</refname>
       <refpurpose>&ANSI-C-Dict;</refpurpose>
