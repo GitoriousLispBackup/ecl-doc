@@ -463,20 +463,20 @@
    <para>This is the type of a lisp object. For your C/C++ program, a <literal>cl_object</literal>
    can be either a fixnum, a character, or a pointer to a union of structures (See
    the header <filename>object.h</filename>). The actual interpretation of that object can be
-   guessed with the macro <literal>type_of</literal>.</para>
+   guessed with the macro <literal>ecl_t_of</literal>.</para>
    <para>For example, if <replaceable>x</replaceable> is of type <literal>cl_object</literal>, and it is of type fixnum,
    we may retrieve its value</para>
    <screen>
-    if (type_of(x) == t_fixnum)
+    if (ecl_t_of(x) == t_fixnum)
     printf("Integer value: %d\n", fix(x));
    </screen>
    <para role="continues">If <replaceable>x</replaceable> is of type <literal>cl_object</literal> and it does not contain an immediate
    datatype, you may inspect the cell associated to the lisp object using <replaceable>x</replaceable>
    as a pointer. For example,</para>
    <screen>
-    if (type_of(x) == t_cons)
+    if (ecl_t_of(x) == t_cons)
     printf("CAR = %x, CDR = %x\n", x-&gt;cons.car, x-&gt;cons.cdr);
-    else if (type_of(x) == t_string)
+    else if (ecl_t_of(x) == t_string)
     printf("String: %s\n", x-&gt;string.self);
    </screen>
    <para role="continues">You should see the following sections and the header <filename>object.h</filename> to learn
@@ -492,8 +492,8 @@
    t_thread.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>type_of</primary></indexterm>&#151; Function: <returnvalue>cl_type</returnvalue> <function>type_of</function> (<type>cl_object</type> <varname>O</varname>)</screen>
-   <para>If <replaceable>O</replaceable> is a valid lisp object, <literal>type_of(<replaceable>O</replaceable>)</literal> returns an integer
+   <screen><indexterm role="fn"><primary>ecl_t_of</primary></indexterm>&#151; Function: <returnvalue>cl_type</returnvalue> <function>ecl_t_of</function> (<type>cl_object</type> <varname>O</varname>)</screen>
+   <para>If <replaceable>O</replaceable> is a valid lisp object, <literal>ecl_t_of(<replaceable>O</replaceable>)</literal> returns an integer
    denoting the type that lisp object. That integer is one of the values of the
    enumeration type <literal>cl_type</literal>.</para>
   </blockquote>
@@ -508,7 +508,7 @@
    <screen><indexterm role="fn"><primary>STRINGP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>STRINGP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para>Different macros that check whether <replaceable>o</replaceable> belongs to the specified type.
    These checks have been optimized, and are preferred over several calls to
-   <literal>type_of</literal>.</para>
+   <literal>ecl_t_of</literal>.</para>
   </blockquote>
   <blockquote>
    <screen><indexterm role="fn"><primary>IMMEDIATE</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>IMMEDIATE</function> (<type>cl_object</type> <varname>o</varname>)</screen>
