@@ -27,24 +27,25 @@ XMLFILES= ecl.xml bibliography.xmlf clos.xmlf compiler.xmlf			\
 	ref_c_objects.xml ref_c_conditions.xml ref_c_structures.xml		\
 	ref_signals.xmlf ref_c_arrays.xml $(GEN_XMLFILES)
 
-XSLFILES= xsl/customization.xml xsl/lispfunc.xml xsl/refentryintoc.xml
+HTML_XSLFILES= xsl/customization.xml xsl/lispfunc.xml xsl/refentryintoc.xml
+PDF_XSLFILES= xsl/customization.xml xsl/lispfunc-po.xml
 
 all: html/ecl.css
 
-html/index.html: $(XMLFILES) $(XSLFILES) xsl/add_indexterm.xml
+ecl2.xml: $(XMLFILES) xsl/add_indexterm.xml
 	@test -d html || mkdir html
 	$(XSLTPROC) --xinclude xsl/add_indexterm.xml ecl.xml | \
-	sed 's, xmlns="",,g' > html/ecl2.xml
-	$(XMLTO) -vv --skip-validation $(subst xsl, -m xsl,$(XSLFILES)) -o html html html/ecl2.xml
-	rm html/ecl2.xml
+	sed 's, xmlns="",,g' > ecl2.xml
+html/index.html: ecl2.xml $(HTML_XSLFILES)
+	$(XMLTO) -vv --skip-validation $(subst xsl, -m xsl,$(HTML_XSLFILES)) -o html html ecl2.xml
 	cp ecl.css html/
 html/ecl.css: ecl.css html/index.html
 	cp ecl.css html/
 	@test -d html/figures || mkdir html/figures
 	cp figures/*.png html/figures/
-
-ecl.pdf: $(XMLFILES) $(XSLFILES)
-	$(XMLTO) -o $@ pdf ecl.xml
+ecl.pdf: ecl2.xml $(PDF_XSLFILES)
+	$(XMLTO) -vv --skip-validation $(subst xsl, -m xsl,$(PDF_XSLFILES)) \
+		 -o $@ pdf ecl2.xml
 
 tmp/ecl.ent: ecl.ent
 	cp $< $@
@@ -58,4 +59,4 @@ jing:
 	jing -t -i /usr/local/Cellar/docbook/5.0/docbook/xml/5.0/rng/docbookxi.rng ecl.xml
 
 clean:
-	rm -f tmp/ecl.ent $(GEN_XMLFILES) html/*.html
+	rm -f tmp/ecl.ent ecl2.xml $(GEN_XMLFILES) html/*.html
