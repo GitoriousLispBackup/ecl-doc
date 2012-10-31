@@ -483,7 +483,7 @@ cl_object remainder = ecl_nth_value(env, 1);
 <member><code>cl_object <link linkend="ecl_setq">ecl_setq</link>(cl_env_ptr env, cl_object symbol, cl_object value)</code></member>
 
 <member><ulink url="&clhs;f_symb_5.htm"><symbol>symbol-value</symbol></ulink></member>
-<member><code>cl_object <link linkend="ECL_SETQ">ecl_symbol_value</link>(cl_env_ptr env, cl_object symbol)</code></member>
+<member><code>cl_object <link linkend="ecl_symbol_value">ecl_symbol_value</link>(cl_env_ptr env, cl_object symbol)</code></member>
 
 <member><ulink url="&clhs;f_some.htm"><symbol>some</symbol></ulink></member>
 <member><code>cl_object cl_some(cl_narg narg, cl_object predicate, ...)</code></member>

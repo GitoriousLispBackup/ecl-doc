@@ -154,7 +154,7 @@ printf("\n1 + 1 is %d\n", ecl_fixnum(two));
 printf("\n1 + 1 + 1 is %d\n", ecl_fixnum(three));
 </programlisting>
 
-   <para>Another restriction of C and C++ is that functions can only take a limited number of arguments. In order to cope with this problem, &ECL; uses an internal stack to pass any argument above a hardcoded limit, <constant>ECL_C_CALL_ARGUMENTS_LIMIT</constant>, which is as of this writing 63. The use of this stack is transparently handled by the Common Lisp functions, such as <symbol>apply</symbol>, <symbol>funcall</symbol> and their C equivalents, and also by a set of macros, <link linkend="ref.cl_va_arg"><function>cl_va_arg</function></link>, which can be used for coding functions that take an arbitrary name of arguments.</para>
+   <para>Another restriction of C and C++ is that functions can only take a limited number of arguments. In order to cope with this problem, &ECL; uses an internal stack to pass any argument above a hardcoded limit, <constant>ECL_C_CALL_ARGUMENTS_LIMIT</constant>, which is as of this writing 63. The use of this stack is transparently handled by the Common Lisp functions, such as <symbol>apply</symbol>, <symbol>funcall</symbol> and their C equivalents, and also by a set of macros, <link linkend="ref.ecl_va_arg"><function>cl_va_arg</function></link>, which can be used for coding functions that take an arbitrary name of arguments.</para>
  </section>
 
  <xi:include href="ref_c_data_flow.xml" xpointer="ansi.data-and-control.c-dict" xmlns:xi="http://www.w3.org/2001/XInclude"/>
