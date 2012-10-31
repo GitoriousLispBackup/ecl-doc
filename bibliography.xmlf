@@ -7,7 +7,7 @@
  <bibliography xml:id="Bibliography">
   <title>Bibliography</title>
 
-  <bibliomixed xml:id="bib.LISP1.5" xreflabel="[LISP1.5]">
+  <bibliomixed xml:id="bib.LISP1.5" xreflabel="LISP1.5">
    <bibliomset>
     <firstname>John</firstname> <surname>McCarthy</surname> et
     al. <title>LISP 1.5 Programmer's
@@ -85,7 +85,7 @@
    </bibliomset>
   </bibliomixed>
 
-  <bibliomixed xml:id="bib.AMOP" xreflabel="[AMOP]">
+  <bibliomixed xml:id="bib.AMOP" xreflabel="AMOP">
    <bibliomset>
     <firstname>Gregor</firstname> <surname>Kickzales</surname> et al. <title>The
     Art of the Metaobject Protocol</title> <publishername>The

@@ -35,7 +35,7 @@ all: html/ecl.css
 ecl2.xml: $(XMLFILES) xsl/add_indexterm.xml
 	@test -d html || mkdir html
 	$(XSLTPROC) --xinclude xsl/add_indexterm.xml ecl.xml | \
-	sed 's, xmlns="",,g' > ecl2.xml
+	sed 's, xmlns="",,g;s,&#151,,g;' > ecl2.xml
 html/index.html: ecl2.xml $(HTML_XSLFILES)
 	$(XMLTO) -vv --skip-validation $(subst xsl, -m xsl,$(HTML_XSLFILES)) -o html html ecl2.xml
 	cp ecl.css html/
@@ -45,7 +45,7 @@ html/ecl.css: ecl.css html/index.html
 	cp figures/*.png html/figures/
 ecl.pdf: ecl2.xml $(PDF_XSLFILES)
 	$(XMLTO) -vv --skip-validation $(subst xsl, -m xsl,$(PDF_XSLFILES)) \
-		 -o $@ pdf ecl2.xml
+		 --with-dblatex -o $@ pdf ecl2.xml
 
 tmp/ecl.ent: ecl.ent
 	cp $< $@

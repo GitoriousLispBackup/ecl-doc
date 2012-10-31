@@ -3,6 +3,7 @@
 		xmlns:a="http://docbook.org/ns/docbook"
 		exclude-result-prefixes="a"
 		version="1.0">
+<xsl:output encoding="utf-8"/>
 
 <!-- By default copy the whole document -->
 <xsl:template match="node()|@*">

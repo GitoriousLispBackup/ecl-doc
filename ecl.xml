@@ -71,7 +71,7 @@
  <title>C/C++ index</title>
  </index>
 
- <xi:include href="bibliography.xmlf" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+ <xi:include href="bibliography.xmlf" xpointer="Bibliography" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 </book>
 <!-- Keep this comment at the end of the file

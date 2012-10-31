@@ -149,7 +149,7 @@
   follows. Care should be taken that <replaceable>image-name</replaceable> differs from any
   filename in <replaceable>lisp-files</replaceable>.</para>
   <blockquote>
-   <screen><indexterm role="fn"><primary>c:build-program</primary></indexterm>&#151; Function: <function>c:build-program</function> <varname>{</varname><varname>image-name</varname> <varname>&amp;key</varname> <varname>lisp-files</varname> <varname>ld-flags</varname> <varname>prologue-code</varname> <varname>epilogue-code</varname><varname>}</varname></screen>
+   <screen><indexterm role="fn"><primary>c:build-program</primary></indexterm> Function: <function>c:build-program</function> <varname>{</varname><varname>image-name</varname> <varname>&amp;key</varname> <varname>lisp-files</varname> <varname>ld-flags</varname> <varname>prologue-code</varname> <varname>epilogue-code</varname><varname>}</varname></screen>
    <para>This function builds a lisp image up from the core lisp library, plus all
    components listed in <replaceable>lisp-files</replaceable>.  Each component is either:</para>
    <itemizedlist mark="bullet">
@@ -182,8 +182,8 @@
   executables. There are two different functions depending on whether you need
   to build static or shared libraries.</para>
   <blockquote>
-   <screen><indexterm role="fn"><primary>c:build-static-library</primary></indexterm>&#151; Function: <function>c:build-static-library</function> <varname>{</varname><varname>library-name</varname> <varname>&amp;key</varname> <varname>lisp-files</varname> <varname>prologue-code</varname> <varname>epilogue-code</varname> <varname>init-name</varname><varname>}</varname></screen>
-   <screen><indexterm role="fn"><primary>c:build-shared-library</primary></indexterm>&#151; Function: <function>c:build-shared-library</function> <varname>{</varname><varname>library-name</varname> <varname>&amp;key</varname> <varname>lisp-files</varname> <varname>prologue-code</varname> <varname>epilogue-code</varname> <varname>ld-flags</varname> <varname>init-name</varname><varname>}</varname></screen>
+   <screen><indexterm role="fn"><primary>c:build-static-library</primary></indexterm> Function: <function>c:build-static-library</function> <varname>{</varname><varname>library-name</varname> <varname>&amp;key</varname> <varname>lisp-files</varname> <varname>prologue-code</varname> <varname>epilogue-code</varname> <varname>init-name</varname><varname>}</varname></screen>
+   <screen><indexterm role="fn"><primary>c:build-shared-library</primary></indexterm> Function: <function>c:build-shared-library</function> <varname>{</varname><varname>library-name</varname> <varname>&amp;key</varname> <varname>lisp-files</varname> <varname>prologue-code</varname> <varname>epilogue-code</varname> <varname>ld-flags</varname> <varname>init-name</varname><varname>}</varname></screen>
    <para>This function builds a library file up from the object files listed in
    <replaceable>lisp-files</replaceable>. Each of the arguments to <replaceable>lisp-file</replaceable> must name a single
    object file produced with <literal>compile-file</literal>.</para>
@@ -214,7 +214,7 @@
  <section xml:id="Internals-File-names">
   <title>File names</title>
   <blockquote>
-   <screen><indexterm role="fn"><primary>compile-file-pathname</primary></indexterm>&#151; Function: <function>compile-file-pathname</function> <varname>{</varname><varname>filename-base</varname> <varname>&amp;key</varname> <varname>output-file</varname> <varname>type</varname><varname>}</varname></screen>
+   <screen><indexterm role="fn"><primary>compile-file-pathname</primary></indexterm> Function: <function>compile-file-pathname</function> <varname>{</varname><varname>filename-base</varname> <varname>&amp;key</varname> <varname>output-file</varname> <varname>type</varname><varname>}</varname></screen>
    <para>When compiling lisp files, creating libraries, etc, a number of files are
    produced which are of interest for the user or programmer. However, the name
    of these files will change from system to system. The purpose of the function
@@ -459,7 +459,7 @@
   <para>There is one important function which tells the type of an object, plus several
   macros which group several tests.</para>
   <blockquote>
-   <screen><indexterm role="tp"><primary>cl_object</primary></indexterm>&#151; C type: <structname>cl_object</structname></screen>
+   <screen><indexterm role="tp"><primary>cl_object</primary></indexterm> C type: <structname>cl_object</structname></screen>
    <para>This is the type of a lisp object. For your C/C++ program, a <literal>cl_object</literal>
    can be either a fixnum, a character, or a pointer to a union of structures (See
    the header <filename>object.h</filename>). The actual interpretation of that object can be
@@ -483,7 +483,7 @@
    how to use the different fields of a <literal>cl_object</literal> pointer.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="tp"><primary>cl_type</primary></indexterm>&#151; C type: <structname>cl_type</structname></screen>
+   <screen><indexterm role="tp"><primary>cl_type</primary></indexterm> C type: <structname>cl_type</structname></screen>
    <para>Enumeration type which distinguishes the different types of lisp objects.  The
    most important values are t_cons, t_fixnum, t_character, t_bignum, t_ratio,
    t_singlefloat, t_doublefloat, t_complex, t_symbol, t_package, t_hashtable,
@@ -492,26 +492,26 @@
    t_thread.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>ecl_t_of</primary></indexterm>&#151; Function: <returnvalue>cl_type</returnvalue> <function>ecl_t_of</function> (<type>cl_object</type> <varname>O</varname>)</screen>
+   <screen><indexterm role="fn"><primary>ecl_t_of</primary></indexterm> Function: <returnvalue>cl_type</returnvalue> <function>ecl_t_of</function> (<type>cl_object</type> <varname>O</varname>)</screen>
    <para>If <replaceable>O</replaceable> is a valid lisp object, <literal>ecl_t_of(<replaceable>O</replaceable>)</literal> returns an integer
    denoting the type that lisp object. That integer is one of the values of the
    enumeration type <literal>cl_type</literal>.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>FIXNUMP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>FIXNUMP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
-   <screen><indexterm role="fn"><primary>CHARACTERP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>CHARACTERP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
-   <screen><indexterm role="fn"><primary>CONSP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>CONSP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
-   <screen><indexterm role="fn"><primary>LISTP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>LISTP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
-   <screen><indexterm role="fn"><primary>ATOM</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>ATOM</function> (<type>cl_object</type> <varname>o</varname>)</screen>
-   <screen><indexterm role="fn"><primary>ARRAYP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>ARRAYP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
-   <screen><indexterm role="fn"><primary>VECTORP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>VECTORP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
-   <screen><indexterm role="fn"><primary>STRINGP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>STRINGP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>FIXNUMP</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>FIXNUMP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>CHARACTERP</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>CHARACTERP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>CONSP</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>CONSP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>LISTP</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>LISTP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>ATOM</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>ATOM</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>ARRAYP</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>ARRAYP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>VECTORP</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>VECTORP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>STRINGP</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>STRINGP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para>Different macros that check whether <replaceable>o</replaceable> belongs to the specified type.
    These checks have been optimized, and are preferred over several calls to
    <literal>ecl_t_of</literal>.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>IMMEDIATE</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>IMMEDIATE</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>IMMEDIATE</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>IMMEDIATE</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para>Tells whether <replaceable>o</replaceable> is an immediate datatype.</para>
   </blockquote>
   <!--  -->
@@ -534,8 +534,8 @@
   <para role="continues">The first way makes use of a C or Lisp string to construct an object. The two
   functions you need to know are the following ones.</para>
   <blockquote>
-   <screen><indexterm role="fn"><primary>c_string_to_object</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>c_string_to_object</function> (<type>const</type> <varname>char</varname> <type>*</type><varname>s</varname>)</screen>
-   <screen><indexterm role="fn"><primary>string_to_object</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>string_to_object</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>c_string_to_object</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>c_string_to_object</function> (<type>const</type> <varname>char</varname> <type>*</type><varname>s</varname>)</screen>
+   <screen><indexterm role="fn"><primary>string_to_object</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>string_to_object</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para><literal>c_string_to_object</literal> builds a lisp object from a C string which contains a
    suitable representation of a lisp object. <literal>string_to_object</literal> performs the
    same task, but uses a lisp string, and therefore it is less useful. Two
@@ -567,42 +567,42 @@
   take up a variable amount of memory and the GNU Multiprecision Library is
   required to create, manipulate and calculate with them.</para>
   <blockquote>
-   <screen><indexterm role="tp"><primary>cl_fixnum</primary></indexterm>&#151; C type: <structname>cl_fixnum</structname></screen>
+   <screen><indexterm role="tp"><primary>cl_fixnum</primary></indexterm> C type: <structname>cl_fixnum</structname></screen>
    <para>This is a C signed integer type capable of holding a whole fixnum without any
    loss of precision. The opposite is not true, and you may create a
    <literal>cl_fixnum</literal> which exceeds the limits of a fixnum and should be stored as a
    bignum.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="tp"><primary>cl_index</primary></indexterm>&#151; C type: <structname>cl_index</structname></screen>
+   <screen><indexterm role="tp"><primary>cl_index</primary></indexterm> C type: <structname>cl_index</structname></screen>
    <para>This is a C unsigned integer type capable of holding a nonnegative fixnum without
    loss of precision. Typically, a <literal>cl_index</literal> is used as an index into an array,
    or into a proper list, etc.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="vr"><primary>MOST_NEGATIVE_FIXNUM</primary></indexterm>&#151; Constant: <varname>MOST_NEGATIVE_FIXNUM</varname></screen>
-   <screen><indexterm role="vr"><primary>MOST_POSITIVE_FIXNUM</primary></indexterm>&#151; Constant: <varname>MOST_POSITIVE_FIXNUM</varname></screen>
+   <screen><indexterm role="vr"><primary>MOST_NEGATIVE_FIXNUM</primary></indexterm> Constant: <varname>MOST_NEGATIVE_FIXNUM</varname></screen>
+   <screen><indexterm role="vr"><primary>MOST_POSITIVE_FIXNUM</primary></indexterm> Constant: <varname>MOST_POSITIVE_FIXNUM</varname></screen>
    <para>These constants mark the limits of a fixnum.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>FIXNUM_MINUSP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>FIXNUM_MINUSP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
-   <screen><indexterm role="fn"><primary>FIXNUM_PLUSP</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>FIXNUM_PLUSP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>FIXNUM_MINUSP</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>FIXNUM_MINUSP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>FIXNUM_PLUSP</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>FIXNUM_PLUSP</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para>These functions perform the checks (<replaceable>o</replaceable> &lt; 0) and (0 &lt;= <replaceable>o</replaceable>),
    respectively.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>MAKE_FIXNUM</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>MAKE_FIXNUM</function> (<type>cl_fixnum</type> <varname>n</varname>)</screen>
-   <screen><indexterm role="fn"><primary>fix</primary></indexterm>&#151; Function: <returnvalue>cl_fixnum</returnvalue> <function>fix</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>MAKE_FIXNUM</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>MAKE_FIXNUM</function> (<type>cl_fixnum</type> <varname>n</varname>)</screen>
+   <screen><indexterm role="fn"><primary>fix</primary></indexterm> Function: <returnvalue>cl_fixnum</returnvalue> <function>fix</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para><literal>MAKE_FIXNUM</literal> and <literal>fix</literal> convert from an integer to a lisp object
    of fixnum type and vice versa. These functions no not check their arguments.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>fixint</primary></indexterm>&#151; Function: <returnvalue>cl_fixnum</returnvalue> <function>fixint</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>fixint</primary></indexterm> Function: <returnvalue>cl_fixnum</returnvalue> <function>fixint</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para>Converts a lisp fixnum to a C integer of the appropriate size. Signals an error
    if <replaceable>o</replaceable> is not of fixnum type.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>fixnnint</primary></indexterm>&#151; Function: <returnvalue>cl_index</returnvalue> <function>fixnnint</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>fixnnint</primary></indexterm> Function: <returnvalue>cl_index</returnvalue> <function>fixnnint</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para>Similar to <literal>fixint</literal> but also ensures that <replaceable>o</replaceable> is not negative.</para>
   </blockquote>
   <!--  -->
@@ -613,35 +613,35 @@
   <para>&ECL; has only one type of characters, which fits in the C type <literal>char</literal>.
   The following constants and functions operate on characters.</para>
   <blockquote>
-   <screen><indexterm role="vr"><primary>CHAR_CODE_LIMIT</primary></indexterm>&#151; Constant: <varname>CHAR_CODE_LIMIT</varname></screen>
+   <screen><indexterm role="vr"><primary>CHAR_CODE_LIMIT</primary></indexterm> Constant: <varname>CHAR_CODE_LIMIT</varname></screen>
    <para>Each character is assigned an integer code which ranges from 0 to
    (<replaceable>CHAR_CODE_LIMIT</replaceable>-1).</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>CHAR_CODE</primary></indexterm>&#151; Function: <returnvalue>cl_fixnum</returnvalue> <function>CHAR_CODE</function> (<type>cl_object</type> <varname>o</varname>)</screen>
-   <screen><indexterm role="fn"><primary>char_code</primary></indexterm>&#151; Function: <returnvalue>cl_fixnum</returnvalue> <function>char_code</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>CHAR_CODE</primary></indexterm> Function: <returnvalue>cl_fixnum</returnvalue> <function>CHAR_CODE</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>char_code</primary></indexterm> Function: <returnvalue>cl_fixnum</returnvalue> <function>char_code</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para>Returns the integer code associated to a lisp character. Only <literal>char_code</literal>
    checks its arguments.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>CODE_CHAR</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>CODE_CHAR</function> (<type>cl_fixnum</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>CODE_CHAR</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>CODE_CHAR</function> (<type>cl_fixnum</type> <varname>o</varname>)</screen>
    <para>Returns the lisp character associated to an integer code. It does not check
    its arguments.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>coerce_to_character</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>coerce_to_character</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>coerce_to_character</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>coerce_to_character</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para>Coerces a lisp object to type character. Valid arguments are a character,
    or a string designator of length 1. In all other cases an error is signaled.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>char_eq</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>char_eq</function> (<type>cl_object</type> <varname>x</varname>, <type>cl_object</type> <varname>y</varname>)</screen>
-   <screen><indexterm role="fn"><primary>char_equal</primary></indexterm>&#151; Function: <returnvalue>bool</returnvalue> <function>char_equal</function> (<type>cl_object</type> <varname>x</varname>, <type>cl_object</type> <varname>y</varname>)</screen>
+   <screen><indexterm role="fn"><primary>char_eq</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>char_eq</function> (<type>cl_object</type> <varname>x</varname>, <type>cl_object</type> <varname>y</varname>)</screen>
+   <screen><indexterm role="fn"><primary>char_equal</primary></indexterm> Function: <returnvalue>bool</returnvalue> <function>char_equal</function> (<type>cl_object</type> <varname>x</varname>, <type>cl_object</type> <varname>y</varname>)</screen>
    <para>Compare two characters for equality. <literal>char_eq</literal> take case into account and
    <literal>char_equal</literal> ignores it.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>char_cmp</primary></indexterm>&#151; Function: <returnvalue>int</returnvalue> <function>char_cmp</function> (<type>cl_object</type> <varname>x</varname>, <type>cl_object</type> <varname>y</varname>)</screen>
-   <screen><indexterm role="fn"><primary>char_compare</primary></indexterm>&#151; Function: <returnvalue>int</returnvalue> <function>char_compare</function> (<type>cl_object</type> <varname>x</varname>, <type>cl_object</type> <varname>y</varname>)</screen>
+   <screen><indexterm role="fn"><primary>char_cmp</primary></indexterm> Function: <returnvalue>int</returnvalue> <function>char_cmp</function> (<type>cl_object</type> <varname>x</varname>, <type>cl_object</type> <varname>y</varname>)</screen>
+   <screen><indexterm role="fn"><primary>char_compare</primary></indexterm> Function: <returnvalue>int</returnvalue> <function>char_compare</function> (<type>cl_object</type> <varname>x</varname>, <type>cl_object</type> <varname>y</varname>)</screen>
    <para>Compare the relative order of two characters. <literal>char_cmp</literal> takes care of
    case and <literal>char_compare</literal> converts all characters to uppercase before
    comparing them.</para>
@@ -776,7 +776,7 @@
    </varlistentry>
   </variablelist>
   <blockquote>
-   <screen><indexterm role="fn"><primary>array_elttype</primary></indexterm>&#151; Function: <returnvalue>cl_elttype</returnvalue> <function>array_elttype</function> (<type>cl_object</type> <varname>o</varname>)</screen>
+   <screen><indexterm role="fn"><primary>array_elttype</primary></indexterm> Function: <returnvalue>cl_elttype</returnvalue> <function>array_elttype</function> (<type>cl_object</type> <varname>o</varname>)</screen>
    <para>Returns the element type of the array <replaceable>o</replaceable>, which can be a string, a
    bitvector, vector, or a multidimensional array. For example, the code
    <literal>array_elttype(c_string_to_object("\"AAA\""))</literal> returns <literal>aet_ch</literal>,
@@ -784,8 +784,8 @@
    <literal>aet_object</literal>.</para>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>aref</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>aref</function> (<type>cl_object</type> <varname>array</varname>, <type>cl_index</type> <varname>index</varname>)</screen>
-   <screen><indexterm role="fn"><primary>aset</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>aset</function> (<type>cl_object</type> <varname>array</varname>, <type>cl_index</type> <varname>index</varname>, <type>cl_object</type> <varname>value</varname>)</screen>
+   <screen><indexterm role="fn"><primary>aref</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>aref</function> (<type>cl_object</type> <varname>array</varname>, <type>cl_index</type> <varname>index</varname>)</screen>
+   <screen><indexterm role="fn"><primary>aset</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>aset</function> (<type>cl_object</type> <varname>array</varname>, <type>cl_index</type> <varname>index</varname>, <type>cl_object</type> <varname>value</varname>)</screen>
    <para>These functions are used to retrieve and set the elements of an array. The
    elements are accessed with one index, <replaceable>index</replaceable>, as in the lisp function
    <literal>ROW-MAJOR-AREF</literal>. For example</para>
@@ -798,8 +798,8 @@
    </screen>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>aref1</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>aref1</function> (<type>cl_object</type> <varname>vector</varname>, <type>cl_index</type> <varname>index</varname>)</screen>
-   <screen><indexterm role="fn"><primary>aset1</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>aset1</function> (<type>cl_object</type> <varname>vector</varname>, <type>cl_index</type> <varname>index</varname>, <type>cl_object</type> <varname>value</varname>)</screen>
+   <screen><indexterm role="fn"><primary>aref1</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>aref1</function> (<type>cl_object</type> <varname>vector</varname>, <type>cl_index</type> <varname>index</varname>)</screen>
+   <screen><indexterm role="fn"><primary>aset1</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>aset1</function> (<type>cl_object</type> <varname>vector</varname>, <type>cl_index</type> <varname>index</varname>, <type>cl_object</type> <varname>value</varname>)</screen>
    <para>These functions are similar to <literal>aref</literal> and <literal>aset</literal>, but they operate on
    vectors.</para>
    <screen>
@@ -850,8 +850,8 @@
    </varlistentry>
   </variablelist>
   <blockquote>
-   <screen><indexterm role="fn"><primary>make_simple_string</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>make_simple_string</function> (<type>char</type> <varname>*</varname><varname>s</varname>)</screen>
-   <screen><indexterm role="fn"><primary>make_string_copy</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>make_string_copy</function> (<type>char</type> <varname>*</varname><varname>s</varname>)</screen>
+   <screen><indexterm role="fn"><primary>make_simple_string</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>make_simple_string</function> (<type>char</type> <varname>*</varname><varname>s</varname>)</screen>
+   <screen><indexterm role="fn"><primary>make_string_copy</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>make_string_copy</function> (<type>char</type> <varname>*</varname><varname>s</varname>)</screen>
    <para>Both routines build a lisp string from a C string. <literal>make_string_copy</literal>
    allocates new space and copies the content of the string to
    it. <literal>make_simple_string</literal> simply uses the memory pointed by <replaceable>s</replaceable>, which
@@ -884,8 +884,8 @@
   by a call to <literal>eval</literal>, but can also be explicitly constructed with the
   <literal>make_lambda</literal> function.</para>
   <blockquote>
-   <screen><indexterm role="fn"><primary>cl_safe_eval</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>cl_safe_eval</function> (<type>cl_object</type> <varname>form</varname>, <type>cl_object</type> <varname>env</varname>, <type>cl_object</type> <varname>err_value</varname></screen>
-   <screen><indexterm role="fn"><primary>cl_eval</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>cl_eval</function> (<type>cl_object</type> <varname>form</varname>)</screen>
+   <screen><indexterm role="fn"><primary>cl_safe_eval</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>cl_safe_eval</function> (<type>cl_object</type> <varname>form</varname>, <type>cl_object</type> <varname>env</varname>, <type>cl_object</type> <varname>err_value</varname></screen>
+   <screen><indexterm role="fn"><primary>cl_eval</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>cl_eval</function> (<type>cl_object</type> <varname>form</varname>)</screen>
    <para><literal>cl_safe_eval</literal> evaluates <replaceable>form</replaceable> in the lexical environment <replaceable>env</replaceable>,
    which can be <replaceable>nil</replaceable>. Before evaluating it, the expression <replaceable>form</replaceable> must
    be bytecompiled. <literal>cl_eval</literal> is the equivalent of <literal>cl_safe_eval</literal> but
@@ -898,7 +898,7 @@
    </screen>
   </blockquote>
   <blockquote>
-   <screen><indexterm role="fn"><primary>si_make_lambda</primary></indexterm>&#151; Function: <returnvalue>cl_object</returnvalue> <function>si_make_lambda</function> (<type>cl_object</type> <varname>name</varname>, <type>cl_object</type> <varname>def</varname>)</screen>
+   <screen><indexterm role="fn"><primary>si_make_lambda</primary></indexterm> Function: <returnvalue>cl_object</returnvalue> <function>si_make_lambda</function> (<type>cl_object</type> <varname>name</varname>, <type>cl_object</type> <varname>def</varname>)</screen>
    <para>Builds an interpreted lisp function with name given by the symbol <replaceable>name</replaceable>
    and body given by <replaceable>def</replaceable>. For instance, we would achieve the equivalent of</para>
    <programlisting>
@@ -1248,7 +1248,7 @@
   <para>Ordinarily, lexical variables in a compiled function <emphasis>f</emphasis>
   are allocated on the C stack.  However, if a lexical variable is
   to be enclosed in function closures, it is allocated on a list, called
-  the environment list, which is local to <emphasis>f</emphasis>.  In addition, a
+  the "environment list", which is local to <emphasis>f</emphasis>.  In addition, a
   local variable is created which points to the lexical
   variable's location (within the environment list), so that
   the variable may be accessed through an indirection rather than by list
