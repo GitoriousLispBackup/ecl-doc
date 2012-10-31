@@ -44,8 +44,9 @@ html/ecl.css: ecl.css html/index.html
 	@test -d html/figures || mkdir html/figures
 	cp figures/*.png html/figures/
 ecl.pdf: ecl2.xml $(PDF_XSLFILES)
-	$(XMLTO) -vv --skip-validation $(subst xsl, -m xsl,$(PDF_XSLFILES)) \
-		 --with-dblatex -o $@ pdf ecl2.xml
+	-mkdir tex
+	dblatex -V -d --tmpdir=tex -P latex.encoding=utf8 ecl2.xml
+	mv ecl2.pdf $@
 
 tmp/ecl.ent: ecl.ent
 	cp $< $@
@@ -59,4 +60,5 @@ jing:
 	jing -t -i /usr/local/Cellar/docbook/5.0/docbook/xml/5.0/rng/docbookxi.rng ecl.xml
 
 clean:
-	rm -f tmp/ecl.ent ecl2.xml $(GEN_XMLFILES) html/*.html
+	rm -f tmp/ecl.ent ecl2.xml $(GEN_XMLFILES) html/*.html ecl.pdf
+	rm -rf tex
