@@ -364,7 +364,7 @@ ls [--help | -?] filename*
      <term><replaceable>error</replaceable></term>
      <listitem><para>One of <symbol>:OUTPUT</symbol>, <symbol>T</symbol> or
      <symbol>NIL</symbol>, defaults to
-     <symbol>:STREAM</symbol></para></listitem>
+     <symbol>T</symbol></para></listitem>
     </varlistentry>
    </variablelist>
   </refsynopsisdiv>
